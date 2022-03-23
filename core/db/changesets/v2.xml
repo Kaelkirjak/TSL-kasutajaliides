@@ -1321,4 +1321,22 @@
                                  onUpdate="CASCADE" onDelete="CASCADE"/>
     </changeSet>
 
+    <changeSet id="230322-1" author="kspar">
+        <dropForeignKeyConstraint baseTableName="automatic_assessment"
+                                  constraintName="fk_automatic_assessment_submission"/>
+        <addForeignKeyConstraint baseTableName="automatic_assessment" baseColumnNames="submission_id"
+                                 referencedTableName="submission"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_automatic_assessment_submission"
+                                 onUpdate="CASCADE" onDelete="CASCADE"/>
+
+        <dropForeignKeyConstraint baseTableName="teacher_assessment"
+                                  constraintName="fk_teacher_assessment_submission"/>
+        <addForeignKeyConstraint baseTableName="teacher_assessment" baseColumnNames="submission_id"
+                                 referencedTableName="submission"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_teacher_assessment_submission"
+                                 onUpdate="CASCADE" onDelete="CASCADE"/>
+    </changeSet>
+
 </databaseChangeLog>
