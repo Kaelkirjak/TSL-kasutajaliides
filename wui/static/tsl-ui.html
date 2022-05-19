@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="css/exercise.css">
 
     <style>
-
+    
 
     </style>
 </head>
@@ -161,6 +161,14 @@
                             <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path>
                         </svg>
                     </ez-icon>Uus ülesanne</a></li>
+                <li><a class="waves-effect sidenav-close modal-trigger" href="https://9gag.com/">
+                    <ez-icon>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 0 24 24" width="18px"
+                             fill="#000000">
+                            <path d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path>
+                        </svg>
+                    </ez-icon>Loo testikomplekt(UI)</a></li>
             </ez-dst>
             <ez-dst id="ezid-16" class="trailer">
                 <li>
@@ -202,8 +210,823 @@
 
         <!-- TODO -->
 
+        <ul class="collapsible" id="test-list">
+            <li>
+                <div class="collapsible-header valign-wrapper", style="display: block; height: 4em;" onclick="changeMainCollapsibleArrow()">
+                  <i class="material-icons" id="parent-collapsible-arrow">arrow_forward</i>
+                  Kontrollid
+                  <a class="btn-floating waves-effect waves-light green right-align right" onclick="addTestBlock()"><i class="material-icons">add</i></a>
+                </div>
+                <div class="collapsible-body" id="test-container" onclick="changeChildArrow(event)">
+                  <p id="placeholder-text">Sul pole hetkel mitte ühtegi testi lisatud.</p> 
+                </div>
+            </li>
+        </ul>
 
+        <!-- https://docs.google.com/document/d/1pb0r-30X-GhcCtihHH7Ej_DpiNuBmxR92qe2Ijrn3PQ/edit?pli=1# -->
+        <!-- šabloon programmi staatilise kontrolli jaoks -->
+        <template id="tests_prog_static">
+            <div><p>tutvustav tekst</p></div>
+            <form action="#">
+            <p>
+                <label>
+                  <input type="checkbox" />
+                  <span>Programm sisaldab tsüklit</span>
+                </label>
+            </p>  
+            <p>
+                <label>
+                  <input type="checkbox" />
+                  <span>Programm sisaldab try-excepti</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                  <input type="checkbox" />
+                  <span>Programm kutsub välja prindi</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                  <input type="checkbox" />
+                  <span>Programm peab viskama erindi</span>
+                </label>
+            </p>
+            </form> 
+            <div class="divider"></div>
+            <div class="section">
+              <h5>Sisaldab võtmesõna</h5>
+              <form action="#">
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Kõik nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Võtmesõnad</label>
+                  </div>
+                </label>
+              </p> 
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Mõni nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Võtmesõnad</label>
+                  </div>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Ükskõik millise </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Võtmesõnad</label>
+                  </div>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Mitte ühtegi nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Võtmesõnad</label>
+                  </div>
+                </label>
+              </p> 
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Puudub vähemalt üks nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Võtmesõnad</label>
+                  </div>
+                </label>
+              </p> 
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Mitte ühtegi </span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" checked class="with-gap"/>
+                  <span>Ei kontrolli </span>
+                </label>
+              </p>
+              </form>
+            </div>
+            <div class="divider"></div>
+            <div class="section">
+              <h5>Kutsub välja funktsiooni</h5>
+              <form action="#">
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Kõik nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Funktsioonid</label>
+                  </div>
+                </label>
+              </p> 
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Mõni nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Funktsioonid</label>
+                  </div>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Ükskõik millise </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Funktsioonid</label>
+                  </div>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Mitte ühtegi nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Funktsioonid</label>
+                  </div>
+                </label>
+              </p> 
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Puudub vähemalt üks nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Funktsioonid</label>
+                  </div>
+                </label>
+              </p> 
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Mitte ühtegi </span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" checked class="with-gap"/>
+                  <span>Ei kontrolli </span>
+                </label>
+              </p>
+              </form>
+            </div>
+            <div class="divider"></div>
+            <div class="section">
+              <h5>Impordib mooduli</h5>
+              <form action="#"></form>
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Kõik nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Moodulid</label>
+                  </div>
+                </label>
+              </p> 
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Mõni nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Moodulid</label>
+                  </div>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Ükskõik millise </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Moodulid</label>
+                  </div>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Mitte ühtegi nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Moodulid</label>
+                  </div>
+                </label>
+              </p> 
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Puudub vähemalt üks nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Moodulid</label>
+                  </div>
+                </label>
+              </p> 
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Mitte ühtegi </span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" checked class="with-gap"/>
+                  <span>Ei kontrolli </span>
+                </label>
+              </p>
+              </form>
+            </div>
+            <div class="divider"></div>
+            <div class="section">
+              <h5>Defineerib funktsiooni</h5>
+              <form action="#">
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Kõik nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Funktsioonid</label>
+                  </div>
+                </label>
+              </p> 
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Mõni nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Funktsioonid</label>
+                  </div>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Ükskõik millise </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Funktsioonid</label>
+                  </div>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Mitte ühtegi nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Funktsioonid</label>
+                  </div>
+                </label>
+              </p> 
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Puudub vähemalt üks nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Funktsioonid</label>
+                  </div>
+                </label>
+              </p> 
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Mitte ühtegi </span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" checked class="with-gap"/>
+                  <span>Ei kontrolli </span>
+                </label>
+              </p>
+              </form>
+            </div>      
+        </template>
 
+        <!-- šabloon funktsiooni staatilise kontrolli jaoks -->
+        <template id="tests_func_static">
+            <div><p>tutvustav tekst</p></div>
+            <div class="input-field">
+                <input type="text" class="validate">
+                <label for="first_name">Funktsiooni nimi</label>
+            </div>
+            <form action="#">
+            <p>
+                <label>
+                  <input type="checkbox" />
+                  <span>Funktsioon sisaldab tsüklit</span>
+                </label>
+            </p>  
+            <p>
+                <label>
+                  <input type="checkbox" />
+                  <span>Funktsioon sisaldab returni</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                  <input type="checkbox" />
+                  <span>Funktsioon sisaldab try-excepti</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                  <input type="checkbox" />
+                  <span>Funktsioon kutsub välja erindi</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                  <input type="checkbox" />
+                  <span>Funktsioon kasutab ainult lokaalseid muutujaid</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                  <input type="checkbox" />
+                  <span>Funktsioon on rekursiivne</span>
+                </label>
+            </p>
+            </form> 
+            <div class="divider"></div>
+            <div class="section">
+              <h5>Sisaldab võtmesõna</h5>
+              <form action="#">
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Kõik nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Võtmesõnad</label>
+                  </div>
+                </label>
+              </p> 
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Mõni nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Võtmesõnad</label>
+                  </div>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Ükskõik millise </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Võtmesõnad</label>
+                  </div>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Mitte ühtegi nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Võtmesõnad</label>
+                  </div>
+                </label>
+              </p> 
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Puudub vähemalt üks nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Võtmesõnad</label>
+                  </div>
+                </label>
+              </p> 
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Mitte ühtegi </span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" checked class="with-gap"/>
+                  <span>Ei kontrolli </span>
+                </label>
+              </p>
+              </form>
+            </div>
+            <div class="divider"></div>
+            <div class="section">
+              <h5>Kutsub välja funktsiooni</h5>
+              <form action="#">
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Kõik nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Funktsioonid</label>
+                  </div>
+                </label>
+              </p> 
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Mõni nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Funktsioonid</label>
+                  </div>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Ükskõik millise </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Funktsioonid</label>
+                  </div>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Mitte ühtegi nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Funktsioonid</label>
+                  </div>
+                </label>
+              </p> 
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Puudub vähemalt üks nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Funktsioonid</label>
+                  </div>
+                </label>
+              </p> 
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Mitte ühtegi </span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" checked class="with-gap"/>
+                  <span>Ei kontrolli </span>
+                </label>
+              </p>
+              </form>
+            </div>
+            <div class="divider"></div>
+            <div class="section">
+              <h5>Impordib mooduli</h5>
+              <form action="#"></form>
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Kõik nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Moodulid</label>
+                  </div>
+                </label>
+              </p> 
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Mõni nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Moodulid</label>
+                  </div>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Ükskõik millise </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Moodulid</label>
+                  </div>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Mitte ühtegi nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Moodulid</label>
+                  </div>
+                </label>
+              </p> 
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Puudub vähemalt üks nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Moodulid</label>
+                  </div>
+                </label>
+              </p> 
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Mitte ühtegi </span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" checked class="with-gap"/>
+                  <span>Ei kontrolli </span>
+                </label>
+              </p>
+              </form>
+            </div>
+            <div class="divider"></div>
+            <div class="section">
+              <h5>Defineerib funktsiooni</h5>
+              <form action="#">
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Kõik nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Funktsioonid</label>
+                  </div>
+                </label>
+              </p> 
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Mõni nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Funktsioonid</label>
+                  </div>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Ükskõik millise </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Funktsioonid</label>
+                  </div>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Mitte ühtegi nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Funktsioonid</label>
+                  </div>
+                </label>
+              </p> 
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Puudub vähemalt üks nendest </span>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Funktsioonid</label>
+                  </div>
+                </label>
+              </p> 
+              <p>
+                <label>
+                  <input name="group1" type="radio" class="with-gap"/>
+                  <span>Mitte ühtegi </span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" checked class="with-gap"/>
+                  <span>Ei kontrolli </span>
+                </label>
+              </p>
+              </form>
+            </div>      
+        </template>
+
+        <!-- šabloon programmi täitmise kontrolli jaoks -->
+        <template id="tests_prog_exec">
+            <div><p>tutvustav tekst</p></div> 
+            <div class="divider"></div>
+            <div class="section">
+              <h5>Algandmed</h5>
+              <form action="#">
+                <p>
+                    <label>
+                      <input type="checkbox" />
+                      <span>Kasutajasisendid</span>
+                      <div class="input-field">
+                        <input id="last_name" type="text" class="validate">
+                        <label for="last_name">Kasutajasisendid</label>
+                      </div>
+                    </label>
+                </p>  
+                <p>
+                    <label>
+                      <input type="checkbox" />
+                      <span>Sisendfailid</span>
+                      <div class="input-field">
+                        <input id="last_name" type="text" class="validate">
+                        <label for="last_name">Faili nimi</label>
+                      </div>
+                      <div class="input-field">
+                        <input id="last_name" type="text" class="validate">
+                        <label for="last_name">Faili sisu</label>
+                      </div>
+                    </label>
+                </p>
+              </form> 
+            </div> 
+            <div class="divider"></div>
+            <div class="section">
+              <h5>Tulemus</h5>
+              <form action="#">
+                <p>
+                    <label>
+                      <input type="checkbox" />
+                      <span>Kasutajaväljund</span>
+                      <div class="input-field">
+                        <input id="last_name" type="text" class="validate">
+                        <label for="last_name">Kasutajaväljund</label>
+                      </div>
+                    </label>
+                </p>  
+                <p>
+                    <label>
+                      <input type="checkbox" />
+                      <span>Väljundfail</span>
+                      <div class="input-field">
+                        <input id="last_name" type="text" class="validate">
+                        <label for="last_name">Faili nimi</label>
+                      </div>
+                      <div class="input-field">
+                        <input id="last_name" type="text" class="validate">
+                        <label for="last_name">Faili sisu</label>
+                      </div>
+                    </label>
+                </p>
+              </form> 
+            </div>   
+        </template>
+
+        <!-- šabloon funktsiooni täitmise kontrolli jaoks -->
+        <template id="tests_func_exec">
+            <div><p>tutvustav tekst</p></div>
+            <div class="input-field">
+                <input type="text" class="validate" required>
+                <label for="first_name">Funktsiooni nimi</label>
+        
+            </div> 
+            <div class="divider"></div>
+            <div class="section">
+              <h5>Algandmed</h5>
+              <form action="#">
+                <p>
+                    <label>
+                      <input type="checkbox" />
+                      <span>Argumendid</span>
+                      <div class="input-field">
+                        <input id="last_name" type="text" class="validate">
+                        <label for="last_name">Argumendid</label>
+                      </div>
+                    </label>
+                </p>
+                <p>
+                    <label>
+                      <input type="checkbox" />
+                      <span>Kasutajasisendid</span>
+                      <div class="input-field">
+                        <input id="last_name" type="text" class="validate">
+                        <label for="last_name">Kasutajasisendid</label>
+                      </div>
+                    </label>
+                </p>  
+                <p>
+                    <label>
+                      <input type="checkbox" />
+                      <span>Sisendfailid</span>
+                      <div class="input-field">
+                        <input id="last_name" type="text" class="validate">
+                        <label for="last_name">Faili nimi</label>
+                      </div>
+                      <div class="input-field">
+                        <input id="last_name" type="text" class="validate">
+                        <label for="last_name">Faili sisu</label>
+                      </div>
+                    </label>
+                </p>
+              </form> 
+            </div> 
+            <div class="divider"></div>
+            <div class="section">
+              <h5>Tulemus</h5>
+              <form action="#">
+                <p>
+                    <label>
+                      <input type="checkbox" />
+                      <span>Tagastusväärtus</span>
+                      <div class="input-field">
+                        <input id="last_name" type="text" class="validate">
+                        <label for="last_name">Tagastusväärtus</label>
+                      </div>
+                    </label>
+                </p> 
+                <p>
+                    <label>
+                      <input type="checkbox" />
+                      <span>Kasutajaväljund</span>
+                      <div class="input-field">
+                        <input id="last_name" type="text" class="validate">
+                        <label for="last_name">Kasutajaväljund</label>
+                      </div>
+                    </label>
+                </p>  
+                <p>
+                    <label>
+                      <input type="checkbox" />
+                      <span>Väljundfail</span>
+                      <div class="input-field">
+                        <input id="last_name" type="text" class="validate">
+                        <label for="last_name">Faili nimi</label>
+                      </div>
+                      <div class="input-field">
+                        <input id="last_name" type="text" class="validate">
+                        <label for="last_name">Faili sisu</label>
+                      </div>
+                    </label>
+                </p>
+              </form> 
+            </div>   
+        </template>
+        
+        <!-- šabloon ühe testi plokki jaoks ehk kui vajutatakse + nuppu, siis lisatakse neid aina juurde -->
+        <template id="test-block">
+          <ul class="collapsible">
+            <li onchange="fill(event)">
+                <div class="collapsible-header valign-wrapper">
+                  <i class="material-icons">arrow_forward</i>
+                  Test 1
+                </div>
+                <div class="collapsible-body">
+                  <div class="input-field">
+                    <select class="selected-test-type">
+                      <option value="" disabled selected>Vali kontrolli tüüp</option>
+                      <option value="1">Programmi staatiline kontroll</option>
+                      <option value="2">Programmi täitmise kontroll</option>
+                      <option value="3">Funktsiooni staatiline kontroll</option>
+                      <option value="4">Funktsiooni täitmise kontroll</option>
+                    </select>
+                    <label>Testi tüüp</label>
+                </div>
+                <div id="test-content">
+                    
+                </div>
+                </div>
+            </li>
+          </ul>
+        </template> 
 
 
     </div>
@@ -223,8 +1046,95 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 <script type="text/javascript">
-    <!-- TODO -->
+// JS
+// variable names: snake_case
+// function names: camelCase
 
+// HTML
+// id: id-1
+// classes: class-1
+
+document.addEventListener('DOMContentLoaded', function() { // Executes when everything has loaded.
+    initializeElements();
+});
+
+function initializeElements() { // Used to initialize elements.
+  var collapsible_elements = document.querySelectorAll('.collapsible');
+  M.Collapsible.init(collapsible_elements);
+
+  var select_elements = document.querySelectorAll('select');
+  M.FormSelect.init(select_elements);
+}
+
+function changeChildArrow(e) { // Changes the arrow of tests inside main test block.
+  if (e.target && e.target.classList.contains("collapsible-header")) { 
+    var arrow_name = e.target.querySelector(".material-icons").innerHTML;
+    if (arrow_name === 'arrow_downward') {
+      e.target.querySelector(".material-icons").innerHTML = "arrow_forward";
+    } else {
+      e.target.querySelector(".material-icons").innerHTML = "arrow_downward";
+    }
+  }
+}
+
+function changeMainCollapsibleArrow() { // Changes the arrow of the main test block.
+  var arrow_name = document.getElementById("parent-collapsible-arrow").innerHTML;
+  if (arrow_name === 'arrow_downward') {
+    document.getElementById("parent-collapsible-arrow").innerHTML = "arrow_forward";
+  } else {
+    document.getElementById("parent-collapsible-arrow").innerHTML = "arrow_downward";
+  } 
+}
+
+function fill(e) { // Shows the test options according to chosen test type.
+  if (e.target && e.target.classList.contains("selected-test-type")) {
+
+    var current_test_content = e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#test-content");
+    if (current_test_content != null) {
+      var child = current_test_content.lastElementChild;
+      while (child) { // Removes previous test options when a new test option is chosen.
+        current_test_content.removeChild(child);
+        child = current_test_content.lastElementChild;
+      } 
+    }
+
+    var chosen_test_type = e.target.value;
+
+    var test_template;
+    if (chosen_test_type === "1") {
+      test_template = document.querySelector('#tests_prog_static');
+    } else if (chosen_test_type === "2") {  
+      test_template = document.querySelector('#tests_prog_exec');
+    } else if (chosen_test_type === "3") {
+      test_template = document.querySelector('#tests_func_static');
+    } else if (chosen_test_type === "4") {
+      test_template = document.querySelector('#tests_func_exec');
+    }
+
+    if (test_template != null) {
+        var template_clone = document.importNode(test_template.content, true); // where true means deep copy
+        e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#test-content").appendChild(template_clone);
+    }  
+  }
+}
+
+function addTestBlock() { // Used to add test blocks.
+  document.querySelector('.collapsible-header').click(function(e){
+    e.stopPropagation(); // So that the main collapsible does not close or open on button press.
+  }); 
+
+  var child = document.getElementById("placeholder-text");
+  if (child != null) {
+    child.parentNode.removeChild(child);
+  }
+
+  var test_block_template = document.querySelector('#test-block');
+
+  var template_clone = document.importNode(test_block_template.content, true); // Make a deep copy.
+  document.getElementById("test-container").appendChild(template_clone);
+    
+  initializeElements();
+} 
 
 </script>
 
