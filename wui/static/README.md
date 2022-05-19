@@ -3,7 +3,7 @@
 # Kasutamine
 
 Avada fail tsl-ui.html ja selle avamisel peaks tulema selline vaade:
-![Näidis](/näidis.png)
+![Näidis](/wui/static/näidis.png)
 
 # TODO
 
