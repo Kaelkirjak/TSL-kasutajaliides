@@ -223,1640 +223,1088 @@
         </ul>
 
         <!-- https://docs.google.com/document/d/1pb0r-30X-GhcCtihHH7Ej_DpiNuBmxR92qe2Ijrn3PQ/edit?pli=1# -->
-        <!-- šabloon programmi staatilise kontrolli jaoks -->
-        <template id="tests_prog_static">
-            <div><p>Programmi staatilise kontrolli juures programmi ei käivitata vaid kontrollitakse, kas programm teeb/sisaldab neid asju, mis on allpool välja toodud.</p></div>
-            <div class="input-field" onchange="changeTestName(event)">
-              <label>Testi nimi</label>
-              <input type="text" class="validate">
-            </div> 
-            <div class="divider"></div>
+        <!-- Šabloon programmi staatilise kontrolli jaoks -->
+        <template id="program-static-test">
+          <div>
+            <p>Programmi staatilise kontrolli juures programmi ei käivitata vaid kontrollitakse, kas programm teeb/sisaldab neid asju, mis on allpool välja toodud.</p>
+          </div>
+          <div class="input-field" onchange="changeTestBlockName(event)">
+            <label>Testiploki nimi</label>
+            <input type="text" class="validate test-block-name">
+          </div> 
+          <div class="divider"></div>
 
+          <div class="input-field">
+            <select class="prog-selected-static-test">
+              <option value="0" disabled selected>Vali staatiline kontroll</option>
+              <option value="1">Programm sisaldab tsüklit</option>
+              <option value="2">Sisaldab võtmesõna</option>
+              <option value="3">Kutsub välja funktsiooni</option>
+              <option value="4">Programm kutsub välja prindi</option>
+              <option value="5">Defineerib funktsiooni</option>
+              <option value="6">Impordib mooduli</option>
+              <option value="7">Programm sisaldab try-excepti</option>
+            </select>
+            <label>Staatiline test</label>
+          </div>      
+        </template>
+
+        <!-- Šabloon dropdowni jaoks. -->
+        <template id="kõik-nendest">
+          <tr>
+            <td style="width:30%" id="kõik-n">
+              <h5>Kõik nendest</h5>
+              <label >
+                <input id="text-order" type="checkbox" />
+                <span>Rohkem mitte midagi</span>
+              </label>
+            </td>
+            <td>
+              <div class="chips">
+                <input class="custom-class">
+              </div>
+            </td>
+            <td>
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteEkraaniväljundBlock(event)">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </template>
+
+        <!-- Šabloon dropdowni jaoks. -->
+        <template id="mõni-nendest">
+          <tr>
+            <td style="width:30%" id="mõni-n">
+              <h5>Mõni nendest</h5>
+              <label >
+                <input id="text-order" type="checkbox" />
+                <span>Rohkem mitte midagi</span>
+              </label>
+            </td>
+            <td>
+              <div class="chips">
+                <input class="custom-class">
+              </div>
+            </td>
+            <td>
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteEkraaniväljundBlock(event)">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </template>
+
+        <!-- Šabloon dropdowni jaoks. -->
+        <template id="ükskõik-millise">
+          <tr>
+            <td style="width:30%" id="ükskõik-m">
+              <h5>Ükskõik millise</h5>
+            </td>
+            <td>
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteEkraaniväljundBlock(event)">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </template>
+
+        <!-- Šabloon dropdowni jaoks. -->
+        <template id="mitte-ühtegi-nendest">
+          <tr>
+            <td style="width:30%" id="mitte-ün">
+              <h5>Mitte ühtegi nendest</h5>
+            </td>
+            <td>
+              <div class="chips">
+                <input class="custom-class">
+              </div>
+            </td>
+            <td>
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteEkraaniväljundBlock(event)">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </template>
+
+        <!-- Šabloon dropdowni jaoks. -->
+        <template id="puudub-vähemalt-üks-nendest">
+          <tr>
+            <td style="width:30%" id="puudub-vün">
+              <h5>Puudub vähemalt üks nendest</h5>
+            </td>
+            <td>
+              <div class="chips">
+                <input class="custom-class">
+              </div>
+            </td>
+            <td>
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteEkraaniväljundBlock(event)">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </template>
+
+        <!-- Šabloon dropdowni jaoks. -->
+        <template id="mitte-ühtegi">
+          <tr>
+            <td style="width:30%" id="mitte-ü">
+              <h5>Mitte ühtegi</h5>
+            </td>
+            <td>
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteEkraaniväljundBlock(event)">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </template>
+
+        <!-- Šabloon funktsiooni defineerimise kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
+        <template id="template-defines_function">
+          <div class="section test-points">
+            <h5 id="defines-function-modal" style="display: inline-block;" class="test-name">Defineerib funktsiooni</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+              <i class="material-icons">delete</i>
+            </a>
+            
             <div class="input-field">
-              <select class="prog-selected-static-test">
-                <option value="0" disabled selected>Vali staatiline kontroll</option>
-                <option value="1">Programm sisaldab tsüklit</option>
-                <option value="2">Sisaldab võtmesõna</option>
-                <option value="3">Kutsub välja funktsiooni</option>
-                <option value="4">Programm kutsub välja prindi</option>
-                <option value="5">Defineerib funktsiooni</option>
-                <option value="6">Impordib mooduli</option>
-                <option value="7">Programm sisaldab try-excepti</option>
-
+                <select class="defines-function-valikud">
+                <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
+                <option value="1">Kõik nendest</option>
+                <option value="2">Mõni nendest</option>
+                <option value="3">Ükskõik millise</option>
+                <option value="4">Mitte ühtegi nendest</option>
+                <option value="5">Puudub vähemalt üks nendest</option>
+                <option value="6">Mitte ühtegi</option>
               </select>
-              <label>Staatiline test</label>
-            </div>      
-        </template>
-
-        <!-- Defineerib funktsiooni -->
-        <template id="defines_function">
-            <div class="section">
-              <h5 id="defines-function-modal" style="display: inline-block;">Defineerib funktsiooni</h5>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)"><i class="material-icons">delete</i></a>
-              <form action="#">
-                <table>
-                  <tbody>
-                    <tr>
-                      <td style="width:30%;">
-                        <label>
-                        <input name="group1" type="radio" class="with-gap" checked/>
-                        <span>Kõik nendest</span>
-                        </label>
-                      </td>
-                      <td>
-                        <div class="input-field">
-                          <label>Funktsioonid</label>
-                          <input type="text" class="validate">
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label>
-                        <input name="group1" type="radio" class="with-gap"/>
-                        <span>Mõni nendest</span>
-                        </label>
-                      </td>
-                      <td>
-                        <div class="input-field">
-                          <label>Funktsioonid</label>
-                          <input type="text" class="validate">
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label>
-                        <input name="group1" type="radio" class="with-gap"/>
-                        <span>Ükskõik millise</span>
-                        </label>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label>
-                        <input name="group1" type="radio" class="with-gap"/>
-                        <span>Mitte ühtegi nendest</span>
-                        </label>
-                      </td>
-                      <td>
-                        <div class="input-field">
-                          <label>Funktsioonid</label>
-                          <input type="text" class="validate">
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label>
-                        <input name="group1" type="radio" class="with-gap"/>
-                        <span>Puudub vähemalt üks nendest</span>
-                        </label>
-                      </td>
-                      <td>
-                        <div class="input-field">
-                          <label>Funktsioonid</label>
-                          <input type="text" class="validate">
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label>
-                        <input name="group1" type="radio" class="with-gap"/>
-                        <span>Mitte ühtegi</span>
-                        </label>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </form>
+              <label>Andmed</label>
             </div>
-        </template>
 
-        <!-- Impordib mooduli -->
-        <template id="imports_module">
-            <div class="section">
-              <h5 id="imports-module-modal" style="display: inline-block;">Impordib mooduli</h5>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)"><i class="material-icons">delete</i></a>
-              <form action="#">
-              <table>
-                <tbody>
-                  <tr>
-                    <td style="width:30%">
-                      <label>
-                      <input name="group1" type="radio" class="with-gap" checked/>
-                      <span>Kõik nendest</span>
-                      </label>
-                    </td>
-                    <td>
-                      <div class="input-field">
-                        <label>Moodulid</label>
-                        <input type="text" class="validate">
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label>
-                      <input name="group1" type="radio" class="with-gap"/>
-                      <span>Mõni nendest</span>
-                      </label>
-                    </td>
-                    <td>
-                      <div class="input-field">
-                        <label>Moodulid</label>
-                        <input type="text" class="validate">
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label>
-                      <input name="group1" type="radio" class="with-gap"/>
-                      <span>Ükskõik millise</span>
-                      </label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label>
-                      <input name="group1" type="radio" class="with-gap"/>
-                      <span>Mitte ühtegi nendest</span>
-                      </label>
-                    </td>
-                    <td>
-                      <div class="input-field">
-                        <label>Moodulid</label>
-                        <input type="text" class="validate">
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label>
-                      <input name="group1" type="radio" class="with-gap"/>
-                      <span>Puudub vähemalt üks nendest</span>
-                      </label>
-                    </td>
-                    <td>
-                      <div class="input-field">
-                        <label>Moodulid</label>
-                        <input type="text" class="validate">
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label>
-                      <input name="group1" type="radio" class="with-gap"/>
-                      <span>Mitte ühtegi</span>
-                      </label>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              </form>
-            </div>
-        </template>
-
-        <template id="calls_function">
-            <div class="section">
-              <h5 id="calls-function-modal" style="display: inline-block;">Kutsub välja funktsiooni</h5>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)"><i class="material-icons">delete</i></a>
-              <form action="#">
-                <table>
-                  <tbody>
-                    <tr>
-                      <td style="width:30%">
-                        <label>
-                        <input name="group1" type="radio" class="with-gap" checked/>
-                        <span>Kõik nendest</span>
-                        </label>
-                      </td>
-                      <td>
-                        <div class="input-field">
-                          <label>Võtmesõnad</label>
-                          <input type="text" class="validate">
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label>
-                        <input name="group1" type="radio" class="with-gap"/>
-                        <span>Mõni nendest</span>
-                        </label>
-                      </td>
-                      <td>
-                        <div class="input-field">
-                          <label>Võtmesõnad</label>
-                          <input type="text" class="validate">
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label>
-                        <input name="group1" type="radio" class="with-gap"/>
-                        <span>Ükskõik millise</span>
-                        </label>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label>
-                        <input name="group1" type="radio" class="with-gap"/>
-                        <span>Mitte ühtegi nendest</span>
-                        </label>
-                      </td>
-                      <td>
-                        <div class="input-field">
-                          <label>Võtmesõnad</label>
-                          <input type="text" class="validate">
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label>
-                        <input name="group1" type="radio" class="with-gap"/>
-                        <span>Puudub vähemalt üks nendest</span>
-                        </label>
-                      </td>
-                      <td>
-                        <div class="input-field">
-                          <label>Võtmesõnad</label>
-                          <input type="text" class="validate">
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label>
-                        <input name="group1" type="radio" class="with-gap"/>
-                        <span>Mitte ühtegi</span>
-                        </label>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </form>
-            </div>
-        </template>
-
-        <template id="contains_keyword">
-          <div class="section">
-            <h5 id="contains-keyword-modal" style="display: inline-block;">Sisaldab võtmesõna</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)"><i class="material-icons">delete</i></a>
             <form action="#">
               <table>
-                <tbody>
-                  <tr>
-                    <td style="width:30%">
-                      <label>
-                      <input name="group1" type="radio" class="with-gap" checked/>
-                      <span>Kõik nendest</span>
-                      </label>
-                    </td>
-                    <td>
-                      <div class="input-field">
-                        <label>Võtmesõnad</label>
-                        <input type="text" class="validate">
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label>
-                      <input name="group1" type="radio" class="with-gap"/>
-                      <span>Mõni nendest</span>
-                      </label>
-                    </td>
-                    <td>
-                      <div class="input-field">
-                        <label>Võtmesõnad</label>
-                        <input type="text" class="validate">
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label>
-                      <input name="group1" type="radio" class="with-gap"/>
-                      <span>Mitte ühtegi nendest</span>
-                      </label>
-                    </td>
-                    <td>
-                      <div class="input-field">
-                        <label>Võtmesõnad</label>
-                        <input type="text" class="validate">
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label>
-                      <input name="group1" type="radio" class="with-gap"/>
-                      <span>Puudub vähemalt üks nendest</span>
-                      </label>
-                    </td>
-                    <td>
-                      <div class="input-field">
-                        <label>Võtmesõnad</label>
-                        <input type="text" class="validate">
-                      </div>
-                    </td>
-                  </tr>
+                <tbody id="valikud-stat">
                 </tbody>
               </table>
             </form>
           </div>
         </template>
 
-        <template id="prog-contains-cycle">
-        <div class="section">
-          <h5 id="program-contains-cycle" style="display: inline-block;">Programm sisaldab tsüklit:</h5>
-          <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)"><i class="material-icons">delete</i></a>
-          <form action="#">
-          <p>
-          <label>
-            <input class="with-gap" name="group1" type="radio" checked/>
-            <span>Peab sisaldama</span>
-          </label>
-          </p>
-          <p>
-          <label>
-            <input class="with-gap" name="group1" type="radio" />
-            <span>Ei tohi sisaldada</span>
-          </label>
-          </p>
-          </form>
-        <div class="divider"></div>
-        </div>
-        </template>
-
-        <template id="prog-contains-try-except">
-        <div class="section">
-          <h5 id="program-contains-try-except" style="display: inline-block;">Programm sisaldab try-excepti:</h5>
-          <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)"><i class="material-icons">delete</i></a>
-          <form action="#">
-          <p>
-          <label>
-            <input class="with-gap" name="group1" type="radio" checked/>
-            <span>Peab sisaldama</span>
-          </label>
-          </p>
-          <p>
-          <label>
-            <input class="with-gap" name="group1" type="radio"/>
-            <span>Ei tohi sisaldada</span>
-          </label>
-          </p>
-          </form>
-        <div class="divider"></div>
-        </div>
-        </template>
-
-        <template id="prog-calls-print">
-        <div class="section">
-          <h5 id="program-calls-print" style="display: inline-block;">Programm kutsub välja prindi:</h5>
-          <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)"><i class="material-icons">delete</i></a>
-          <form action="#">
-          <p>
-          <label>
-            <input class="with-gap" name="group1" type="radio" checked  />
-            <span>Peab sisaldama</span>
-          </label>
-          </p>
-          <p>
-          <label>
-            <input class="with-gap" name="group1" type="radio" />
-            <span>Ei tohi sisaldada</span>
-          </label>
-          </p>
-          </form>
-        <div class="divider"></div>
-        </div>
-        </template>
-
-        <template id="func-contains-cycle">
-        <div class="section">
-          <h5 id="fun-contains-cycle" style="display: inline-block;">Funktsioon sisaldab tsüklit:</h5>
-          <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)"><i class="material-icons">delete</i></a>
-          <form action="#">
-          <p>
-            <label>
-              <input class="with-gap" name="group1" type="radio" checked  />
-              <span>Peab sisaldama</span>
-            </label>
-            </p>
-            <p>
-            <label>
-              <input class="with-gap" name="group1" type="radio" />
-              <span>Ei tohi sisaldada</span>
-            </label>
-            </p>
-            </form>
-          <div class="divider"></div>
-        </div>
-        </template>
-
-        <template id="func-contains-return">
-        <div class="section">  
-            <h5 id="fun-contains-return" style="display: inline-block;">Funktsioon sisaldab returni:</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)"><i class="material-icons">delete</i></a>
-            <form action="#">
-            <p>
-              <label>
-                <input class="with-gap" name="group1" type="radio" checked  />
-                <span>Peab sisaldama</span>
-              </label>
-              </p>
-              <p>
-              <label>
-                <input class="with-gap" name="group1" type="radio" />
-                <span>Ei tohi sisaldada</span>
-              </label>
-              </p>
-            </form>
-            <div class="divider"></div>
-        </div>
-        </template>
-
-        <template id="func-contains-try-except">
-        <div class="section">  
-            <h5 id="fun-contains-try-except" style="display: inline-block;">Funktsioon sisaldab try-excepti:</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)"><i class="material-icons">delete</i></a>
-            <form action="#">
-            <p>
-              <label>
-                <input class="with-gap" name="group1" type="radio" checked  />
-                <span>Peab sisaldama</span>
-              </label>
-              </p>
-              <p>
-              <label>
-                <input class="with-gap" name="group1" type="radio" />
-                <span>Ei tohi sisaldada</span>
-              </label>
-              </p>
-            </form>
-            <div class="divider"></div>
-        </div>
-        </template>
-
-        <template id="func-calls-print">
-        <div class="section">
-            <h5 id="fun-calls-print" style="display: inline-block;">Funktsioon kutsub välja prindi:</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)"><i class="material-icons">delete</i></a>
-            <form action="#">
-            <p>
-              <label>
-                <input class="with-gap" name="group1" type="radio" checked  />
-                <span>Peab kutsuma</span>
-              </label>
-              </p>
-              <p>
-              <label>
-                <input class="with-gap" name="group1" type="radio" />
-                <span>Ei tohi kutsuda</span>
-              </label>
-              </p>
-            </form>
-            <div class="divider"></div>
-        </div>
-        </template>
-
-        <template id="func-uses-local-vars">
-        <div class="section"> 
-            <h5 id="fun-uses-local-variables" style="display: inline-block;">Funktsioon kasutab ainult lokaalseid muutujaid:</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)"><i class="material-icons">delete</i></a>
-            <form action="#">
-            <p>
-              <label>
-                <input class="with-gap" name="group1" type="radio" checked  />
-                <span>Peab kasutama</span>
-              </label>
-              </p>
-              <p>
-              <label>
-                <input class="with-gap" name="group1" type="radio" />
-                <span>Ei tohi kasutada</span>
-              </label>
-              </p>
-            </form>
-            <div class="divider"></div>
-        </div>
-        </template>
-
-        <template id="func-is-recursive">
-        <div class="section">   
-            <h5 id="fun-is-recursive" style="display: inline-block;">Funktsioon on rekursiivne:</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)"><i class="material-icons">delete</i></a>
-            <form action="#">
-            <p>
-              <label>
-                <input class="with-gap" name="group1" type="radio" checked />
-                <span>Peab olema rekursiivne</span>
-              </label>
-              </p>
-              <p>
-              <label>
-                <input class="with-gap" name="group1" type="radio" />
-                <span>Ei tohi olla rekursiivne</span>
-              </label>
-              </p>
-            </form>
-            <div class="divider"></div>
-        </div>
-        </template>
-
-        <!-- šabloon funktsiooni staatilise kontrolli jaoks -->
-        <template id="tests_func_static">
-            <div><p>Funktsiooni staatilise kontrolli juures funktsiooni ei käivitata vaid kontrollitakse, kas funktsioon teeb/sisaldab neid asju, mis on allpool välja toodud.</p></div>
-            <div class="input-field" onchange="changeTestName(event)">
-              <label>Testi nimi</label>
-              <input type="text" class="validate">
-            </div> 
-            <div class="divider"></div>
+        <!-- Šabloon mooduli importimise kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
+        <template id="template-imports_module">
+          <div class="section test-points">
+            <h5 id="imports-module-modal" style="display: inline-block;" class="test-name">Impordib mooduli:</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+              <i class="material-icons">delete</i>
+            </a>
+              
             <div class="input-field">
-              <label>Funktsiooni nimi</label>
-              <input type="text" class="validate" required>
+              <select class="imports-module-valikud"> <!-- BACKEND PUUDU "imports-module-valikud"-->
+                <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
+                <option value="1">Kõik nendest</option> <!-- seal teksti jurues peaks olema "Moodulid" -->
+                <option value="2">Mõni nendest</option>
+                <option value="3">Ükskõik millise</option>
+                <option value="4">Mitte ühtegi nendest</option>
+                <option value="5">Puudub vähemalt üks nendest</option>
+                <option value="6">Mitte ühtegi</option>
+              </select>
+              <label>Andmed</label>
             </div>
-            <div class="divider"></div>
-            <!--
+  
+            <form action="#">
+              <table>
+                <tbody id="valikud-stat">
+                </tbody>
+              </table>
+            </form>
+              
+          </div>
+        </template>
+
+        <!-- Šabloon funktsioonide kutsumise kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
+        <template id="template-calls_function">
+          <div class="section test-points">
+            <h5 id="calls-function-modal" style="display: inline-block;" class="test-name">Kutsub välja funktsiooni</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+              <i class="material-icons">delete</i>
+            </a>
+
+            <div class="input-field">
+              <select class="calls_function-valikud"> <!-- BACKEND PUUDU "calls_function-valikud"-->
+                <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
+                <option value="1">Kõik nendest</option> <!-- seal teksti jurues peaks olema "Funktsioonid" -->
+                <option value="2">Mõni nendest</option>
+                <option value="3">Ükskõik millise</option>
+                <option value="4">Mitte ühtegi nendest</option>
+                <option value="5">Puudub vähemalt üks nendest</option>
+                <option value="6">Mitte ühtegi</option>
+              </select>
+              <label>Andmed</label>
+            </div>
+  
+            <form action="#">
+              <table>
+                <tbody id="valikud-stat">
+                </tbody>
+              </table>
+            </form>
+
+          </div>
+        </template>
+
+        <!-- Šabloon võtmesõnade sisalduvuse kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
+        <template id="template-contains_keyword">
+          <div class="section test-points">
+            <h5 id="contains-keyword-modal" style="display: inline-block;" class="test-name">Sisaldab võtmesõna</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+              <i class="material-icons">delete</i>
+            </a>
+
+            <div class="input-field">
+              <select class="contains_keyword-valikud"> <!-- BACKEND PUUDU "contains_keyword-valikud" -->
+                <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
+                <option value="1">Kõik nendest</option> <!-- seal teksti jurues peaks olema "Võtmesõnad" -->
+                <option value="2">Mõni nendest</option>
+                <option value="4">Mitte ühtegi nendest</option>
+                <option value="5">Puudub vähemalt üks nendest</option>
+              </select>
+              <label>Andmed</label>
+            </div>
+  
+            <form action="#">
+              <table>
+                <tbody id="valikud-stat">
+                </tbody>
+              </table>
+            </form>
+
+          </div>
+        </template>
+
+        <!-- Šabloon programmi tsükli sisalduvuse kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
+        <template id="template-program-contains-cycle">
+          <div class="section test-points">
+            <h5 id="program-contains-cycle" style="display: inline-block;" class="test-name">Programm sisaldab tsüklit:</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+              <i class="material-icons">delete</i>
+            </a>
             <form action="#">
               <p>
-                <p>Funktsioon on rekursiivne:</p>
-                <p>
                 <label>
-                  <input class="with-gap" name="group1" type="radio"  />
-                  <span>Peab olema rekursiivne</span>
+                  <input class="with-gap" name="group1" type="radio" checked/>
+                  <span>Peab sisaldama</span>
                 </label>
-                </p>
-                <p>
+              </p>
+              <p>
                 <label>
-                  <input class="with-gap" name="group1" type="radio"  />
-                  <span>Ei tohi olla rekursiivne</span>
+                  <input class="with-gap" name="group1" type="radio" />
+                  <span>Ei tohi sisaldada</span>
                 </label>
-                </p>
-                <p>
+              </p>
+            </form>
+            <div class="divider"></div>
+          </div>
+        </template>
+
+        <!-- Šabloon programmi try-excepti sisalduvuse kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
+        <template id="template-program-contains-try-except">
+          <div class="section test-points">
+            <h5 id="program-contains-try-except" style="display: inline-block;" class="test-name">Programm sisaldab try-excepti:</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+              <i class="material-icons">delete</i>
+            </a>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="with-gap" name="group1" type="radio" checked/>
+                  <span>Peab sisaldama</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="with-gap" name="group1" type="radio"/>
+                  <span>Ei tohi sisaldada</span>
+                </label>
+              </p>
+            </form>
+            <div class="divider"></div>
+          </div>
+        </template>
+
+        <!-- Šabloon programmi prindi kutsumise kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
+        <template id="template-program-calls-print">
+          <div class="section test-points">
+            <h5 id="program-calls-print" style="display: inline-block;" class="test-name">Programm kutsub välja prindi:</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+              <i class="material-icons">delete</i>
+            </a>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="with-gap" name="group1" type="radio" checked  />
+                  <span>Peab sisaldama</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="with-gap" name="group1" type="radio" />
+                  <span>Ei tohi sisaldada</span>
+                </label>
+              </p>
+            </form>
+            <div class="divider"></div>
+          </div>
+        </template>
+
+        <!-- Šabloon funktsiooni tsükli sisalduvuse kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
+        <template id="template-function-contains-cycle">
+          <div class="section test-points">
+            <h5 id="function-contains-cycle" style="display: inline-block;" class="test-name">Funktsioon sisaldab tsüklit:</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+              <i class="material-icons">delete</i>
+            </a>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="with-gap" name="group1" type="radio" checked  />
+                  <span>Peab sisaldama</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="with-gap" name="group1" type="radio" />
+                  <span>Ei tohi sisaldada</span>
+                </label>
+              </p>
+              </form>
+            <div class="divider"></div>
+          </div>
+        </template>
+
+        <!-- Šabloon funktsiooni returni sisalduvuse kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
+        <template id="template-function-contains-return">
+          <div class="section test-points">  
+            <h5 id="function-contains-return" style="display: inline-block;" class="test-name">Funktsioon sisaldab returni:</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+              <i class="material-icons">delete</i>
+            </a>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="with-gap" name="group1" type="radio" checked  />
+                  <span>Peab sisaldama</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="with-gap" name="group1" type="radio" />
+                  <span>Ei tohi sisaldada</span>
+                </label>
+              </p>
+            </form>
+            <div class="divider"></div>
+          </div>
+        </template>
+
+        <!-- Šabloon funktsiooni try-excepti sisalduvuse kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
+        <template id="template-function-contains-try-except">
+          <div class="section test-points">  
+            <h5 id="function-contains-try-except" style="display: inline-block;" class="test-name">Funktsioon sisaldab try-excepti:</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+              <i class="material-icons">delete</i>
+            </a>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="with-gap" name="group1" type="radio" checked  />
+                  <span>Peab sisaldama</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="with-gap" name="group1" type="radio" />
+                  <span>Ei tohi sisaldada</span>
+                </label>
+              </p>
+            </form>
+            <div class="divider"></div>
+          </div>
+        </template>
+
+        <!-- Šabloon funktsiooni prindi kutsumise kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
+        <template id="template-function-calls-print">
+          <div class="section test-points">
+            <h5 id="function-calls-print" style="display: inline-block;" class="test-name">Funktsioon kutsub välja prindi:</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+              <i class="material-icons">delete</i>
+            </a>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="with-gap" name="group1" type="radio" checked  />
+                  <span>Peab kutsuma</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="with-gap" name="group1" type="radio" />
+                  <span>Ei tohi kutsuda</span>
+                </label>
+              </p>
+            </form>
+            <div class="divider"></div>
+          </div>
+        </template>
+
+        <!-- Šabloon funktsiooni lokaalsete muutujate kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
+        <template id="template-function-uses-local-vars">
+          <div class="section test-points"> 
+            <h5 id="function-uses-local-vars" style="display: inline-block;" class="test-name">Funktsioon kasutab ainult lokaalseid muutujaid:</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+              <i class="material-icons">delete</i>
+            </a>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="with-gap" name="group1" type="radio" checked  />
+                  <span>Peab kasutama</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="with-gap" name="group1" type="radio" />
+                  <span>Ei tohi kasutada</span>
+                </label>
+              </p>
+            </form>
+            <div class="divider"></div>
+          </div>
+        </template>
+
+        <!-- Šabloon funktsiooni rekursiooni kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
+        <template id="template-function-is-recursive">
+          <div class="section test-points">   
+            <h5 id="function-is-recursive" style="display: inline-block;" class="test-name">Funktsioon on rekursiivne:</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+              <i class="material-icons">delete</i>
+            </a>
+            <form action="#">
+              <p>
                 <label>
                   <input class="with-gap" name="group1" type="radio" checked />
-                  <span>Ei kontrolli</span>
+                  <span>Peab olema rekursiivne</span>
                 </label>
-                </p>
               </p>
-            </form> -->
-            <br>
-            <div class="input-field">
-              <select class="func-selected-static-test">
-                <option value="0" disabled selected>Vali staatiline kontroll</option>                   
-                <option value="1">Funktsioon sisaldab tsüklit</option>
-                <option value="2">Sisaldab võtmesõna</option>
-                <option value="3">Funktsioon sisaldab returni</option>
-                <option value="4">Kutsub välja funktsiooni</option>
-                <option value="5">Funktsioon kutsub välja prindi</option>
-                <option value="6">Funktsioon on rekursiivne</option>
-                <option value="7">Defineerib funktsiooni</option>
-                <option value="8">Impordib mooduli</option>
-                <option value="9">Funktsioon sisaldab try-excepti</option>
-                <option value="10">Funktsioon kasutab ainult lokaalseid muutujaid</option>
-              </select>
-              <label>Staatiline test</label>
-            </div>    
-        </template>
-
-        <!-- šabloon programmi täitmise kontrolli jaoks -->
-        <template id="tests_prog_exec">
-            <div><p>Programmi täitmise kontrolli juures programm käivitatakse ja kontrollitakse, kas programm teeb/sisaldab neid asju, mis on allpool välja toodud.</p></div> 
-            <div class="input-field" onchange="changeTestName(event)">
-              <label>Testi nimi</label>
-              <input type="text" class="validate">
-            </div> 
-
-            <div class="divider"></div>
-            <div class="section" id="program-start-data">
-              <h4>Algandmed</h4>
-
-              <div class="input-field">
-                <select class="program-exec-input-data">
-                  <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
-                  <option value="1" disabled>Kasutajasisendid</option>
-                  <option value="2">Sisendfail</option>
-                </select>
-                <label>Andmed</label>
-              </div> 
-
-              <div class="section">
-                <h5 id="program-user-input" style="display: inline-block;">Kasutajasisendid (eraldajaks reavahetus)
-                  <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modalb"><i class="material-icons">info</i></a>
-                  <div id="modalb" class="modal">
-                    <div class="modal-content">
-                      <p>Kasutajasisend, mis antakse kaasa funktsioonile. Selle puhul ei ole vaja sõnede juures jutumärke kasutada.<br>Näiteks:<br>1<br>tere maailm<br>3</p>
-                    </div>
-                    <div class="modal-footer">
-                      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
-                    </div>
-                  </div>
-                </h5>
-                <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)"><i class="material-icons">delete</i></a>
-                <form action="#">
-                <div class="input-field">
-                  <label>Kasutajasisend</label>
-                  <textarea class="materialize-textarea"></textarea>
-                </div>
-                </form>
-              </div>
-            </div> 
-
-            <div class="divider"></div>
-            <div class="section" id="program-output-data">
-              <h4>Tulemus</h4>
-
-              <div class="input-field">
-                <select class="program-exec-output-data">
-                  <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
-                  <option value="1">Ekraaniväljund</option>
-                  <option value="2">Väljundfail</option>
-                  <option value="3">Programm viskab erindi</option>
-                </select>
-                <label>Andmed</label>
-              </div>
-
-              <div class="section">
-
-                <h5 id="program-screen-output" style="display: inline-block;">Ekraaniväljund
-                  <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal1" id="modal-link"><i class="material-icons">settings</i></a>
-                  <div id="modal1" class="modal">
-                      <div class="modal-content">
-                        <p id="test-name-modal">Kontrollib, kas programm/funktsioon väljastas korrektse ekraaniväljundi.</p>
-                        <div class="input-field">
-                          <label>Punktisumma:</label>
-                          <input type="text" class="validate">
-                        </div>
-                        <div class="input-field">
-                          <label>Teade enne testi käivitamist:</label>
-                          <input id="before-message" value="Kontrollib, kas programm/funktsioon väljastas korrektse ekraaniväljundi." type="text" class="validate">
-                        </div>
-                        <div class="input-field">
-                          <label>Teade testi edukal läbimisel:</label>
-                          <input id="passed-message" value="Programm/Funktsioon väljastas korrektse ekraaniväljundi." type="text" class="validate">
-                        </div>
-                        <div class="input-field">
-                          <label>Teade testi edutul läbimisel:</label>
-                          <input id="failed-message" value="Programm/Funktsioon ei väljastanud korrektset ekraaniväljundit." type="text" class="validate">
-                        </div>
-                        <label>
-                          <input type="checkbox" checked="checked" />
-                          <span>Kasutajale nähtav</span>
-                        </label>
-                      </div>
-                      <div class="modal-footer">
-                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
-                      </div>
-                  </div>
-
-                  <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modalb"><i class="material-icons">info</i></a>
-                  <div id="modalb" class="modal">
-                    <div class="modal-content">
-                      <p>Kontrollib, kas programm/funktsioon väljastas korrektse ekraaniväljundi.</p>
-                    </div>
-                    <div class="modal-footer">
-                      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
-                    </div>
-                  </div>
-                </h5>
-                <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)"><i class="material-icons">delete</i></a>
-            
-                <form action="#">
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td style="width:30%">
-                          <label onclick="enableOrder(event)">
-                          <input name="group1" type="radio" class="with-gap" checked/>
-                          <span>Sisaldab täpselt neid:</span>
-                          </label>
-                        </td>
-                        <td>
-                          <div class="input-field">
-                            <label>Väljund</label>
-                            <textarea class="materialize-textarea"></textarea>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <label onclick="enableOrder(event)">
-                          <input name="group1" type="radio" class="with-gap"/>
-                          <span>Sisaldab vähemalt neid:</span>
-                          </label>
-                        </td>
-                        <td>
-                          <div class="input-field">
-                            <label>Väljund</label>
-                            <textarea class="materialize-textarea"></textarea>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <label onclick="disableOrder(event)">
-                          <input name="group1" type="radio" class="with-gap"/>
-                          <span>Sisaldab mõnda neist:</span>
-                          </label>
-                        </td>
-                        <td>
-                          <div class="input-field">
-                            <label>Väljund</label>
-                            <textarea class="materialize-textarea"></textarea>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <label onclick="disableOrder(event)">
-                          <input name="group1" type="radio" class="with-gap"/>
-                          <span>Sisaldab täpselt mõnda neist:</span>
-                          </label>
-                        </td>
-                        <td>
-                          <div class="input-field">
-                            <label>Väljund</label>
-                            <textarea class="materialize-textarea"></textarea>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <label onclick="disableOrder(event)">
-                          <input name="group1" type="radio" class="with-gap"/>
-                          <span>Puudub vähemalt üks nendest:</span>
-                          </label>
-                        </td>
-                        <td>
-                          <div class="input-field">
-                            <label>Väljund</label>
-                            <textarea class="materialize-textarea"></textarea>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <label onclick="disableOrder(event)">
-                          <input name="group1" type="radio" class="with-gap"/>
-                          <span>Sisaldab mitte ühtegi nendest:</span>
-                          </label>
-                        </td>
-                        <td>
-                          <div class="input-field">
-                            <label>Väljund</label>
-                            <textarea class="materialize-textarea"></textarea>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p>
-                            <label >
-                              <input id="text-order" type="checkbox" />
-                              <span>Järjestus oluline</span>
-                            </label>
-                          </p>
-                        </td>
-                        <td>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </form>
-              </div> 
-
-            </div>   
-        </template>
-
-        <template id="program-exec-output-file">
-          <div>
-            <h5 id="output-file" style="display: inline-block;">Väljundfail</h5>
-            <a style="display: inline-block;"class="btn-floating waves-effect waves-light red right-align right" onclick="deleteSisendfailBlock(event)"><i class="material-icons">delete</i></a>
-            <div id="sisendfaili-nõuded">
-              <div class="input-field">
-                <label>Faili nimi</label>
-                <input type="text" class="validate">
-              </div>
-              
-              <h7>Faili sisu:</h7>
-              <form action="#">
-                <table>
-                  <tbody>
-                    <tr>
-                      <td style="width:30%">
-                        <label onclick="enableOrder(event)">
-                        <input name="group1" type="radio" class="with-gap" checked/>
-                        <span>Sisaldab täpselt neid:</span>
-                        </label>
-                      </td>
-                      <td>
-                        <div class="input-field">
-                          <label>Väljund</label>
-                          <textarea class="materialize-textarea"></textarea>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label onclick="enableOrder(event)">
-                        <input name="group1" type="radio" class="with-gap"/>
-                        <span>Sisaldab vähemalt neid:</span>
-                        </label>
-                      </td>
-                      <td>
-                        <div class="input-field">
-                          <label>Väljund</label>
-                          <textarea class="materialize-textarea"></textarea>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label onclick="disableOrder(event)">
-                        <input name="group1" type="radio" class="with-gap"/>
-                        <span>Sisaldab mõnda neist:</span>
-                        </label>
-                      </td>
-                      <td>
-                        <div class="input-field">
-                          <label>Väljund</label>
-                          <textarea class="materialize-textarea"></textarea>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label onclick="disableOrder(event)">
-                        <input name="group1" type="radio" class="with-gap"/>
-                        <span>Sisaldab täpselt mõnda neist:</span>
-                        </label>
-                      </td>
-                      <td>
-                        <div class="input-field">
-                          <label>Väljund</label>
-                          <textarea class="materialize-textarea"></textarea>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label onclick="disableOrder(event)">
-                        <input name="group1" type="radio" class="with-gap"/>
-                        <span>Puudub vähemalt üks nendest:</span>
-                        </label>
-                      </td>
-                      <td>
-                        <div class="input-field">
-                          <label>Väljund</label>
-                          <textarea class="materialize-textarea"></textarea>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label onclick="disableOrder(event)">
-                        <input name="group1" type="radio" class="with-gap"/>
-                        <span>Sisaldab mitte ühtegi nendest:</span>
-                        </label>
-                      </td>
-                      <td>
-                        <div class="input-field">
-                          <label>Väljund</label>
-                          <textarea class="materialize-textarea"></textarea>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <p>
-                          <label >
-                            <input id="text-order" type="checkbox" />
-                            <span>Järjestus oluline</span>
-                          </label>
-                        </p>
-                      </td>
-                      <td>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </form>
-
-            </div>
-          </div>
-        </template>
-
-        <template id="program-exec-output-screen-output">
-          <div class="section">
-            <h5 id="program-screen-output" style="display: inline-block;">Ekraaniväljund</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)"><i class="material-icons">delete</i></a>
-            
-            <form action="#">
-              <table>
-                <tbody>
-                  <tr>
-                    <td style="width:30%">
-                      <label onclick="enableOrder(event)">
-                      <input name="group1" type="radio" class="with-gap" checked/>
-                      <span>Sisaldab täpselt neid:</span>
-                      </label>
-                    </td>
-                    <td>
-                      <div class="input-field">
-                        <label>Väljund</label>
-                        <textarea class="materialize-textarea"></textarea>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label onclick="enableOrder(event)">
-                      <input name="group1" type="radio" class="with-gap"/>
-                      <span>Sisaldab vähemalt neid:</span>
-                      </label>
-                    </td>
-                    <td>
-                      <div class="input-field">
-                        <label>Väljund</label>
-                        <textarea class="materialize-textarea"></textarea>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label onclick="disableOrder(event)">
-                      <input name="group1" type="radio" class="with-gap"/>
-                      <span>Sisaldab mõnda neist:</span>
-                      </label>
-                    </td>
-                    <td>
-                      <div class="input-field">
-                        <label>Väljund</label>
-                        <textarea class="materialize-textarea"></textarea>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label onclick="disableOrder(event)">
-                      <input name="group1" type="radio" class="with-gap"/>
-                      <span>Sisaldab täpselt mõnda neist:</span>
-                      </label>
-                    </td>
-                    <td>
-                      <div class="input-field">
-                        <label>Väljund</label>
-                        <textarea class="materialize-textarea"></textarea>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label onclick="disableOrder(event)">
-                      <input name="group1" type="radio" class="with-gap"/>
-                      <span>Puudub vähemalt üks nendest:</span>
-                      </label>
-                    </td>
-                    <td>
-                      <div class="input-field">
-                        <label>Väljund</label>
-                        <textarea class="materialize-textarea"></textarea>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label onclick="disableOrder(event)">
-                      <input name="group1" type="radio" class="with-gap"/>
-                      <span>Sisaldab mitte ühtegi nendest:</span>
-                      </label>
-                    </td>
-                    <td>
-                      <div class="input-field">
-                        <label>Väljund</label>
-                        <textarea class="materialize-textarea"></textarea>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p>
-                        <label >
-                          <input id="text-order" type="checkbox" />
-                          <span>Järjestus oluline</span>
-                        </label>
-                      </p>
-                    </td>
-                    <td>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <p>
+                <label>
+                  <input class="with-gap" name="group1" type="radio" />
+                  <span>Ei tohi olla rekursiivne</span>
+                </label>
+              </p>
             </form>
+            <div class="divider"></div>
           </div>
         </template>
 
-        <template id="program-exec-output-throws-excep">
-        <div class="section">
-          <h5 id="prog-throws-exception" style="display: inline-block;">Programm viskab erindi:</h5>
-          <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)"><i class="material-icons">delete</i></a>
-          <form action="#">
-          <p>
-          <label>
-            <input class="with-gap" name="group1" type="radio"  />
-            <span>Peab viskama erindi</span>
-          </label>
-          </p>
-          <p>
-          <label>
-            <input class="with-gap" name="group1" type="radio" checked />
-            <span>Ei tohi visata erindit</span>
-          </label>
-          </p>
-          </form>
-        <div class="divider"></div>
-        </div>
+        <!-- Šabloon funktsiooni staatilise kontrolli jaoks -->
+        <template id="function-static-test">
+          <div>
+            <p>Funktsiooni staatilise kontrolli juures funktsiooni ei käivitata vaid kontrollitakse, kas funktsioon teeb/sisaldab neid asju, mis on allpool välja toodud.</p>
+          </div>
+          <div class="input-field" onchange="changeTestBlockName(event)">
+            <label>Testiploki nimi</label>
+            <input type="text" class="validate test-block-name">
+          </div> 
+          <div class="divider"></div>
+          <div class="input-field">
+            <label>Funktsiooni nimi</label>
+            <input type="text" class="validate" required>
+          </div>
+          <div class="divider"></div>
+          <br>
+          <div class="input-field">
+            <select class="func-selected-static-test">
+              <option value="0" disabled selected>Vali staatiline kontroll</option>                   
+              <option value="1">Funktsioon sisaldab tsüklit</option>
+              <option value="2">Sisaldab võtmesõna</option>
+              <option value="3">Funktsioon sisaldab returni</option>
+              <option value="4">Kutsub välja funktsiooni</option>
+              <option value="5">Funktsioon kutsub välja prindi</option>
+              <option value="6">Funktsioon on rekursiivne</option>
+              <option value="7">Defineerib funktsiooni</option>
+              <option value="8">Impordib mooduli</option>
+              <option value="9">Funktsioon sisaldab try-excepti</option>
+              <option value="10">Funktsioon kasutab ainult lokaalseid muutujaid</option>
+            </select>
+            <label>Staatiline test</label>
+          </div>    
         </template>
 
-        <template id="program-inputdata-file">
-          <form action="#">
+        <!-- Šabloon programmi täitmise kontrolli jaoks -->
+        <template id="program-execution-test">
           <div>
-            <h5 style="display: inline-block;">Sisendfail
-              <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modala"><i class="material-icons">info</i></a>
-              <div id="modala" class="modal">
+            <p>Programmi täitmise kontrolli juures programm käivitatakse ja kontrollitakse, kas programm teeb/sisaldab neid asju, mis on allpool välja toodud.</p>
+          </div> 
+          <div class="input-field" onchange="changeTestBlockName(event)">
+            <label>Testiploki nimi</label>
+            <input type="text" class="validate test-block-name">
+          </div> 
+
+          <div class="divider"></div>
+          <div class="section" id="program-start-data">
+            <h4>Algandmed</h4>
+
+            <div class="input-field">
+              <select class="program-exec-input-data">
+                <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
+                <option value="1" disabled>Kasutajasisendid</option>
+                <option value="2">Sisendfail</option>
+              </select>
+              <label>Andmed</label>
+            </div> 
+
+            <div class="section">
+              <h5 id="program-user-input" style="display: inline-block;">Kasutajasisendid (eraldajaks reavahetus)</h5>
+              <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal-static-user-input">
+                <i class="material-icons">info</i>
+              </a>
+              <div id="modal-static-user-input" class="modal">
                 <div class="modal-content">
-                  <p>Lorem ipsum</p>
+                  <p>Kasutajasisend, mis antakse kaasa funktsioonile. Selle puhul ei ole vaja sõnede juures jutumärke kasutada.<br>Näiteks:<br>1<br>tere maailm<br>3</p>
                 </div>
                 <div class="modal-footer">
                   <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
                 </div>
               </div>
-            </h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right" onclick="deleteSisendfailBlock(event)"><i class="material-icons">delete</i></a>
-            <div id="sisendfaili-nõuded">
-              <div class="input-field">
-                <label>Faili nimi</label>
-                <input type="text" class="validate">
-              </div>
-              <div class="input-field">
-                <label>Faili sisu</label>
-                <input type="text" class="validate">
-              </div>
-            </div>
-        </div>
-        </form>
-        </template>
-
-        <template id="program-inputdata-user-input">
-          <div class="section">
-            <h5 id="program-user-input" style="display: inline-block;">Kasutajasisendid (eraldajaks reavahetus)
-              <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modalb"><i class="material-icons">info</i></a>
-                  <div id="modalb" class="modal">
-                    <div class="modal-content">
-                      <p>Kasutajasisend, mis antakse kaasa funktsioonile. Selle puhul ei ole vaja sõnede juures jutumärke kasutada.<br>Näiteks:<br>1<br>tere maailm<br>3</p>
-                    </div>
-                    <div class="modal-footer">
-                      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
-                    </div>
-                  </div>
-            </h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)"><i class="material-icons">delete</i></a>
-            <form action="#">
-            <div class="input-field">
-              <label>Kasutajasisendid</label>
-              <textarea class="materialize-textarea"></textarea>
-            </div>
-            </form>
-        </div>
-        </template>
-
-        <!-- Sisendafaili template -->
-        <template id="sisendfaili_template">
-          <div class="newly-added-sisendfail">
-            <h5 style="display: inline-block;">Sisendfail</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right" onclick="deleteSisendfailBlock(event)"><i class="material-icons">delete</i></a>
-            <div class="input-field">
-              <label>Faili nimi</label>
-              <input type="text" class="validate">
-            </div>
-            <div class="input-field">
-              <label>Faili sisu</label>
-              <input type="text" class="validate">
-            </div>
-          </div>
-        </template>
-
-        <!-- Väljundfaili template -->
-        <template id="väljundfaili_template">
-          <div class="newly-added-sisendfail">
-            <h5 style="display: inline-block;">Väljundfail</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right" onclick="deleteSisendfailBlock(event)"><i class="material-icons">delete</i></a>
-            <div class="input-field">
-              <label>Faili nimi</label>
-              <input type="text" class="validate">
-            </div>
-            <div class="input-field">
-              <div class="section">
-                <h5>Faili sisu:</h5>
-                <form action="#">
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td style="width:30%">
-                          <label>
-                          <input name="group1" type="radio" class="with-gap" checked/>
-                          <span>Kõik nendest</span>
-                          </label>
-                        </td>
-                        <td>
-                          <div class="input-field">
-                            <label>Väljund</label>
-                            <input type="text" class="validate">
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <label>
-                          <input name="group1" type="radio" class="with-gap"/>
-                          <span>Mõni nendest</span>
-                          </label>
-                        </td>
-                        <td>
-                          <div class="input-field">
-                            <label>Väljund</label>
-                            <input type="text" class="validate">
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <label>
-                          <input name="group1" type="radio" class="with-gap"/>
-                          <span>Mitte ühtegi nendest</span>
-                          </label>
-                        </td>
-                        <td>
-                          <div class="input-field">
-                            <label>Väljund</label>
-                            <input type="text" class="validate">
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <label>
-                          <input name="group1" type="radio" class="with-gap"/>
-                          <span>Puudub vähemalt üks nendest</span>
-                          </label>
-                        </td>
-                        <td>
-                          <div class="input-field">
-                            <label>Väljund</label>
-                            <input type="text" class="validate">
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </form>
-              </div>
-            </div>
-          </div>
-        </template>
-
-        <!-- šabloon funktsiooni täitmise kontrolli jaoks -->
-        <template id="tests_func_exec">
-            <div><p>Funktsiooni täitmise kontrolli juures programm käivitatakse ja kontrollitakse, kas funktsioon teeb/sisaldab neid asju, mis on allpool välja toodud.</p></div>
-            <div class="input-field" onchange="changeTestName(event)">
-              <label>Testi nimi</label>
-              <input type="text" class="validate">
-            </div> 
-            <div class="divider"></div>
-            <div class="input-field">
-              <label>Funktsiooni nimi</label>
-              <input type="text" class="validate" required>
-            </div> 
-            <div class="divider"></div>
-            <div class="section" id="func-start-data">
-              <h4>Algandmed</h4>
-
-              <div class="input-field">
-                <select class="func-exec-input-data">
-                  <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
-                  <option value="1" disabled>Argumendid</option>
-                  <option value="2">Kasutajasisendid</option>
-                  <option value="3">Sisendfail</option>
-                </select>
-                <label>Andmed</label>
-              </div> 
-
-              <div class="section">
-                <h5 id="function-arguments" style="display: inline-block;">Argumendid (eraldajaks ",")
-                  <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modala"><i class="material-icons">info</i></a>
-                  <div id="modala" class="modal">
-                    <div class="modal-content">
-                      <p>Argumendid, mis antakse kaasa funktsioonile. Sõnede puhul kasutada jutumärke. Näiteks: 1,"moos",False,True,43</p>
-                    </div>
-                    <div class="modal-footer">
-                      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
-                    </div>
-                  </div>
-                </h5>
-                <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)"><i class="material-icons">delete</i></a>
-                <form action="#">
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+                <i class="material-icons">delete</i>
+              </a>
+              <form action="#">
                 <div class="input-field">
-                  <label>Argumendid</label>
-                  <input id="argumentssw" type="text" class="validate" onblur="check()" onfocus="check()" onchange="check()" onkeyup="check()">
-                  <span class="helper-text" data-error="valel kujul" data-success="right"></span>
-                </div> 
-                </form>
+                  <label>Kasutajasisend</label>
+                  <textarea class="materialize-textarea"></textarea>
+                </div>
+              </form>
+            </div>
+          </div> 
+
+          <div class="divider"></div>
+          <div class="section" id="program-output-data">
+            <h4>Tulemus</h4>
+
+            <div class="input-field">
+              <select class="program-exec-output-data">
+                <option value="0" disabled selected>Vali väljundi kuju</option>
+                <option value="1">Väljund</option>
+                <option value="2">Väljundfail</option>
+                <option value="3">Programm viskab erindi</option>
+              </select>
+              <label>Andmed</label>
+            </div>
+
+            <div class="section test-points">
+              <h5 id="program-screen-output" style="display: inline-block;" class="test-name">Väljund</h5>
+              <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal-static-screen-output" id="modal-link">
+                <i class="material-icons">settings</i>
+              </a>
+              <div id="modal-static-screen-output" class="modal">
+                <div class="modal-content">
+                  <div>
+                    <h5 class="points">Punktisumma: </h5>
+                  </div>
+                  <div class="input-field">
+                    <label>Teade enne testi käivitamist:</label>
+                    <input id="before-message" value="Kontrollib, kas programm/funktsioon väljastas korrektse väljundi." type="text" class="validate">
+                  </div>
+                  <div class="input-field">
+                    <label>Teade testi edukal läbimisel:</label>
+                    <input id="passed-message" value="Programm/Funktsioon väljastas korrektse väljundi." type="text" class="validate">
+                  </div>
+                  <div class="input-field">
+                    <label>Teade testi edutul läbimisel:</label>
+                    <input id="failed-message" value="Programm/Funktsioon ei väljastanud korrektset väljundit." type="text" class="validate">
+                  </div>
+                  <label>
+                    <input type="checkbox" checked="checked" />
+                    <span>Kasutajale nähtav</span>
+                  </label>
+                </div>
+                <div class="modal-footer">
+                  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
+                </div>
               </div>
 
-            </div> 
-
-            <div class="divider"></div>
-            <div class="section" id="func-output-data">
-
-              <h4>Tulemus</h4>
-
+              <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modalb"><i class="material-icons">info</i></a>
+              <div id="modalb" class="modal">
+                <div class="modal-content">
+                  <p>Kontrollib, kas programm/funktsioon väljastas korrektse ekraaniväljundi.</p>
+                </div>
+                <div class="modal-footer">
+                  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
+                </div>
+              </div>
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+                <i class="material-icons">delete</i>
+              </a>
+            
               <div class="input-field">
-                <select class="func-exec-output-data">
-                  <option value="0" disabled selected>Vali andmete väljastamise kuju</option>
-                  <option value="1" disabled>Tagastusväärtus</option>
-                  <option value="2">Ekraaniväljund</option>
-                  <option value="3">Väljundfail</option>
+                <select class="program-exec-ekraaniväljund">
+                  <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
+                  <option value="1">sisaldab täpselt neid</option>
+                  <option value="2">sisaldab vähemalt neid</option>
+                  <option value="3">sisaldab mõnda neist</option>
+                  <option value="4">sisaldab täpselt mõnda neist</option>
+                  <option value="5">puudub vähemalt üks nendest</option>
+                  <option value="6">sisaldab mitte ühtegi nendest</option>
                 </select>
                 <label>Andmed</label>
-              </div> 
+              </div>
 
-              <div class="section">
-                <h5 id="function-return-value" style="display: inline-block;">Tagastusväärtus
-                  <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal1" id="modal-link"><i class="material-icons">settings</i></a>
-                  <div id="modal1" class="modal">
-                      <div class="modal-content">
-                        <p id="test-name-modal">Kontrollib funktsiooni tagastusväärtust.</p>
-                        <div class="input-field">
-                          <label>Punktisumma:</label>
-                          <input type="text" class="validate">
-                        </div>
-                        <div class="input-field">
-                          <label>Teade enne testi käivitamist:</label>
-                          <input id="before-message" value="Kontrollib funktsiooni tagastusväärtust." type="text" class="validate">
-                        </div>
-                        <div class="input-field">
-                          <label>Teade testi edukal läbimisel:</label>
-                          <input id="passed-message" value="Funktsioon tagastas õige väärtuse." type="text" class="validate">
-                        </div>
-                        <div class="input-field">
-                          <label>Teade testi edutul läbimisel:</label>
-                          <input id="failed-message" value="Funktsioon ei tagastanud õiget väärtust." type="text" class="validate">
-                        </div>
-                        <label>
-                          <input type="checkbox" checked="checked" />
-                          <span>Kasutajale nähtav</span>
-                        </label>
-                      </div>
-                      <div class="modal-footer">
-                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
-                      </div>
-                  </div>
+              <form action="#">
+                <table>
+                  <tbody id="ekraaniväljund-output">
+                  </tbody>
+                </table>
+              </form>
+            </div> 
+          </div>   
+        </template>
 
-                  <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modalb"><i class="material-icons">info</i></a>
-                  <div id="modalb" class="modal">
-                    <div class="modal-content">
-                      <p>Kontrollib funktsiooni tagastusväärtust.</p>
-                    </div>
-                    <div class="modal-footer">
-                      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
-                    </div>
-                  </div>
-                </h5>
-                <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)"><i class="material-icons">delete</i></a>
-                <form action="#">
-                  <div class="input-field">
-                    <label>Väärtus</label>
-                    <input type="text" class="validate" required>
-                  </div> 
-                </form>
+        <!-- Šabloon dropdowni jaoks. -->
+        <template id="contains-exactly-those">
+          <tr>
+            <td style="width:30%" id="contains-exactly-those">
+              <h5>Sisaldab täpselt neid:</h5>
+              <label >
+                <input id="text-order" type="checkbox" />
+                <span>Järjestus oluline</span>
+              </label>
+            </td>
+            <td>
+              <div class="input-field">
+                <label>Väljund</label>
+                <textarea class="materialize-textarea"></textarea>
+              </div>
+            </td>
+            <td>
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteEkraaniväljundBlock(event)">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </template>
+
+        <!-- Šabloon dropdowni jaoks. -->
+        <template id="contains-at-least-these">
+          <tr>
+            <td style="width:30%" id="at-least-one-of-them-is-missing">
+              <h5>Sisaldab vähemalt neid:</h5>
+              <label >
+                <input id="text-order" type="checkbox" />
+                <span>Järjestus oluline</span>
+              </label>
+            </td>
+            <td>
+              <div class="input-field">
+                <label>Väljund</label>
+                <textarea class="materialize-textarea"></textarea>
               </div>
               
-            </div>   
+            </td>
+            <td>
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteEkraaniväljundBlock(event)">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
         </template>
 
-        <template id="func-output-exitfile">
+        <!-- Šabloon dropdowni jaoks. -->
+        <template id="contains-some-of-them">
+          <tr>
+            <td style="width:30%" id="contains-some-of-them">
+              <h5>Sisaldab mõnda neist:</h5>
+            </td>
+            <td>
+              <div class="input-field">
+                <label>Väljund</label>
+                <textarea class="materialize-textarea"></textarea>
+              </div>
+            </td>
+            <td>
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteEkraaniväljundBlock(event)">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </template>
+
+        <!-- Šabloon dropdowni jaoks. -->
+        <template id="contains-exactly-a-few-of-them">
+          <tr>
+            <td style="width:30%" id="contains-exactly-a-few-of-them">
+              <h5>Sisaldab täpselt mõnda neist:</h5>
+            </td>
+            <td>
+              <div class="input-field">
+                <label>Väljund</label>
+                <textarea class="materialize-textarea"></textarea>
+              </div>
+            </td>
+            <td>
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteEkraaniväljundBlock(event)">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </template>
+
+        <!-- Šabloon dropdowni jaoks. -->
+        <template id="at-least-one-of-them-is-missing">
+          <tr>
+            <td style="width:30%" id="at-least-one-of-them-is-missing">
+              <h5>Puudub vähemalt üks nendest:</h5>
+            </td>
+            <td>
+              <div class="input-field">
+                <label>Väljund</label>
+                <textarea class="materialize-textarea"></textarea>
+              </div>
+            </td>
+            <td>
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteEkraaniväljundBlock(event)">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </template>
+
+        <!-- Šabloon dropdowni jaoks. -->
+        <template id="contains-none-of-these">
+          <tr>
+            <td style="width:30%" id="contains-none-of-these">
+              <h5>Sisaldab mitte ühtegi nendest:</h5>
+            </td>
+            <td>
+              <div class="input-field">
+                <label>Väljund</label>
+                <textarea class="materialize-textarea"></textarea>
+              </div>
+            </td>
+            <td>
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteEkraaniväljundBlock(event)">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </template>
+
+        <!-- Šabloon erindi viskamise jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
+        <template id="template-throws-exception">
+          <div class="section test-points">
+            <h5 id="throws-exception" style="display: inline-block;" class="test-name">Programm viskab erindi:</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+              <i class="material-icons">delete</i>
+            </a>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="with-gap" name="group1" type="radio"  />
+                  <span>Peab viskama erindi</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="with-gap" name="group1" type="radio" checked />
+                  <span>Ei tohi visata erindit</span>
+                </label>
+              </p>
+            </form>
+            <div class="divider"></div>
+          </div>
+        </template>
+
+        <!-- Šabloon funktsiooni täitmise kontrolli jaoks -->
+        <template id="function-execution-test">
           <div>
-            <h5 id="fun-exec-output-file" style="display: inline-block;">Väljundfail</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right" onclick="deleteSisendfailBlock(event)"><i class="material-icons">delete</i></a>
-            <div id="sisendfaili-nõuded">
+            <p>Funktsiooni täitmise kontrolli juures programm käivitatakse ja kontrollitakse, kas funktsioon teeb/sisaldab neid asju, mis on allpool välja toodud.</p>
+          </div>
+          <div class="input-field" onchange="changeTestBlockName(event)">
+            <label>Testiploki nimi</label>
+            <input type="text" class="validate test-block-name">
+          </div> 
+          <div class="divider"></div>
+          <div class="input-field">
+            <label>Funktsiooni nimi</label>
+            <input type="text" class="validate" required>
+          </div> 
+          <div class="divider"></div>
+          <div class="section" id="func-start-data">
+            <h4>Algandmed</h4>
+
+            <div class="input-field">
+              <select class="func-exec-input-data">
+                <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
+                <option value="1" disabled>Argumendid</option>
+                <option value="2">Kasutajasisendid</option>
+                <option value="3">Sisendfail</option>
+              </select>
+              <label>Andmed</label>
+            </div> 
+
+            <div class="section">
+              <h5 id="function-arguments" style="display: inline-block;">Argumendid (eraldajaks ",")</h5>
+              <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal-static-arguments-info">
+                <i class="material-icons">info</i>
+              </a>
+              <div id="modal-static-arguments-info" class="modal">
+                <div class="modal-content">
+                  <p>Argumendid, mis antakse kaasa funktsioonile. Sõnede puhul kasutada jutumärke.<br> Näiteks: 1,"moos",False,True,43.4,[1,2,3]</p>
+                </div>
+                <div class="modal-footer">
+                  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
+                </div>
+              </div>
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+                <i class="material-icons">delete</i>
+              </a>
+              <form action="#">
+              <div class="input-field">
+                <label>Argumendid</label>
+                <input id="argumentssw" type="text" class="validate" onblur="check()" onfocus="check()" onchange="check()" onkeyup="check()">
+                <span class="helper-text" data-error="valel kujul" data-success="right"></span>
+              </div> 
+              </form>
+            </div>
+          </div> 
+          <div class="divider"></div>
+          <div class="section" id="func-output-data">
+            <h4>Tulemus</h4>
+
+            <div class="input-field">
+              <select class="func-exec-output-data">
+                <option value="0" disabled selected>Vali väljundi kuju</option>
+                <option value="1" disabled>Tagastusväärtus</option>
+                <option value="2">Väljund</option>
+                <option value="3">Väljundfail</option>
+              </select>
+              <label>Andmed</label>
+            </div> 
+
+            <div class="section test-points">
+              <h5 id="return-value" style="display: inline-block;" class="test-name">Tagastusväärtus</h5>
+                <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal-static-return-value-settings" id="modal-link">
+                  <i class="material-icons">settings</i>
+                </a>
+                <div id="modal-static-return-value-settings" class="modal">
+                  <div class="modal-content">
+                    <div>
+                      <h5 class="points">Punktisumma: </h5>
+                    </div>
+                    <div class="input-field">
+                      <label>Teade enne testi käivitamist:</label>
+                      <input id="before-message" value="Kontrollib funktsiooni tagastusväärtust." type="text" class="validate">
+                    </div>
+                    <div class="input-field">
+                      <label>Teade testi edukal läbimisel:</label>
+                      <input id="passed-message" value="Funktsioon tagastas õige väärtuse." type="text" class="validate">
+                    </div>
+                    <div class="input-field">
+                      <label>Teade testi edutul läbimisel:</label>
+                      <input id="failed-message" value="Funktsioon ei tagastanud õiget väärtust." type="text" class="validate">
+                    </div>
+                    <label>
+                      <input type="checkbox" checked="checked" />
+                      <span>Kasutajale nähtav</span>
+                    </label>
+                  </div>
+                  <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
+                  </div>
+                </div>
+
+                <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal-static-return-value-info">
+                  <i class="material-icons">info</i>
+                </a>
+                <div id="modal-static-return-value-info" class="modal">
+                  <div class="modal-content">
+                    <p>Kontrollib funktsiooni tagastusväärtust.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
+                  </div>
+                </div>
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+                <i class="material-icons">delete</i>
+              </a>
+              <form action="#">
+                <div class="input-field">
+                  <label>Väärtus</label>
+                  <input type="text" class="validate" required>
+                </div> 
+              </form>
+            </div>
+          </div>   
+        </template>
+
+        <!-- Šabloon väljundfaili jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
+        <template id="template-output-file">
+          <div class="test-points">
+            <h5 id="output-file" style="display: inline-block;" class="test-name">Väljundfail</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right" onclick="deleteSisendfailBlock(event)">
+              <i class="material-icons">delete</i>
+            </a>
+            <div>
               <div class="input-field">
                 <input id="last_name" type="text" class="validate">
                 <label for="last_name">Faili nimi</label>
               </div>
 
               <h7>Faili sisu:</h7>
+              <div class="input-field">
+                <select class="program-exec-ekraaniväljund">
+                  <option value="0" disabled selected>Vali väljundi kuju</option>
+                  <option value="1">sisaldab täpselt neid</option>
+                  <option value="2">sisaldab vähemalt neid</option>
+                  <option value="3">sisaldab mõnda neist</option>
+                  <option value="4">sisaldab täpselt mõnda neist</option>
+                  <option value="5">puudub vähemalt üks nendest</option>
+                  <option value="6">sisaldab mitte ühtegi nendest</option>
+                </select>
+                <label>Andmed</label>
+              </div>
               <form action="#">
                 <table>
-                  <tbody>
-                    <tr>
-                      <td style="width:30%">
-                        <label onclick="enableOrder(event)">
-                        <input name="group1" type="radio" class="with-gap" checked/>
-                        <span>Sisaldab täpselt neid:</span>
-                        </label>
-                      </td>
-                      <td>
-                        <div class="input-field">
-                          <label>Väljund</label>
-                          <textarea class="materialize-textarea"></textarea>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label onclick="enableOrder(event)">
-                        <input name="group1" type="radio" class="with-gap"/>
-                        <span>Sisaldab vähemalt neid:</span>
-                        </label>
-                      </td>
-                      <td>
-                        <div class="input-field">
-                          <label>Väljund</label>
-                          <textarea class="materialize-textarea"></textarea>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label onclick="disableOrder(event)">
-                        <input name="group1" type="radio" class="with-gap"/>
-                        <span>Sisaldab mõnda neist:</span>
-                        </label>
-                      </td>
-                      <td>
-                        <div class="input-field">
-                          <label>Väljund</label>
-                          <textarea class="materialize-textarea"></textarea>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label onclick="disableOrder(event)">
-                        <input name="group1" type="radio" class="with-gap"/>
-                        <span>Sisaldab täpselt mõnda neist:</span>
-                        </label>
-                      </td>
-                      <td>
-                        <div class="input-field">
-                          <label>Väljund</label>
-                          <textarea class="materialize-textarea"></textarea>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label onclick="disableOrder(event)">
-                        <input name="group1" type="radio" class="with-gap"/>
-                        <span>Puudub vähemalt üks nendest:</span>
-                        </label>
-                      </td>
-                      <td>
-                        <div class="input-field">
-                          <label>Väljund</label>
-                          <textarea class="materialize-textarea"></textarea>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label onclick="disableOrder(event)">
-                        <input name="group1" type="radio" class="with-gap"/>
-                        <span>Sisaldab mitte ühtegi nendest:</span>
-                        </label>
-                      </td>
-                      <td>
-                        <div class="input-field">
-                          <label>Väljund</label>
-                          <textarea class="materialize-textarea"></textarea>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <p>
-                          <label >
-                            <input id="text-order" type="checkbox" />
-                            <span>Järjestus oluline</span>
-                          </label>
-                        </p>
-                      </td>
-                      <td>
-                      </td>
-                    </tr>
+                  <tbody id="ekraaniväljund-output">
                   </tbody>
                 </table>
               </form>
-
             </div>
           </div>
         </template>
 
-        <template id="func-output-screen">
-          <div class="section">
-            <h5 id="screen-output" style="display: inline-block;">Ekraaniväljund</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)"><i class="material-icons">delete</i></a>
+        <!-- Šabloon väljundi jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
+        <template id="template-screen-output">
+          <div class="section test-points">
+            <h5 id="screen-output" style="display: inline-block;" class="test-name">Väljund</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+              <i class="material-icons">delete</i>
+            </a>
+            <div class="input-field">
+              <select class="program-exec-ekraaniväljund">
+                <option value="0" disabled selected>Vali väljundi kuju</option>
+                <option value="1">sisaldab täpselt neid</option>
+                <option value="2">sisaldab vähemalt neid</option>
+                <option value="3">sisaldab mõnda neist</option>
+                <option value="4">sisaldab täpselt mõnda neist</option>
+                <option value="5">puudub vähemalt üks nendest</option>
+                <option value="6">sisaldab mitte ühtegi nendest</option>
+              </select>
+              <label>Andmed</label>
+            </div>
             <form action="#">
               <table>
-                <tbody>
-                  <tr>
-                    <td style="width:30%">
-                      <label onclick="enableOrder(event)">
-                      <input name="group1" type="radio" class="with-gap" checked/>
-                      <span>Sisaldab täpselt neid:</span>
-                      </label>
-                    </td>
-                    <td>
-                      <div class="input-field">
-                        <label>Väljund</label>
-                        <textarea class="materialize-textarea"></textarea>
-                        <!-- <input type="text" class="validate"> -->
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label onclick="enableOrder(event)">
-                      <input name="group1" type="radio" class="with-gap"/>
-                      <span>Sisaldab vähemalt neid:</span>
-                      </label>
-                    </td>
-                    <td>
-                      <div class="input-field">
-                        <label>Väljund</label>
-                        <textarea class="materialize-textarea"></textarea>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label onclick="disableOrder(event)">
-                      <input name="group1" type="radio" class="with-gap"/>
-                      <span>Sisaldab mõnda neist:</span>
-                      </label>
-                    </td>
-                    <td>
-                      <div class="input-field">
-                        <label>Väljund</label>
-                        <textarea class="materialize-textarea"></textarea>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label onclick="disableOrder(event)">
-                      <input name="group1" type="radio" class="with-gap"/>
-                      <span>Sisaldab täpselt mõnda neist:</span>
-                      </label>
-                    </td>
-                    <td>
-                      <div class="input-field">
-                        <label>Väljund</label>
-                        <textarea class="materialize-textarea"></textarea>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label onclick="disableOrder(event)">
-                      <input name="group1" type="radio" class="with-gap"/>
-                      <span>Puudub vähemalt üks nendest:</span>
-                      </label>
-                    </td>
-                    <td>
-                      <div class="input-field">
-                        <label>Väljund</label>
-                        <textarea class="materialize-textarea"></textarea>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label onclick="disableOrder(event)">
-                      <input name="group1" type="radio" class="with-gap"/>
-                      <span>Sisaldab mitte ühtegi nendest:</span>
-                      </label>
-                    </td>
-                    <td>
-                      <div class="input-field">
-                        <label>Väljund</label>
-                        <textarea class="materialize-textarea"></textarea>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p>
-                        <label >
-                          <input id="text-order" type="checkbox"/>
-                          <span>Järjestus oluline</span>
-                        </label>
-                      </p>
-                    </td>
-                    <td>
-                    </td>
-                  </tr>
+                <tbody id="ekraaniväljund-output">
                 </tbody>
               </table>
             </form>
           </div>
         </template>
 
-        <template id="func-output-return-value">
-          <div class="section">
-            <h5 id="function-return-value" style="display: inline-block;">Tagastusväärtus</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)"><i class="material-icons">delete</i></a>
-            <form action="#">
-              <div class="input-field">
-                <label>Väärtus</label>
-                <input type="text" class="validate" required>
-              </div> 
-            </form>
-          </div>
+      <!-- Šabloon funktsiooni tagastusväärtuse jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
+      <template id="template-return-value">
+        <div class="section test-points">
+          <h5 id="return-value" style="display: inline-block;" class="test-name">Tagastusväärtus</h5>
+          <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+            <i class="material-icons">delete</i>
+          </a>
+          <form action="#">
+            <div class="input-field">
+              <label>Väärtus</label>
+              <input type="text" class="validate" required>
+            </div> 
+          </form>
+        </div>
       </template>
 
-        <template id="func-args">
-            <div class="section">
-                  <h5 id="function-arguments" style="display: inline-block;">Argumendid (eraldajaks ",")
-                    <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modala"><i class="material-icons">info</i></a>
-                    <div id="modala" class="modal">
-                      <div class="modal-content">
-                        <p>Argumendid, mis antakse kaasa funktsioonile. Sõnede puhul kasutada jutumärke. Näiteks: 1,"moos",False,True,43</p>
-                      </div>
-                      <div class="modal-footer">
-                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
-                      </div>
-                    </div>
-                  </h5>
-                  <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)"><i class="material-icons">delete</i></a>
-                  <form action="#">
-                  <div class="input-field">
-                    <label>Argumendid</label>
-                    <input id="argumentssw" type="text" class="validate" onblur="check()" onfocus="check()" onchange="check()" onkeyup="check()">
-                    <span class="helper-text" data-error="wrong" data-success="right"></span>
-                  </div> 
-                  </form>
+      <!-- Šabloon funktsiooni argumentide jaoks koos informatsiooni modaaliga. Kuna sellel ei ole sätete modaali, siis ei ole talle vaja eraldi genereerida neid. -->
+      <template id="template-function-arguments">
+        <div class="section test-points">
+          <h5 id="function-arguments" style="display: inline-block;">Argumendid (eraldajaks ",")</h5>
+          <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal-function-arguments">
+            <i class="material-icons">info</i>
+          </a>
+          <div id="modal-function-arguments" class="modal">
+            <div class="modal-content">
+              <p>Argumendid, mis antakse kaasa funktsioonile. Sõnede puhul kasutada jutumärke.<br> Näiteks: 1,"moos",False,True,43.4,[1,2,3]</p>
             </div>
-          </template>
+            <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
+            </div>
+          </div>
+          
+          <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+            <i class="material-icons">delete</i>
+          </a>
+          <form action="#">
+            <div class="input-field">
+              <label>Argumendid</label>
+              <input id="argumentssw" type="text" class="validate" onblur="check()" onfocus="check()" onchange="check()" onkeyup="check()">
+              <span class="helper-text" data-error="wrong" data-success="right"></span>
+            </div> 
+          </form>
+        </div>
+      </template>
 
-        <template id="func-user-input">
-          <div class="section">
-                <h5 id="function-user-input" style="display: inline-block;">Kasutajasisendid (eraldajaks reavahetus)
-                  <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modalb"><i class="material-icons">info</i></a>
-                  <div id="modalb" class="modal">
-                    <div class="modal-content">
-                      <p>Kasutajasisend, mis antakse kaasa funktsioonile. Selle puhul ei ole vaja sõnede juures jutumärke kasutada.<br>Näiteks:<br>1<br>tere maailm<br>3</p>
-                    </div>
-                    <div class="modal-footer">
-                      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
-                    </div>
-                  </div>
-                </h5>
-                <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)"><i class="material-icons">delete</i></a>
-                <form action="#">
-                <div class="input-field">
-                  <label>Kasutajasisendid</label>
-                  <textarea class="materialize-textarea"></textarea>
-                </div>
-              </form>
-          </div> 
+      <!-- Šabloon kasutajasisendi jaoks koos informatsiooni modaaliga. Kuna sellel ei ole sätete modaali, siis ei ole talle vaja eraldi genereerida neid. -->
+      <template id="template-user-input">
+        <div class="section test-points">
+          <h5 id="function-user-input" style="display: inline-block;">Kasutajasisendid (eraldajaks reavahetus)</h5>
+          <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal-user-input">
+            <i class="material-icons">info</i>
+          </a>
+          <div id="modal-user-input" class="modal">
+            <div class="modal-content">
+              <p>Kasutajasisend, mis antakse kaasa funktsioonile. Selle puhul ei ole vaja sõnede juures jutumärke kasutada.<br>Näiteks:<br>1<br>tere maailm<br>3</p>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
+            </div>
+          </div>
+          
+          <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+            <i class="material-icons">delete</i>
+          </a>
+          <form action="#">
+            <div class="input-field">
+              <label>Kasutajasisendid</label>
+              <textarea class="materialize-textarea"></textarea>
+            </div>
+          </form>
+        </div> 
       </template>
         
-      <template id="func-input-file">
+      <!-- Šabloon sisendfaili jaoks koos informatsiooni modaaliga. Kuna sellel ei ole sätete modaali, siis ei ole talle vaja eraldi genereerida neid. -->
+      <template id="template-input-file">
         <form action="#">
           <div>
-            <h5 style="display: inline-block;">Sisendfail
-              <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modalaa"><i class="material-icons">info</i></a>
-                  <div id="modalaa" class="modal">
-                    <div class="modal-content">
-                      <p>Lorem ipsum</p>
-                    </div>
-                    <div class="modal-footer">
-                      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
-                    </div>
-                  </div>
-            </h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right" onclick="deleteSisendfailBlock(event)"><i class="material-icons">delete</i></a>
-            <div id="sisendfaili-nõuded">
+            <h5 style="display: inline-block;">Sisendfail</h5>
+            <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal-input-file">
+              <i class="material-icons">info</i>
+            </a>
+            <div id="modal-input-file" class="modal">
+              <div class="modal-content">
+                <p>Fail, mis loetakse sisse. Sisesta faili nimi ja faili sisu.</p>
+              </div>
+              <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
+              </div>
+            </div>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteSisendfailBlock(event)">
+              <i class="material-icons">delete</i>
+            </a>
+            <div>
               <div class="input-field">
                 <label>Faili nimi</label>
                 <input type="text" class="validate">
@@ -1870,79 +1318,86 @@
         </form> 
       </template>
         
-        <!-- šabloon ühe testi plokki jaoks ehk kui vajutatakse + nuppu, siis lisatakse neid aina juurde -->
+        <!-- Šabloon ühe testiploki jaoks, kui vajutatakse + nuppu, siis lisatakse neid aina juurde. -->
         <template id="test-block">
           <ul class="collapsible">
             <li onchange="fill(event)">
-                <div class="collapsible-header valign-wrapper" style="display: block; height: 4em;">
-                  <h5 style="display: inline-block;" id="test-name">Test 1</h5>
-                  <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right" onclick="deleteTestBlock(event)"><i class="material-icons">delete</i></a>
+              <div class="collapsible-header valign-wrapper" style="display: block; height: 4em;">
+                <h5 style="display: inline-block;" id="test-block-name">Test 1</h5>
+                <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right" onclick="deleteTestBlock(event)">
+                  <i class="material-icons">delete</i>
+                </a>
+              </div>
+              <div class="collapsible-body">
+                <div class="input-field">
+                  <select class="selected-test-type">
+                    <option value="0" disabled selected>Vali kontrolli tüüp</option>
+                    <option value="1">Programmi täitmise kontroll</option>
+                    <option value="2">Programmi staatiline kontroll</option>
+                    <option value="3">Funktsiooni täitmise kontroll</option>
+                    <option value="4">Funktsiooni staatiline kontroll</option>
+                  </select>
+                  <label>Testi tüüp</label>
                 </div>
-                <div class="collapsible-body">
-                  <div class="input-field">
-                    <select class="selected-test-type">
-                      <option value="0" disabled selected>Vali kontrolli tüüp</option>
-                      <option value="1">Programmi täitmise kontroll</option>
-                      <option value="2">Programmi staatiline kontroll</option>
-                      <option value="3">Funktsiooni täitmise kontroll</option>
-                      <option value="4">Funktsiooni staatiline kontroll</option>
-                    </select>
-                    <label>Testi tüüp</label>
-                  </div>
                 <div id="test-content">
                     
                 </div>
-                </div>
+              </div>
             </li>
           </ul>
         </template> 
 
-        <!-- Programm sisaldab try-except märksõnu modal -->
-        <template id="test-modal">
-          <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal1" id="modal-link"><i class="material-icons">settings</i></a>
-                  <div id="modal1" class="modal">
-                      <div class="modal-content">
-                        <p id="test-name-modal"></p>
-                        <div class="input-field">
-                          <label>Punktisumma:</label>
-                          <input type="text" class="validate">
-                        </div>
-                        <div class="input-field">
-                          <label>Teade enne testi käivitamist:</label>
-                          <input id="before-message" value="" type="text" class="validate">
-                        </div>
-                        <div class="input-field">
-                          <label>Teade testi edukal läbimisel:</label>
-                          <input id="passed-message" value="" type="text" class="validate">
-                        </div>
-                        <div class="input-field">
-                          <label>Teade testi edutul läbimisel:</label>
-                          <input id="failed-message" value="" type="text" class="validate">
-                        </div>
-                        <label>
-                          <input type="checkbox" checked="checked" />
-                          <span>Kasutajale nähtav</span>
-                        </label>
-                      </div>
-                      <div class="modal-footer">
-                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
-                      </div>
-                  </div>
-        </template>
-
-        <template id="info-modal">
-            <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal1" id="modal-link"><i class="material-icons">info</i></a>
-            <div id="modal1" class="modal">
-              <div class="modal-content">
-                <p id="information">Argumendid, mis antakse kaasa funktsioonile. Sõnede puhul kasutada jutumärke. Näiteks: 1,"moos",False,True,43</p>
+        <!-- Šabloon modalli jaoks, kus saab testi erinevaid sätteid muuta. Sõnumid, testi nimi ja tulevikus punktisumma. -->
+        <template id="settings-modal">
+          <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal-settings" id="modal-link">
+            <i class="material-icons">settings</i>
+          </a>
+          <div id="modal-settings" class="modal">
+            <div class="modal-content">
+              <div>
+                <h5 class="points">Punktisumma: </h5>
               </div>
-              <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
+              <div class="input-field" onchange="changeTestName(event)">
+                <label>Testi nimi</label>
+                <input type="text" class="validate settings-modal-test-name">
+              </div> 
+              <div class="input-field">
+                <label>Teade enne testi käivitamist:</label>
+                <input id="before-message" value="" type="text" class="validate">
               </div>
+              <div class="input-field">
+                <label>Teade testi edukal läbimisel:</label>
+                <input id="passed-message" value="" type="text" class="validate">
+              </div>
+              <div class="input-field">
+                <label>Teade testi edutul läbimisel:</label>
+                <input id="failed-message" value="" type="text" class="validate">
+              </div>
+              <label>
+                <input type="checkbox" checked="checked" />
+                <span>Kasutajale nähtav</span>
+              </label>
             </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
+            </div>
+          </div>
         </template>
 
-
+        <!-- Šabloon modaali jaoks, mis näitab testi/andmete kohta infot. Võib sisaldada näiteks tutvustavat teksti ja näiteid. -->
+        <template id="info-modal">
+          <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal-info" id="modal-link">
+            <i class="material-icons">info</i>
+          </a>
+          <div id="modal-info" class="modal">
+            <div class="modal-content">
+              <p id="information"></p>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
+            </div>
+          </div>
+        </template>
     </div>
 </main>
 <footer>
@@ -1984,6 +1439,9 @@ function initializeElements() { // Used to initialize elements.
   var select_elements = document.querySelectorAll('.modal');
   M.Modal.init(select_elements);
 
+  var chips = document.querySelectorAll('.chips');
+  M.Chips.init(chips);
+
   M.updateTextFields();
 }
 
@@ -1993,11 +1451,7 @@ function check() {
     return;
   }
   
-  var regex = /^(\s*".*"\s*|\s*[+-]?([0-9]*[.])?[0-9]+\s*|\s*True\s*|\s*False\s*|\s*\[(.*|\[.*\])(,(\[.*\]))*\]\s*|\s*\((.*|\(.*\))(,(\(.*\)))*\)\s*|\s*\{(.*)(,(.*))*\}\s*)(\s*,\s*(\s*".*"\s*|\s*[+-]?([0-9]*[.])?[0-9]+\s*|\s*True\s*|\s*False\s*|\s*\[(.*|\[.*\])(,(\[.*\]))*\]\s*|\s*\((.*|\(.*\))(,(\(.*\)))*\)\s*|\s*\{(.*)(,(.*))*\}\s*))*$/; 
-  //(\s*".*"\s*|\s*[+-]?([0-9]*[.])?[0-9]+\s*|\s*True\s*|\s*False\s*|\s*\[(.*|\[.*\])(,(\[.*\]))*\]\s*)(\s*,\s*(\s*".*"\s*|\s*[+-]?([0-9]*[.])?[0-9]+\s*|\s*True\s*|\s*False\s*|\s*\[(.*|\[.*\])(,(\[.*\]))*\]\s*))* Koos listidega
-  //(\s*".*"\s*|\s*[+-]?([0-9]*[.])?[0-9]+\s*|\s*True\s*|\s*False\s*|\s*\[(.*|\[.*\])(,(\[.*\]))*\]\s*|\s*\((.*|\(.*\))(,(\(.*\)))*\)\s*)(\s*,\s*(\s*".*"\s*|\s*[+-]?([0-9]*[.])?[0-9]+\s*|\s*True\s*|\s*False\s*|\s*\[(.*|\[.*\])(,(\[.*\]))*\]\s*|\s*\((.*|\(.*\))(,(\(.*\)))*\)\s*))* koos listide ja tuplega
-  //(\s*".*"\s*|\s*[+-]?([0-9]*[.])?[0-9]+\s*|\s*True\s*|\s*False\s*|\s*\[(.*|\[.*\])(,(\[.*\]))*\]\s*|\s*\((.*|\(.*\))(,(\(.*\)))*\)\s*|\s*\{(.*)(,(.*))*\}\s*)(\s*,\s*(\s*".*"\s*|\s*[+-]?([0-9]*[.])?[0-9]+\s*|\s*True\s*|\s*False\s*|\s*\[(.*|\[.*\])(,(\[.*\]))*\]\s*|\s*\((.*|\(.*\))(,(\(.*\)))*\)\s*|\s*\{(.*)(,(.*))*\}\s*))* koos listide tuplega ja setiga
-  //console.log(regex.test(val));
+  var regex = /^ .* $/;
   if(regex.test(val)) {
     document.getElementById("argumentssw").classList.remove("invalid");
     document.getElementById("argumentssw").classList.add("valid");
@@ -2014,39 +1468,98 @@ function deleteStaticTestBlock(e) {
     e.target.parentNode.parentNode.parentNode.querySelector(".prog-selected-static-test").options["4"].disabled = false;
   } else if (e.target.parentNode.parentNode.querySelector("#program-contains-try-except") != null) {
     e.target.parentNode.parentNode.parentNode.querySelector(".prog-selected-static-test").options["7"].disabled = false;
-  } else if (e.target.parentNode.parentNode.querySelector("#fun-contains-cycle") != null) {
+  } else if (e.target.parentNode.parentNode.querySelector("#function-contains-cycle") != null) {
     e.target.parentNode.parentNode.parentNode.querySelector(".func-selected-static-test").options["1"].disabled = false;
   } else if (e.target.parentNode.parentNode.querySelector("#fun-contains-return") != null) {
     e.target.parentNode.parentNode.parentNode.querySelector(".func-selected-static-test").options["3"].disabled = false;
-  } else if (e.target.parentNode.parentNode.querySelector("#fun-calls-print") != null) {
+  } else if (e.target.parentNode.parentNode.querySelector("#function-calls-print") != null) {
     e.target.parentNode.parentNode.parentNode.querySelector(".func-selected-static-test").options["5"].disabled = false;
-  } else if (e.target.parentNode.parentNode.querySelector("#fun-is-recursive") != null) {
+  } else if (e.target.parentNode.parentNode.querySelector("#function-is-recursive") != null) {
     e.target.parentNode.parentNode.parentNode.querySelector(".func-selected-static-test").options["6"].disabled = false;
-  } else if (e.target.parentNode.parentNode.querySelector("#fun-contains-try-except") != null) {
+  } else if (e.target.parentNode.parentNode.querySelector("#function-contains-try-except") != null) {
     e.target.parentNode.parentNode.parentNode.querySelector(".func-selected-static-test").options["9"].disabled = false;
-  } else if (e.target.parentNode.parentNode.querySelector("#fun-uses-local-variables") != null) {
+  } else if (e.target.parentNode.parentNode.querySelector("#function-uses-local-vars") != null) {
     e.target.parentNode.parentNode.parentNode.querySelector(".func-selected-static-test").options["10"].disabled = false;
   } else if (e.target.parentNode.parentNode.querySelector("#function-arguments") != null) {
     e.target.parentNode.parentNode.parentNode.querySelector(".func-exec-input-data").options["1"].disabled = false;
   } else if (e.target.parentNode.parentNode.querySelector("#function-user-input") != null) {
     e.target.parentNode.parentNode.parentNode.querySelector(".func-exec-input-data").options["2"].disabled = false;
-  } else if (e.target.parentNode.parentNode.querySelector("#function-return-value") != null) {
+  } else if (e.target.parentNode.parentNode.querySelector("#return-value") != null) {
     e.target.parentNode.parentNode.parentNode.querySelector(".func-exec-output-data").options["1"].disabled = false;
   } else if (e.target.parentNode.parentNode.querySelector("#program-user-input") != null) {
     e.target.parentNode.parentNode.parentNode.querySelector(".program-exec-input-data").options["1"].disabled = false;
-  }  else if (e.target.parentNode.parentNode.querySelector("#prog-throws-exception") != null) {
+  } else if (e.target.parentNode.parentNode.querySelector("#throws-exception") != null) {
     e.target.parentNode.parentNode.parentNode.querySelector(".program-exec-output-data").options["3"].disabled = false;
-  }      
+  } 
 
   e.target.parentNode.parentNode.parentNode.removeChild(e.target.parentNode.parentNode);
 
   initializeElements();
+  calculatePoints(0);
+}
+
+function deleteEkraaniväljundBlock(e) { // NB KORDA TEHA! Siin on loogika üle aja puru läinud.
+  if (e.target.parentNode.parentNode.parentNode.querySelector("#contains-exactly-those") != null) {
+    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["1"].disabled = false;
+    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["2"].disabled = false;
+    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["3"].disabled = false;
+  } else if (e.target.parentNode.parentNode.parentNode.querySelector("#at-least-one-of-them-is-missing") != null) {
+    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["2"].disabled = false;
+  } else if (e.target.parentNode.parentNode.parentNode.querySelector("#contains-some-of-them") != null) {
+    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["3"].disabled = false;
+  } else if (e.target.parentNode.parentNode.parentNode.querySelector("#contains-exactly-a-few-of-them") != null) {
+    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["4"].disabled = false;
+  } else if (e.target.parentNode.parentNode.parentNode.querySelector("#at-least-one-of-them-is-missing") != null) {
+    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["5"].disabled = false;
+  } else if (e.target.parentNode.parentNode.parentNode.querySelector("#contains-none-of-these") != null) {
+    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["6"].disabled = false;
+  } else if (e.target.parentNode.parentNode.parentNode.querySelector("#kõik-n") != null) {
+    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["1"].disabled = false;
+  } else if (e.target.parentNode.parentNode.parentNode.querySelector("#mõni-n") != null) {
+    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["2"].disabled = false;
+  } else if (e.target.parentNode.parentNode.parentNode.querySelector("#ükskõik-m") != null) {
+    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["3"].disabled = false;
+  } else if (e.target.parentNode.parentNode.parentNode.querySelector("#mitte-ün") != null) {
+    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["4"].disabled = false;
+  } else if (e.target.parentNode.parentNode.parentNode.querySelector("#puudub-vün") != null) {
+    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["5"].disabled = false;
+  } else if (e.target.parentNode.parentNode.parentNode.querySelector("#mitte-ü") != null) {
+    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["1"].disabled = false;
+    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["2"].disabled = false;
+    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["3"].disabled = false;
+    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["4"].disabled = false;
+    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["5"].disabled = false;
+    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["6"].disabled = false;
+  }     
+  
+  e.target.parentNode.parentNode.parentNode.parentNode.removeChild(e.target.parentNode.parentNode.parentNode);
+
+  initializeElements();
+}
+
+function calculatePoints(add_test) {
+  var tests_length = document.querySelectorAll('.test-points').length + add_test;
+
+  for (i = 0; i < tests_length; ++i) {
+    var modal_points = document.querySelectorAll('.points');
+    for (j = 0; j < modal_points.length; ++j) {
+      points_amount = modal_points[j].innerHTML.split(":");
+      modal_points[j].innerHTML = points_amount[0] + ": " + (Math.round((100/tests_length) * 100) / 100); 
+    }
+  }
+
+  return (Math.round((100/tests_length) * 100) / 100);
+}
+
+function changeTestBlockName(e) {
+  if (e.target) {
+    e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#test-block-name").innerHTML = e.target.parentNode.querySelector(".validate").value;
+  }
 }
 
 function changeTestName(e) {
-  if (e.target) {
-    e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#test-name").innerHTML = e.target.parentNode.querySelector(".validate").value;
-  }
+  new_name = e.target.parentNode.parentNode.parentNode.parentNode.querySelector(".test-name").innerHTML.split(")")[0] + ")" + " - " + e.target.parentNode.querySelector(".validate").value;
+  e.target.parentNode.parentNode.parentNode.parentNode.querySelector(".test-name").innerHTML = new_name;
 }
 
 function deleteSisendfailBlock(e) {
@@ -2055,27 +1568,191 @@ function deleteSisendfailBlock(e) {
   }
 }
 
-function enableOrder(e) {
-  e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#text-order").removeAttribute("disabled");
-}
-
-function disableOrder(e) {
-  if (e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#text-order").checked === true) {
-    e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#text-order").checked = false;
-  }
-  e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#text-order").setAttribute("disabled", "disabled");
-}
-
 function fill(e) { // Shows the test options according to chosen test type.
+  if (e.target && e.target.classList.contains("contains_keyword-valikud")) {
+    var chosen_static_test = e.target.value;
+
+    var static_test_template;
+    if (chosen_static_test === "1") {
+      static_test_template = document.querySelector('#kõik-nendest');
+      e.target.options[chosen_static_test].disabled = true;
+    } else if (chosen_static_test === "2") {  
+      static_test_template = document.querySelector('#mõni-nendest');
+      e.target.options[chosen_static_test].disabled = true;
+    } else if (chosen_static_test === "4") {  
+      static_test_template = document.querySelector('#mitte-ühtegi-nendest');
+      e.target.options[chosen_static_test].disabled = true;
+    } else if (chosen_static_test === "5") {  
+      static_test_template = document.querySelector('#puudub-vähemalt-üks-nendest');
+      e.target.options[chosen_static_test].disabled = true;
+    }
+
+    if (static_test_template != null) {
+      var template_clone = document.importNode(static_test_template.content, true); // where true means deep copy
+      e.target.parentNode.parentNode.parentNode.querySelector("#valikud-stat").appendChild(template_clone);
+    } 
+    e.target.selectedIndex = 0;
+    initializeElements();
+  }
+
+  if (e.target && e.target.classList.contains("calls_function-valikud")) {
+    var chosen_static_test = e.target.value;
+
+    var static_test_template;
+    if (chosen_static_test === "1") {
+      static_test_template = document.querySelector('#kõik-nendest');
+      e.target.options[chosen_static_test].disabled = true;
+    } else if (chosen_static_test === "2") {  
+      static_test_template = document.querySelector('#mõni-nendest');
+      e.target.options[chosen_static_test].disabled = true;
+    } else if (chosen_static_test === "3") {  
+      static_test_template = document.querySelector('#ükskõik-millise');
+      e.target.options[chosen_static_test].disabled = true;
+    } else if (chosen_static_test === "4") {  
+      static_test_template = document.querySelector('#mitte-ühtegi-nendest');
+      e.target.options[chosen_static_test].disabled = true;
+    } else if (chosen_static_test === "5") {  
+      static_test_template = document.querySelector('#puudub-vähemalt-üks-nendest');
+      e.target.options[chosen_static_test].disabled = true;
+    } else if (chosen_static_test === "6") {  
+      static_test_template = document.querySelector('#mitte-ühtegi');
+      e.target.options[chosen_static_test].disabled = true;
+      e.target.options["2"].disabled = true;
+      e.target.options["3"].disabled = true;
+      e.target.options["4"].disabled = true;
+      e.target.options["5"].disabled = true;
+      e.target.options["1"].disabled = true;
+    }
+
+    if (static_test_template != null) {
+      var template_clone = document.importNode(static_test_template.content, true); // where true means deep copy
+      e.target.parentNode.parentNode.parentNode.querySelector("#valikud-stat").appendChild(template_clone);
+    } 
+    e.target.selectedIndex = 0;
+    initializeElements();
+  }
+
+  if (e.target && e.target.classList.contains("imports-module-valikud")) {
+    var chosen_static_test = e.target.value;
+
+    var static_test_template;
+    if (chosen_static_test === "1") {
+      static_test_template = document.querySelector('#kõik-nendest');
+      e.target.options[chosen_static_test].disabled = true;
+    } else if (chosen_static_test === "2") {  
+      static_test_template = document.querySelector('#mõni-nendest');
+      e.target.options[chosen_static_test].disabled = true;
+    } else if (chosen_static_test === "3") {  
+      static_test_template = document.querySelector('#ükskõik-millise');
+      e.target.options[chosen_static_test].disabled = true;
+    } else if (chosen_static_test === "4") {  
+      static_test_template = document.querySelector('#mitte-ühtegi-nendest');
+      e.target.options[chosen_static_test].disabled = true;
+    } else if (chosen_static_test === "5") {  
+      static_test_template = document.querySelector('#puudub-vähemalt-üks-nendest');
+      e.target.options[chosen_static_test].disabled = true;
+    } else if (chosen_static_test === "6") {  
+      static_test_template = document.querySelector('#mitte-ühtegi');
+      e.target.options[chosen_static_test].disabled = true;
+      e.target.options["2"].disabled = true;
+      e.target.options["3"].disabled = true;
+      e.target.options["4"].disabled = true;
+      e.target.options["5"].disabled = true;
+      e.target.options["1"].disabled = true;
+    }
+
+    if (static_test_template != null) {
+      var template_clone = document.importNode(static_test_template.content, true); // where true means deep copy
+      e.target.parentNode.parentNode.parentNode.querySelector("#valikud-stat").appendChild(template_clone);
+    } 
+    e.target.selectedIndex = 0;
+    initializeElements();
+  }
+
+  if (e.target && e.target.classList.contains("defines-function-valikud")) {
+    var chosen_static_test = e.target.value;
+
+    var static_test_template;
+    if (chosen_static_test === "1") {
+      static_test_template = document.querySelector('#kõik-nendest');
+      e.target.options[chosen_static_test].disabled = true;
+    } else if (chosen_static_test === "2") {  
+      static_test_template = document.querySelector('#mõni-nendest');
+      e.target.options[chosen_static_test].disabled = true;
+    } else if (chosen_static_test === "3") {  
+      static_test_template = document.querySelector('#ükskõik-millise');
+      e.target.options[chosen_static_test].disabled = true;
+    } else if (chosen_static_test === "4") {  
+      static_test_template = document.querySelector('#mitte-ühtegi-nendest');
+      e.target.options[chosen_static_test].disabled = true;
+    } else if (chosen_static_test === "5") {  
+      static_test_template = document.querySelector('#puudub-vähemalt-üks-nendest');
+      e.target.options[chosen_static_test].disabled = true;
+    } else if (chosen_static_test === "6") {  
+      static_test_template = document.querySelector('#mitte-ühtegi');
+      e.target.options[chosen_static_test].disabled = true;
+      e.target.options["2"].disabled = true;
+      e.target.options["3"].disabled = true;
+      e.target.options["4"].disabled = true;
+      e.target.options["5"].disabled = true;
+      e.target.options["1"].disabled = true;
+    }
+
+    if (static_test_template != null) {
+      var template_clone = document.importNode(static_test_template.content, true); // where true means deep copy
+      e.target.parentNode.parentNode.parentNode.querySelector("#valikud-stat").appendChild(template_clone);
+    } 
+    e.target.selectedIndex = 0;
+    initializeElements();
+  }
+
+  if (e.target && e.target.classList.contains("program-exec-ekraaniväljund")) {
+    var chosen_static_test = e.target.value;
+
+    var static_test_template;
+    if (chosen_static_test === "1") {
+      static_test_template = document.querySelector('#contains-exactly-those');
+      e.target.options[chosen_static_test].disabled = true;
+      e.target.options["2"].disabled = true;
+      e.target.options["3"].disabled = true;
+      e.target.options["4"].disabled = true;
+    } else if (chosen_static_test === "2") {  
+      static_test_template = document.querySelector('#contains-at-least-these');
+      e.target.options[chosen_static_test].disabled = true;
+      e.target.options["1"].disabled = true;
+    } else if (chosen_static_test === "3") {  
+      static_test_template = document.querySelector('#contains-some-of-them');
+      e.target.options[chosen_static_test].disabled = true;
+      e.target.options["1"].disabled = true;
+    } else if (chosen_static_test === "4") {  
+      static_test_template = document.querySelector('#contains-exactly-a-few-of-them');
+      e.target.options[chosen_static_test].disabled = true;
+      e.target.options["1"].disabled = true;
+    } else if (chosen_static_test === "5") {  
+      static_test_template = document.querySelector('#at-least-one-of-them-is-missing');
+      e.target.options[chosen_static_test].disabled = true;
+    } else if (chosen_static_test === "6") {  
+      static_test_template = document.querySelector('#contains-none-of-these');
+      e.target.options[chosen_static_test].disabled = true;
+    }
+
+    if (static_test_template != null) {
+      var template_clone = document.importNode(static_test_template.content, true); // where true means deep copy
+      e.target.parentNode.parentNode.parentNode.querySelector("#ekraaniväljund-output").appendChild(template_clone);
+    } 
+    e.target.selectedIndex = 0;
+    initializeElements();
+  }  
+
   if (e.target && e.target.classList.contains("program-exec-input-data")) {
     var chosen_static_test = e.target.value;
 
     var static_test_template;
     if (chosen_static_test === "1") {
-      static_test_template = document.querySelector('#program-inputdata-user-input');
+      static_test_template = document.querySelector('#template-user-input');
       e.target.options[chosen_static_test].disabled = true;
     } else if (chosen_static_test === "2") {  
-      static_test_template = document.querySelector('#program-inputdata-file');
+      static_test_template = document.querySelector('#template-input-file');
     }
 
     if (static_test_template != null) {
@@ -2091,19 +1768,33 @@ function fill(e) { // Shows the test options according to chosen test type.
     var chosen_static_test = e.target.options[e.target.selectedIndex].text;
 
     var static_test_template;
-    if (chosen_static_test === "Ekraaniväljund") {
-      static_test_template = document.querySelector('#func-output-screen'); //#program-exec-output-screen-output
+    if (chosen_static_test === "Väljund") {
+      static_test_template = document.querySelector('#template-screen-output');
     } else if (chosen_static_test === "Väljundfail") {  
-      static_test_template = document.querySelector('#func-output-exitfile'); //#program-exec-output-file
+      static_test_template = document.querySelector('#template-output-file');
     } else if (chosen_static_test === "Programm viskab erindi") {  
-      static_test_template = document.querySelector('#program-exec-output-throws-excep');
+      static_test_template = document.querySelector('#template-throws-exception');
       e.target.options[e.target.value].disabled = true;
     }
 
     if (static_test_template != null) {
-        var template_clone = document.importNode(static_test_template.content, true); // where true means deep copy
-        template_clone = addModal(chosen_static_test, template_clone);
-        e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#program-output-data").appendChild(template_clone);
+      var template_clone = document.importNode(static_test_template.content, true); // where true means deep copy
+      template_clone = addModal(chosen_static_test, template_clone);
+      e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#program-output-data").appendChild(template_clone);
+
+      for (let i = 0; i < e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name").length; ++i) {
+        if (e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML.includes(")")) {
+          var name_split = e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML.split(")");
+          var updated_name = name_split[0].split("(")[0] + "(" + calculatePoints(0) + ")";
+          for (let j = 1; j < name_split.length; ++j) {
+            updated_name += name_split[j] + ")";
+          }
+          updated_name = updated_name.slice(0,-1);
+          e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML = updated_name;
+        } else {
+          e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML = e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML + "(" + calculatePoints(0) + ")";
+        }
+      }
     } 
     e.target.selectedIndex = 0;
     initializeElements();
@@ -2114,19 +1805,19 @@ function fill(e) { // Shows the test options according to chosen test type.
 
     var static_test_template;
     if (chosen_static_test === "1") {
-      static_test_template = document.querySelector('#func-args');
+      static_test_template = document.querySelector('#template-function-arguments');
       e.target.options[chosen_static_test].disabled = true;
     } else if (chosen_static_test === "2") {  
-      static_test_template = document.querySelector('#func-user-input');
+      static_test_template = document.querySelector('#template-user-input');
       e.target.options[chosen_static_test].disabled = true;
     } else if (chosen_static_test === "3") {
-      static_test_template = document.querySelector('#func-input-file');
+      static_test_template = document.querySelector('#template-input-file');
     }
 
     if (static_test_template != null) {
-        var template_clone = document.importNode(static_test_template.content, true); // where true means deep copy
-        //template_clone = addModal(chosen_static_test, template_clone);
-        e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#func-start-data").appendChild(template_clone);
+      var template_clone = document.importNode(static_test_template.content, true); // where true means deep copy
+      //template_clone = addModal(chosen_static_test, template_clone);
+      e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#func-start-data").appendChild(template_clone);
     } 
     e.target.selectedIndex = 0;
     initializeElements();
@@ -2137,52 +1828,67 @@ function fill(e) { // Shows the test options according to chosen test type.
 
     var static_test_template;
     if (chosen_static_test === "Tagastusväärtus") {
-      static_test_template = document.querySelector('#func-output-return-value');
+      static_test_template = document.querySelector('#template-return-value');
       e.target.options[e.target.value].disabled = true;
-    } else if (chosen_static_test === "Ekraaniväljund") {  
-      static_test_template = document.querySelector('#func-output-screen');
+    } else if (chosen_static_test === "Väljund") {  
+      static_test_template = document.querySelector('#template-screen-output');
     } else if (chosen_static_test === "Väljundfail") {
-      static_test_template = document.querySelector('#func-output-exitfile');
+      static_test_template = document.querySelector('#template-output-file');
     }
 
     if (static_test_template != null) {
         var template_clone = document.importNode(static_test_template.content, true); // where true means deep copy
         template_clone = addModal(chosen_static_test, template_clone);
         e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#func-output-data").appendChild(template_clone);
+
+        for (let i = 0; i < e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name").length; ++i) {
+          if (e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML.includes(")")) {
+            var name_split = e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML.split(")");
+            var updated_name = name_split[0].split("(")[0] + "(" + calculatePoints(0) + ")";
+            for (let j = 1; j < name_split.length; ++j) {
+              updated_name += name_split[j] + ")";
+            }
+            updated_name = updated_name.slice(0,-1);
+            e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML = updated_name;
+          } else {
+            e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML = e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML + "(" + calculatePoints(0) + ")";
+          }
+        }
     } 
     e.target.selectedIndex = 0;
     initializeElements();
   }
 
   if (e.target && e.target.classList.contains("func-selected-static-test")) {
+
     var chosen_static_test = e.target.options[e.target.selectedIndex].text;
 
     var static_test_template;
     if (chosen_static_test === "Funktsioon sisaldab tsüklit") {
-      static_test_template = document.querySelector('#func-contains-cycle');
+      static_test_template = document.querySelector('#template-function-contains-cycle');
       e.target.options[e.target.value].disabled = true;
     } else if (chosen_static_test === "Sisaldab võtmesõna") {  
-      static_test_template = document.querySelector('#contains_keyword');
+      static_test_template = document.querySelector('#template-contains_keyword');
     } else if (chosen_static_test === "Funktsioon sisaldab returni") {
-      static_test_template = document.querySelector('#func-contains-return');
+      static_test_template = document.querySelector('#template-function-contains-return');
       e.target.options[e.target.value].disabled = true;
     } else if (chosen_static_test === "Kutsub välja funktsiooni") {
-      static_test_template = document.querySelector('#calls_function');
+      static_test_template = document.querySelector('#template-calls_function');
     } else if (chosen_static_test === "Funktsioon kutsub välja prindi") {
-      static_test_template = document.querySelector('#func-calls-print');
+      static_test_template = document.querySelector('#template-function-calls-print');
       e.target.options[e.target.value].disabled = true;
     } else if (chosen_static_test === "Funktsioon on rekursiivne") {
-      static_test_template = document.querySelector('#func-is-recursive');
+      static_test_template = document.querySelector('#template-function-is-recursive');
       e.target.options[e.target.value].disabled = true;
     } else if (chosen_static_test === "Defineerib funktsiooni") {
-      static_test_template = document.querySelector('#defines_function');
+      static_test_template = document.querySelector('#template-defines_function');
     } else if (chosen_static_test === "Impordib mooduli") {
-      static_test_template = document.querySelector('#imports_module');
+      static_test_template = document.querySelector('#template-imports_module');
     } else if (chosen_static_test === "Funktsioon sisaldab try-excepti") {
-      static_test_template = document.querySelector('#func-contains-try-except');
+      static_test_template = document.querySelector('#template-function-contains-try-except');
       e.target.options[e.target.value].disabled = true;
     } else if (chosen_static_test === "Funktsioon kasutab ainult lokaalseid muutujaid") {
-      static_test_template = document.querySelector('#func-uses-local-vars');
+      static_test_template = document.querySelector('#template-function-uses-local-vars');
       e.target.options[e.target.value].disabled = true;
     }
 
@@ -2190,6 +1896,20 @@ function fill(e) { // Shows the test options according to chosen test type.
         var template_clone = document.importNode(static_test_template.content, true); // where true means deep copy
         template_clone = addModal(chosen_static_test, template_clone);
         e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#test-content").appendChild(template_clone);
+
+        for (let i = 0; i < e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name").length; ++i) {
+          if (e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML.includes(")")) {
+            var name_split = e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML.split(")");
+            var updated_name = name_split[0].split("(")[0] + "(" + calculatePoints(0) + ")";
+            for (let j = 1; j < name_split.length; ++j) {
+              updated_name += name_split[j] + ")";
+            }
+            updated_name = updated_name.slice(0,-1);
+            e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML = updated_name;
+          } else {
+            e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML = e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML + "(" + calculatePoints(0) + ")";
+          }
+        }
     } 
     e.target.selectedIndex = 0;
     initializeElements();
@@ -2200,21 +1920,21 @@ function fill(e) { // Shows the test options according to chosen test type.
 
     var static_test_template;
     if (chosen_static_test === "Programm sisaldab tsüklit") {
-      static_test_template = document.querySelector('#prog-contains-cycle');
+      static_test_template = document.querySelector('#template-program-contains-cycle');
       e.target.options[e.target.value].disabled = true;
     } else if (chosen_static_test === "Sisaldab võtmesõna") {  
-      static_test_template = document.querySelector('#contains_keyword');
+      static_test_template = document.querySelector('#template-contains_keyword');
     } else if (chosen_static_test === "Kutsub välja funktsiooni") {
-      static_test_template = document.querySelector('#calls_function');
+      static_test_template = document.querySelector('#template-calls_function');
     } else if (chosen_static_test === "Programm kutsub välja prindi") {
-      static_test_template = document.querySelector('#prog-calls-print');
+      static_test_template = document.querySelector('#template-program-calls-print');
       e.target.options[e.target.value].disabled = true;
     } else if (chosen_static_test === "Defineerib funktsiooni") {
-      static_test_template = document.querySelector('#defines_function');
-    } else if (chosen_static_test === "Impordib mooduli") {
-      static_test_template = document.querySelector('#imports_module');
+      static_test_template = document.querySelector('#template-defines_function');
+    } else if (chosen_static_test === "Impordib mooduli") { 
+      static_test_template = document.querySelector('#template-imports_module');
     } else if (chosen_static_test === "Programm sisaldab try-excepti") {
-      static_test_template = document.querySelector('#prog-contains-try-except');
+      static_test_template = document.querySelector('#template-program-contains-try-except');
       e.target.options[e.target.value].disabled = true;
     }
 
@@ -2222,6 +1942,20 @@ function fill(e) { // Shows the test options according to chosen test type.
         var template_clone = document.importNode(static_test_template.content, true); // where true means deep copy
         template_clone = addModal(chosen_static_test, template_clone);
         e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#test-content").appendChild(template_clone);
+
+        for (let i = 0; i < e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name").length; ++i) {
+          if (e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML.includes(")")) {
+            var name_split = e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML.split(")");
+            var updated_name = name_split[0].split("(")[0] + "(" + calculatePoints(0) + ")";
+            for (let j = 1; j < name_split.length; ++j) {
+              updated_name += name_split[j] + ")";
+            }
+            updated_name = updated_name.slice(0,-1);
+            e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML = updated_name;
+          } else {
+            e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML = e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML + "(" + calculatePoints(0) + ")";
+          }
+        }
     } 
     e.target.selectedIndex = 0;
     initializeElements();
@@ -2235,8 +1969,8 @@ function fill(e) { // Shows the test options according to chosen test type.
       while (child) { // Removes previous test options when a new test option is chosen.
         current_test_content.removeChild(child);
         child = current_test_content.lastElementChild;
-        var test_name = e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#test-name").innerHTML.split("-")[0];
-        e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#test-name").innerHTML = test_name;
+        var test_name = e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#test-block-name").innerHTML.split("-")[0];
+        e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#test-block-name").innerHTML = test_name;
       } 
     }
 
@@ -2245,34 +1979,50 @@ function fill(e) { // Shows the test options according to chosen test type.
     var test_type;
     var test_template;
     if (chosen_test_type === "1") {
-      test_template = document.querySelector('#tests_prog_exec');
+      test_template = document.querySelector('#program-execution-test');
       test_type = "Programmi täitmise kontroll"; 
     } else if (chosen_test_type === "2") {  
-      test_template = document.querySelector('#tests_prog_static');
+      test_template = document.querySelector('#program-static-test');
       test_type = "Programmi staatiline kontroll";
     } else if (chosen_test_type === "3") {
-      test_template = document.querySelector('#tests_func_exec'); 
+      test_template = document.querySelector('#function-execution-test'); 
       test_type = "Funktsiooni täitmise kontroll";
     } else if (chosen_test_type === "4") {
-      test_template = document.querySelector('#tests_func_static');
+      test_template = document.querySelector('#function-static-test');
       test_type = "Funktsiooni staatiline kontroll";
     }
 
     if (test_template != null) {
         var template_clone = document.importNode(test_template.content, true); // where true means deep copy
         e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#test-content").appendChild(template_clone);
-        e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#test-name").innerHTML = e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#test-name").innerHTML + " - " + test_type;
+        e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#test-block-name").innerHTML = e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#test-block-name").innerHTML + " - " + test_type;
+        e.target.parentNode.parentNode.parentNode.parentNode.querySelector(".test-block-name").value = e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#test-block-name").innerHTML;
+
+        for (let i = 0; i < e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name").length; ++i) {
+          if (e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML.includes(")")) {
+            var name_split = e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML.split(")");
+            var updated_name = name_split[0].split("(")[0] + "(" + calculatePoints(0) + ")";
+            for (let j = 1; j < name_split.length; ++j) {
+              updated_name += name_split[j] + ")";
+            }
+            updated_name = updated_name.slice(0,-1);
+            e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML = updated_name;
+          } else {
+            e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML = e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML + "(" + calculatePoints(0) + ")";
+          }
+        }
     } 
     initializeElements();
   }
+  calculatePoints(0);
 }
 
-function createModal() {
-  var modal_template = document.querySelector('#test-modal');
+function createSettingsModal() {
+  var modal_template = document.querySelector('#settings-modal');
   var template_clone_modal = document.importNode(modal_template.content, true);
 
   template_clone_modal.getElementById("modal-link").href = "#modal" + modal_counter;
-  template_clone_modal.getElementById("modal1").setAttribute("id", "modal" + modal_counter);
+  template_clone_modal.getElementById("modal-settings").setAttribute("id", "modal" + modal_counter);
   modal_counter++;
   return template_clone_modal;
 }
@@ -2282,337 +2032,65 @@ function createInfoModal() {
   var template_clone_modal = document.importNode(modal_template.content, true);
 
   template_clone_modal.getElementById("modal-link").href = "#modal" + modal_counter;
-  template_clone_modal.getElementById("modal1").setAttribute("id", "modal" + modal_counter);
+  template_clone_modal.getElementById("modal-info").setAttribute("id", "modal" + modal_counter);
   modal_counter++;
   return template_clone_modal;
 }
 
 function addModal(test_type, template_clone) { 
   if (test_type === "Programm sisaldab tsüklit") {
-    template_clone = modalProgramContainsCycle(template_clone);
+    template_clone = createModalsForTests(template_clone,"Kontrollib, kas programm sisaldab tsüklit.", "Programm sisaldas tsüklit.", "Programm ei sisaldanud tsüklit.","#program-contains-cycle","Kontrollib, kas programm sisaldab tsüklit.");
   } else if (test_type === "Sisaldab võtmesõna") {
-    template_clone = modalContainsKeyword(template_clone);
+    template_clone = createModalsForTests(template_clone,"Kontrollib, kas programm/funktsioon sisaldab antud võtmesõnu.", "Programm/funktsioon sisaldas antud võtmesõnu.", "Programm/funktsioon ei sisaldanud antud võtmesõnu.","#contains-keyword-modal","Kontrollib, kas programm/funktsioon sisaldab antud võtmesõnu.");
   } else if (test_type === "Kutsub välja funktsiooni") {
-    template_clone = modalCallsFunction(template_clone);
+    template_clone = createModalsForTests(template_clone,"Kontrollib, kas programm/funktsioon kutsub funktsiooni.", "Programm/funktsioon kutsus funktsiooni.", "Programm/funktsioon ei kutsunud funktsiooni.","#calls-function-modal","Kontrollib, kas programm/funktsioon kutsub funktsiooni.");
   } else if (test_type === "Programm kutsub välja prindi") {
-    template_clone = modalProgramCallsPrint(template_clone);
+    template_clone = createModalsForTests(template_clone,"Kontrollib, kas programm kutsus välja prindi.", "Programm kutsus välja prindi.", "Programm ei kutsunud välja printi.","#program-calls-print","Kontrollib, kas programm kutsus välja prindi.");
   } else if (test_type === "Defineerib funktsiooni") {
-    template_clone = modalDefinesFunction(template_clone);
+    template_clone = createModalsForTests(template_clone, "Kontrollib, kas programm/funktsioon defineerib funktsiooni.", "Programm/funktsioon defineeris funktsiooni.", "Programm/funktsioon ei defineerinud funktsiooni.", "#defines-function-modal", "Kontrollib, kas programm/funktsioon defineerib funktsiooni.  \"Rohkem mitte midagi\" tähendab seda, et õpilase lahendus ei tohi sisaldada mitte midagi rohkem kui on siin ette nähtud.");
   } else if (test_type === "Impordib mooduli") {
-    template_clone = modalImportsModule(template_clone);
+    template_clone = createModalsForTests(template_clone,"Kontrollib, kas programm/funktsioon impordib mooduli.", "Programm/funktsioon importis mooduli.", "Programm/funktsioon importinud moodulit.","#imports-module-modal","Kontrollib, kas programm/funktsioon impordib mooduli.");
   } else if (test_type === "Programm sisaldab try-excepti") {
-    template_clone = modalProgramContainsTryExcept(template_clone);
+    template_clone = createModalsForTests(template_clone,"Kontrollib, kas programm sisaldab try-except märksõnu.", "Programm sisaldas try-except märksõnu.", "Programm ei sisaldanud try-except märksõnu.","#program-contains-try-except","Kontrollib, kas programm sisaldab try-except märksõnu.");
   } else if (test_type === "Funktsioon sisaldab tsüklit") {
-    template_clone = modalFunctionContainsCycle(template_clone);
+    template_clone = createModalsForTests(template_clone,"Kontrollib, kas funktsioon sisaldab tsüklit.", "Funktsioon sisaldas tsüklit.", "Funktsioon ei sisaldanud tsüklit.","#function-contains-cycle","Kontrollib, kas funktsioon sisaldab tsüklit.");
   } else if (test_type === "Funktsioon sisaldab returni") {
-    template_clone = modalFunctionContainsReturn(template_clone);
+    template_clone = createModalsForTests(template_clone,"Kontrollib, kas funktsioon sisaldab returni.", "Funktsioon sisaldas returni.", "Funktsioon ei sisaldanud returni.","#function-contains-return","Kontrollib, kas funktsioon sisaldab returni.");
   } else if (test_type === "Funktsioon kutsub välja prindi") {
-    template_clone = modalFunctionCallsPrint(template_clone);
+    template_clone = createModalsForTests(template_clone,"Kontrollib, kas funktsioon kutsub välja prindi.", "Funktsioon kutsus prindi.", "Funktsioon ei kutsunud printi.","#function-calls-print","Kontrollib, kas funktsioon kutsub välja prindi.");
   } else if (test_type === "Funktsioon on rekursiivne") {
-    template_clone = modalFunctionIsRecursive(template_clone);
+    template_clone = createModalsForTests(template_clone,"Kontrollib, kas funktsioon on rekursiivne.", "Funktsioon oli rekursiivne.", "Funktsioon ei olnud rekursiivne.","#function-is-recursive","Kontrollib, kas funktsioon on rekursiivne.");
   } else if (test_type === "Funktsioon sisaldab try-excepti") {
-    template_clone = modalFunctionContainsTryExcept(template_clone);
+    template_clone = createModalsForTests(template_clone, "Kontrollib, kas funktsioon sisaldab try-excepti.", "Funktsioon sisaldas try-excepti.", "Funktsioon ei sisaldanud try-excepti.","#function-contains-try-except","Kontrollib, kas funktsioon sisaldab try-excepti.");
   } else if (test_type === "Funktsioon kasutab ainult lokaalseid muutujaid") {
-    template_clone = modalFunctionUsesLocalVariables(template_clone);
+    template_clone = createModalsForTests(template_clone, "Kontrollib, kas funktsioon kasutab lokaalseid muutujaid.", "Funktsioon kasutas lokaalseid muutujaid.", "Funktsioon ei kasutanud lokaalseid muutujaid.","#function-uses-local-vars","Kontrollib, kas funktsioon kasutab lokaalseid muutujaid.");
   } else if (test_type === "Tagastusväärtus") {
-    template_clone = modalFunctionReturnValue(template_clone);
-  } else if (test_type === "Ekraaniväljund") {
-    template_clone = modalFunctionScreenOutput(template_clone);
+    template_clone = createModalsForTests(template_clone, "Kontrollib funktsiooni tagastusväärtust.", "Funktsioon tagastas õige väärtuse.", "Funktsioon ei tagastanud õiget väärtust.","#return-value","Kontrollib funktsiooni tagastusväärtust.");
+  } else if (test_type === "Väljund") {
+    template_clone = createModalsForTests(template_clone, "Kontrollib, kas programm/funktsioon väljastas korrektse väljundi.", "Programm/Funktsioon väljastas korrektse väljundi.", "Programm/Funktsioon ei väljastanud korrektset väljundit.","#screen-output","Kontrollib, kas programm/funktsioon väljastas korrektse väljundi.");
   } else if (test_type === "Väljundfail") {
-    template_clone = modalFunctionOutputFile(template_clone);
+    template_clone = createModalsForTests(template_clone, "Kontrollib, kas väljundfaili sisu on korrektne.", "Väljundfaili sisu oli õige.", "Väljundfaili sisu ei olnud õige.","#output-file","Kontrollib, kas väljundfaili sisu on korrektne.");
   } else if (test_type === "Programm viskab erindi") {
-    template_clone = modalProgramThrowsException(template_clone);
+    template_clone = createModalsForTests(template_clone, "Kontrollib, kas programm viskab erindi.", "Programm viskas erindi.", "Programm ei visanud erindit.","#throws-exception","Kontrollib, kas programm viskab erindi.");
   } 
-
   return template_clone;
 }
 
-function modalProgramThrowsException(template_clone) {
-  template_clone_modal = createModal();
-  //template_clone_modal.querySelector("#test-name-modal").innerHTML = "Kontrollib, kas programm viskab erindi.";
-  template_clone_modal.querySelector("#before-message").value = "Kontrollib, kas programm viskab erindi.";
-  template_clone_modal.querySelector("#passed-message").value = "Programm viskas erindi.";
-  template_clone_modal.querySelector("#failed-message").value = "Programm ei visanud erindit.";
-  
-  template_clone.querySelector("#prog-throws-exception").appendChild(template_clone_modal);
+function createModalsForTests(template_clone, before_message, passed_message, failed_message, location, information) {
+  template_clone_modal = createSettingsModal();
+  template_clone_modal.querySelector("#before-message").value = before_message;
+  template_clone_modal.querySelector("#passed-message").value = passed_message;
+  template_clone_modal.querySelector("#failed-message").value = failed_message;
+  insertAfter(template_clone_modal, template_clone.querySelector(location));
 
   template_clone_modal_info = createInfoModal();
-  template_clone_modal_info.querySelector("#information").innerHTML = "Kontrollib, kas programm viskab erindi.";
-  
-  template_clone.querySelector("#prog-throws-exception").appendChild(template_clone_modal_info);
+  template_clone_modal_info.querySelector("#information").innerHTML = information;
+  insertAfter(template_clone_modal_info, template_clone.querySelector(".modal"));
   return template_clone;
 }
 
-function modalFunctionOutputFile(template_clone) {
-  template_clone_modal = createModal();
-  //template_clone_modal.querySelector("#test-name-modal").innerHTML = "Kontrollib, kas väljundfaili sisu on korrektne.";
-  template_clone_modal.querySelector("#before-message").value = "Kontrollib, kas väljundfaili sisu on korrektne.";
-  template_clone_modal.querySelector("#passed-message").value = "Väljundfaili sisu oli õige.";
-  template_clone_modal.querySelector("#failed-message").value = "Väljundfaili sisu ei olnud õige.";
-  
-  template_clone.querySelector("#fun-exec-output-file").appendChild(template_clone_modal);
-
-  template_clone_modal_info = createInfoModal();
-  template_clone_modal_info.querySelector("#information").innerHTML = "Kontrollib, kas väljundfaili sisu on korrektne.";
-  
-  template_clone.querySelector("#fun-exec-output-file").appendChild(template_clone_modal_info);
-  return template_clone;
-}
-
-function modalFunctionScreenOutput(template_clone) {
-  template_clone_modal = createModal();
-  //template_clone_modal.querySelector("#test-name-modal").innerHTML = "Kontrollib, kas programm/funktsioon väljastas korrektse ekraaniväljundi.";
-  template_clone_modal.querySelector("#before-message").value = "Kontrollib, kas programm/funktsioon väljastas korrektse ekraaniväljundi.";
-  template_clone_modal.querySelector("#passed-message").value = "Programm/Funktsioon väljastas korrektse ekraaniväljundi.";
-  template_clone_modal.querySelector("#failed-message").value = "Programm/Funktsioon ei väljastanud korrektset ekraaniväljundit.";
-  
-  template_clone.querySelector("#screen-output").appendChild(template_clone_modal);
-
-  template_clone_modal_info = createInfoModal();
-  template_clone_modal_info.querySelector("#information").innerHTML = "Kontrollib, kas programm/funktsioon väljastas korrektse ekraaniväljundi.";
-  
-  template_clone.querySelector("#screen-output").appendChild(template_clone_modal_info);
-  return template_clone;
-}
-
-function modalFunctionReturnValue(template_clone) {
-  template_clone_modal = createModal();
-  //template_clone_modal.querySelector("#test-name-modal").innerHTML = "Kontrollib funktsiooni tagastusväärtust.";
-  template_clone_modal.querySelector("#before-message").value = "Kontrollib funktsiooni tagastusväärtust.";
-  template_clone_modal.querySelector("#passed-message").value = "Funktsioon tagastas õige väärtuse.";
-  template_clone_modal.querySelector("#failed-message").value = "Funktsioon ei tagastanud õiget väärtust.";
-  
-  template_clone.querySelector("#function-return-value").appendChild(template_clone_modal);
-
-  template_clone_modal_info = createInfoModal();
-  template_clone_modal_info.querySelector("#information").innerHTML = "Kontrollib funktsiooni tagastusväärtust.";
-  
-  template_clone.querySelector("#function-return-value").appendChild(template_clone_modal_info);
-  return template_clone;
-}
-
-function modalFunctionUsesLocalVariables(template_clone) {
-  template_clone_modal = createModal();
-  //template_clone_modal.querySelector("#test-name-modal").innerHTML = "Kontrollib, kas funktsioon kasutab lokaalseid muutujaid.";
-  template_clone_modal.querySelector("#before-message").value = "Kontrollib, kas funktsioon kasutab lokaalseid muutujaid.";
-  template_clone_modal.querySelector("#passed-message").value = "Funktsioon kasutas lokaalseid muutujaid.";
-  template_clone_modal.querySelector("#failed-message").value = "Funktsioon ei kasutanud lokaalseid muutujaid.";
-  
-  template_clone.querySelector("#fun-uses-local-variables").appendChild(template_clone_modal);
-
-  template_clone_modal_info = createInfoModal();
-  template_clone_modal_info.querySelector("#information").innerHTML = "Kontrollib, kas funktsioon kasutab lokaalseid muutujaid.";
-  
-  template_clone.querySelector("#fun-uses-local-variables").appendChild(template_clone_modal_info);
-  return template_clone;
-}
-
-function modalFunctionContainsTryExcept(template_clone) {
-  template_clone_modal = createModal();
-  //template_clone_modal.querySelector("#test-name-modal").innerHTML = "Kontrollib, kas funktsioon sisaldab try-excepti.";
-  template_clone_modal.querySelector("#before-message").value = "Kontrollib, kas funktsioon sisaldab try-excepti.";
-  template_clone_modal.querySelector("#passed-message").value = "Funktsioon sisaldas try-excepti.";
-  template_clone_modal.querySelector("#failed-message").value = "Funktsioon ei sisaldanud try-excepti.";
-  
-  template_clone.querySelector("#fun-contains-try-except").appendChild(template_clone_modal);
-
-  template_clone_modal_info = createInfoModal();
-  template_clone_modal_info.querySelector("#information").innerHTML = "Kontrollib, kas funktsioon sisaldab try-excepti.";
-  
-  template_clone.querySelector("#fun-contains-try-except").appendChild(template_clone_modal_info);
-  return template_clone;
-}
-
-function modalFunctionIsRecursive(template_clone) {
-  template_clone_modal = createModal();
-  //template_clone_modal.querySelector("#test-name-modal").innerHTML = "Kontrollib, kas funktsioon on rekursiivne.";
-  template_clone_modal.querySelector("#before-message").value = "Kontrollib, kas funktsioon on rekursiivne.";
-  template_clone_modal.querySelector("#passed-message").value = "Funktsioon oli rekursiivne.";
-  template_clone_modal.querySelector("#failed-message").value = "Funktsioon ei olnud rekursiivne.";
-  
-  template_clone.querySelector("#fun-is-recursive").appendChild(template_clone_modal);
-
-  template_clone_modal_info = createInfoModal();
-  template_clone_modal_info.querySelector("#information").innerHTML = "Kontrollib, kas funktsioon on rekursiivne.";
-  
-  template_clone.querySelector("#fun-is-recursive").appendChild(template_clone_modal_info);
-  return template_clone;
-}
-
-function modalFunctionCallsPrint(template_clone) {
-  template_clone_modal = createModal();
-  //template_clone_modal.querySelector("#test-name-modal").innerHTML = "Kontrollib, kas funktsioon kutsub välja prindi.";
-  template_clone_modal.querySelector("#before-message").value = "Kontrollib, kas funktsioon kutsub välja prindi.";
-  template_clone_modal.querySelector("#passed-message").value = "Funktsioon kutsus prindi.";
-  template_clone_modal.querySelector("#failed-message").value = "Funktsioon ei kutsunud printi.";
-  
-  template_clone.querySelector("#fun-calls-print").appendChild(template_clone_modal);
-
-  template_clone_modal_info = createInfoModal();
-  template_clone_modal_info.querySelector("#information").innerHTML = "Kontrollib, kas funktsioon kutsub välja prindi.";
-  
-  template_clone.querySelector("#fun-calls-print").appendChild(template_clone_modal_info);
-  return template_clone;
-}
-
-function modalFunctionContainsReturn(template_clone) {
-  template_clone_modal = createModal();
-  //template_clone_modal.querySelector("#test-name-modal").innerHTML = "Kontrollib, kas funktsioon sisaldab returni.";
-  template_clone_modal.querySelector("#before-message").value = "Kontrollib, kas funktsioon sisaldab returni.";
-  template_clone_modal.querySelector("#passed-message").value = "Funktsioon sisaldas returni.";
-  template_clone_modal.querySelector("#failed-message").value = "Funktsioon ei sisaldanud returni.";
-  
-  template_clone.querySelector("#fun-contains-return").appendChild(template_clone_modal);
-
-  template_clone_modal_info = createInfoModal();
-  template_clone_modal_info.querySelector("#information").innerHTML = "Kontrollib, kas funktsioon sisaldab returni.";
-  
-  template_clone.querySelector("#fun-contains-return").appendChild(template_clone_modal_info);
-  return template_clone;
-}
-
-function modalFunctionContainsCycle(template_clone) {
-  template_clone_modal = createModal();
-  //template_clone_modal.querySelector("#test-name-modal").innerHTML = "Kontrollib, kas funktsioon sisaldab tsüklit.";
-  template_clone_modal.querySelector("#before-message").value = "Kontrollib, kas funktsioon sisaldab tsüklit.";
-  template_clone_modal.querySelector("#passed-message").value = "Funktsioon sisaldas tsüklit.";
-  template_clone_modal.querySelector("#failed-message").value = "Funktsioon ei sisaldanud tsüklit.";
-  
-  template_clone.querySelector("#fun-contains-cycle").appendChild(template_clone_modal);
-
-  template_clone_modal_info = createInfoModal();
-  template_clone_modal_info.querySelector("#information").innerHTML = "Kontrollib, kas funktsioon sisaldab tsüklit.";
-  
-  template_clone.querySelector("#fun-contains-cycle").appendChild(template_clone_modal_info);
-  return template_clone;
-}
-
-function modalProgramContainsTryExcept(template_clone) {
-  template_clone_modal = createModal();
-  //template_clone_modal.querySelector("#test-name-modal").innerHTML = "Kontrollib, kas programm sisaldab try-except märksõnu.";
-  template_clone_modal.querySelector("#before-message").value = "Kontrollib, kas programm sisaldab try-except märksõnu.";
-  template_clone_modal.querySelector("#passed-message").value = "Programm sisaldas try-except märksõnu.";
-  template_clone_modal.querySelector("#failed-message").value = "Programm ei sisaldanud try-except märksõnu.";
-  
-  template_clone.querySelector("#program-contains-try-except").appendChild(template_clone_modal);
-
-  template_clone_modal_info = createInfoModal();
-  template_clone_modal_info.querySelector("#information").innerHTML = "Kontrollib, kas programm sisaldab try-except märksõnu.";
-  
-  template_clone.querySelector("#program-contains-try-except").appendChild(template_clone_modal_info);
-  return template_clone;
-}
-
-function modalImportsModule(template_clone) {
-  template_clone_modal0 = createModal();
-  //template_clone_modal0.querySelector("#test-name-modal").innerHTML = "Kontrollib, kas programm/funktsioon impordib mooduli.";
-  template_clone_modal0.querySelector("#before-message").value = "Kontrollib, kas programm/funktsioon impordib mooduli.";
-  template_clone_modal0.querySelector("#passed-message").value = "Programm/funktsioon importis mooduli.";
-  template_clone_modal0.querySelector("#failed-message").value = "Programm/funktsioon importinud moodulit.";
-  
-  template_clone.querySelector("#imports-module-modal").appendChild(template_clone_modal0);
-
-  template_clone_modal_info = createInfoModal();
-  template_clone_modal_info.querySelector("#information").innerHTML = "Kontrollib, kas programm/funktsioon impordib mooduli.";
-  
-  template_clone.querySelector("#imports-module-modal").appendChild(template_clone_modal_info);
-  return template_clone;
-}
-
-function modalDefinesFunction(template_clone) {
-  template_clone_modal = createModal();
-  //template_clone_modal.querySelector("#test-name-modal").innerHTML = "Kontrollib, kas programm/funktsioon defineerib funktsiooni.";
-  template_clone_modal.querySelector("#before-message").value = "Kontrollib, kas programm/funktsioon defineerib funktsiooni.";
-  template_clone_modal.querySelector("#passed-message").value = "Programm/funktsioon defineeris funktsiooni.";
-  template_clone_modal.querySelector("#failed-message").value = "Programm/funktsioon ei defineerinud funktsiooni.";
-  
-  template_clone.querySelector("#defines-function-modal").appendChild(template_clone_modal);
-
-  template_clone_modal_info = createInfoModal();
-  template_clone_modal_info.querySelector("#information").innerHTML = "Kontrollib, kas programm/funktsioon defineerib funktsiooni.";
-  
-  template_clone.querySelector("#defines-function-modal").appendChild(template_clone_modal_info);
-  return template_clone;
-}
-
-function modalProgramCallsPrint(template_clone) {
-  template_clone_modal = createModal();
-  //template_clone_modal.querySelector("#test-name-modal").innerHTML = "Kontrollib, kas programm kutsus välja prindi.";
-  template_clone_modal.querySelector("#before-message").value = "Kontrollib, kas programm kutsus välja prindi.";
-  template_clone_modal.querySelector("#passed-message").value = "Programm kutsus välja prindi.";
-  template_clone_modal.querySelector("#failed-message").value = "Programm ei kutsunud välja printi.";
-
-  template_clone.querySelector("#program-calls-print").appendChild(template_clone_modal);
-
-  template_clone_modal_info = createInfoModal();
-  template_clone_modal_info.querySelector("#information").innerHTML = "Kontrollib, kas programm kutsus välja prindi.";
-  
-  template_clone.querySelector("#program-calls-print").appendChild(template_clone_modal_info);
-  return template_clone;
-}
-
-function modalCallsFunction(template_clone) {
-  template_clone_modal = createModal();
-  //template_clone_modal.querySelector("#test-name-modal").innerHTML = "Kontrollib, kas programm/funktsioon kutsub funktsiooni.";
-  template_clone_modal.querySelector("#before-message").value = "Kontrollib, kas programm/funktsioon kutsub funktsiooni.";
-  template_clone_modal.querySelector("#passed-message").value = "Programm/funktsioon kutsus funktsiooni.";
-  template_clone_modal.querySelector("#failed-message").value = "Programm/funktsioon ei kutsunud funktsiooni.";
-  
-  template_clone.querySelector("#calls-function-modal").appendChild(template_clone_modal);
-
-  template_clone_modal_info = createInfoModal();
-  template_clone_modal_info.querySelector("#information").innerHTML = "Kontrollib, kas programm/funktsioon kutsub funktsiooni.";
-  
-  template_clone.querySelector("#calls-function-modal").appendChild(template_clone_modal_info);
-  return template_clone;
-}
-
-function modalContainsKeyword(template_clone) {
-  template_clone_modal = createModal();
-  //template_clone_modal.querySelector("#test-name-modal").innerHTML = "Kontrollib, kas programm/funktsioon sisaldab antud võtmesõnu.";
-  template_clone_modal.querySelector("#before-message").value = "Kontrollib, kas programm/funktsioon sisaldab antud võtmesõnu.";
-  template_clone_modal.querySelector("#passed-message").value = "Programm/funktsioon sisaldas antud võtmesõnu.";
-  template_clone_modal.querySelector("#failed-message").value = "Programm/funktsioon ei sisaldanud antud võtmesõnu.";
-  
-  template_clone.querySelector("#contains-keyword-modal").appendChild(template_clone_modal);
-
-  template_clone_modal_info = createInfoModal();
-  template_clone_modal_info.querySelector("#information").innerHTML = "Kontrollib, kas programm/funktsioon sisaldab antud võtmesõnu.";
-  
-  template_clone.querySelector("#contains-keyword-modal").appendChild(template_clone_modal_info);
-  return template_clone;
-}
-
-function modalProgramContainsCycle(template_clone) {
-  template_clone_modal = createModal();
-  //template_clone_modal.querySelector("#test-name-modal").innerHTML = "Kontrollib, kas programm sisaldab tsüklit.";
-  template_clone_modal.querySelector("#before-message").value = "Kontrollib, kas programm sisaldab tsüklit.";
-  template_clone_modal.querySelector("#passed-message").value = "Programm sisaldas tsüklit.";
-  template_clone_modal.querySelector("#failed-message").value = "Programm ei sisaldanud tsüklit."; 
-
-  template_clone.querySelector("#program-contains-cycle").appendChild(template_clone_modal);
-
-  template_clone_modal_info = createInfoModal();
-  template_clone_modal_info.querySelector("#information").innerHTML = "Kontrollib, kas programm sisaldab tsüklit.";
-  
-  template_clone.querySelector("#program-contains-cycle").appendChild(template_clone_modal_info);
-  return template_clone;
-}
-
-function addSisendfailidBlock(e) {
-  if (e.target) {
-    var test_template = document.querySelector('#sisendfaili_template');
-    var template_clone = document.importNode(test_template.content, true); // where true means deep copy
-    e.target.parentNode.parentNode.querySelector("#sisendfaili-nõuded").appendChild(template_clone);
-  }
-}
-
-function addVäljundfailidBlock(e) {
-  if (e.target) {
-    var test_template = document.querySelector('#väljundfaili_template');
-    var template_clone = document.importNode(test_template.content, true); // where true means deep copy
-    e.target.parentNode.parentNode.querySelector("#sisendfaili-nõuded").appendChild(template_clone);
-  }
+function insertAfter(newNode, existingNode) {
+    existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
 }
 
 function deleteTestBlock(e) { // Used to delete selected test block.
@@ -2635,7 +2113,7 @@ function addTestBlock() { // Used to add test blocks.
 
   var template_clone = document.importNode(test_block_template.content, true); // Make a deep copy.
   amount_of_tests++;
-  template_clone.getElementById("test-name").innerHTML = "Test " + amount_of_tests;
+  template_clone.getElementById("test-block-name").innerHTML = "Test " + amount_of_tests;
   document.getElementById("test-container").appendChild(template_clone);
     
   initializeElements();
