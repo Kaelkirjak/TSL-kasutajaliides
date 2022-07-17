@@ -1526,6 +1526,7 @@ function deleteVäljundfailBlock(e) {
   if (e.target) {
     e.target.parentNode.parentNode.parentNode.removeChild(e.target.parentNode.parentNode);
   }
+  calculatePoints(0);
 }
 
 function enableDisabledProp(node) {
@@ -1902,6 +1903,7 @@ function deleteTestBlock(e) { // Used to delete selected test block.
   if (e.target) {
     e.target.parentNode.parentNode.parentNode.parentNode.parentNode.removeChild(e.target.parentNode.parentNode.parentNode.parentNode);
   }
+  calculatePoints(0);
 } 
 
 function addTestBlock() { // Used to add test blocks.
