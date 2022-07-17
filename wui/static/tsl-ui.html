@@ -265,7 +265,63 @@
               </div>
             </td>
             <td>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteEkraaniväljundBlock(event)">
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="enableSelectOptionsAgain(event)">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </template>
+
+        <!-- Šabloon väljundi ja väljundfaili dropdowni jaoks koos järjestusega. -->
+        <template id="kõik-nendest-väljund">
+          <tr>
+            <td style="width:30%" id="kõik-n">
+              <h5>Kõik nendest</h5>
+              <label >
+                <input id="text-order" type="checkbox" />
+                <span>Rohkem mitte midagi</span>
+              </label>
+              <label >
+                <input id="text-order" type="checkbox" />
+                <span>Järjestus oluline</span>
+              </label>
+            </td>
+            <td>
+              <div class="input-field">
+                <label>Väljund</label>
+                <textarea class="materialize-textarea"></textarea>
+              </div>
+            </td>
+            <td>
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="enableSelectOptionsAgain(event)">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </template>
+
+        <!-- Šabloon väljundi ja väljundfaili dropdowni jaoks koos järjestusega. -->
+        <template id="mõni-nendest-väljund">
+          <tr>
+            <td style="width:30%" id="mõni-n">
+              <h5>Mõni nendest</h5>
+              <label >
+                <input id="text-order" type="checkbox" />
+                <span>Rohkem mitte midagi</span>
+              </label>
+              <label >
+                <input id="text-order" type="checkbox" />
+                <span>Järjestus oluline</span>
+              </label>
+            </td>
+            <td>
+              <div class="input-field">
+                <label>Väljund</label>
+                <textarea class="materialize-textarea"></textarea>
+              </div>
+            </td>
+            <td>
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="enableSelectOptionsAgain(event)">
                 <i class="material-icons">delete</i>
               </a>
             </td>
@@ -288,7 +344,7 @@
               </div>
             </td>
             <td>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteEkraaniväljundBlock(event)">
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="enableSelectOptionsAgain(event)">
                 <i class="material-icons">delete</i>
               </a>
             </td>
@@ -301,8 +357,29 @@
             <td style="width:30%" id="ükskõik-m">
               <h5>Ükskõik millise</h5>
             </td>
+            <td></td>
             <td>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteEkraaniväljundBlock(event)">
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="enableSelectOptionsAgain(event)">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </template>
+
+        <!-- Šabloon väljundi ja väljundfaili dropdowni jaoks. -->
+        <template id="mitte-ühtegi-nendest-väljund">
+          <tr>
+            <td style="width:30%" id="mitte-ün">
+              <h5>Mitte ühtegi nendest</h5>
+            </td>
+            <td>
+              <div class="input-field">
+                <label>Väljund</label>
+                <textarea class="materialize-textarea"></textarea>
+              </div>
+            </td>
+            <td>
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="enableSelectOptionsAgain(event)">
                 <i class="material-icons">delete</i>
               </a>
             </td>
@@ -321,7 +398,27 @@
               </div>
             </td>
             <td>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteEkraaniväljundBlock(event)">
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="enableSelectOptionsAgain(event)">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </template>
+
+        <!-- Šabloon väljundi ja väljundfaili dropdowni jaoks. -->
+        <template id="puudub-vähemalt-üks-nendest-väljund">
+          <tr>
+            <td style="width:30%" id="puudub-vün">
+              <h5>Puudub vähemalt üks nendest</h5>
+            </td>
+            <td>
+              <div class="input-field">
+                <label>Väljund</label>
+                <textarea class="materialize-textarea"></textarea>
+              </div>
+            </td>
+            <td>
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="enableSelectOptionsAgain(event)">
                 <i class="material-icons">delete</i>
               </a>
             </td>
@@ -340,7 +437,7 @@
               </div>
             </td>
             <td>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteEkraaniväljundBlock(event)">
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="enableSelectOptionsAgain(event)">
                 <i class="material-icons">delete</i>
               </a>
             </td>
@@ -353,8 +450,9 @@
             <td style="width:30%" id="mitte-ü">
               <h5>Mitte ühtegi</h5>
             </td>
+            <td></td>
             <td>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteEkraaniväljundBlock(event)">
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="enableSelectOptionsAgain(event)">
                 <i class="material-icons">delete</i>
               </a>
             </td>
@@ -365,12 +463,12 @@
         <template id="template-defines_function">
           <div class="section test-points">
             <h5 id="defines-function-modal" style="display: inline-block;" class="test-name">Defineerib funktsiooni</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteTestBlock(event)">
               <i class="material-icons">delete</i>
             </a>
             
             <div class="input-field">
-                <select class="defines-function-valikud">
+                <select class="chosen-test-option">
                 <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
                 <option value="1">Kõik nendest</option>
                 <option value="2">Mõni nendest</option>
@@ -394,15 +492,15 @@
         <!-- Šabloon mooduli importimise kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-imports_module">
           <div class="section test-points">
-            <h5 id="imports-module-modal" style="display: inline-block;" class="test-name">Impordib mooduli:</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+            <h5 id="imports-module-modal" style="display: inline-block;" class="test-name">Impordib mooduli</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteTestBlock(event)">
               <i class="material-icons">delete</i>
             </a>
               
             <div class="input-field">
-              <select class="imports-module-valikud"> <!-- BACKEND PUUDU "imports-module-valikud"-->
+              <select class="chosen-test-option">
                 <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
-                <option value="1">Kõik nendest</option> <!-- seal teksti jurues peaks olema "Moodulid" -->
+                <option value="1">Kõik nendest</option> 
                 <option value="2">Mõni nendest</option>
                 <option value="3">Ükskõik millise</option>
                 <option value="4">Mitte ühtegi nendest</option>
@@ -426,14 +524,14 @@
         <template id="template-calls_function">
           <div class="section test-points">
             <h5 id="calls-function-modal" style="display: inline-block;" class="test-name">Kutsub välja funktsiooni</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteTestBlock(event)">
               <i class="material-icons">delete</i>
             </a>
 
             <div class="input-field">
-              <select class="calls_function-valikud"> <!-- BACKEND PUUDU "calls_function-valikud"-->
+              <select class="chosen-test-option">
                 <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
-                <option value="1">Kõik nendest</option> <!-- seal teksti jurues peaks olema "Funktsioonid" -->
+                <option value="1">Kõik nendest</option>
                 <option value="2">Mõni nendest</option>
                 <option value="3">Ükskõik millise</option>
                 <option value="4">Mitte ühtegi nendest</option>
@@ -457,14 +555,14 @@
         <template id="template-contains_keyword">
           <div class="section test-points">
             <h5 id="contains-keyword-modal" style="display: inline-block;" class="test-name">Sisaldab võtmesõna</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteTestBlock(event)">
               <i class="material-icons">delete</i>
             </a>
 
             <div class="input-field">
-              <select class="contains_keyword-valikud"> <!-- BACKEND PUUDU "contains_keyword-valikud" -->
+              <select class="chosen-test-option"> 
                 <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
-                <option value="1">Kõik nendest</option> <!-- seal teksti jurues peaks olema "Võtmesõnad" -->
+                <option value="1">Kõik nendest</option> 
                 <option value="2">Mõni nendest</option>
                 <option value="4">Mitte ühtegi nendest</option>
                 <option value="5">Puudub vähemalt üks nendest</option>
@@ -485,8 +583,8 @@
         <!-- Šabloon programmi tsükli sisalduvuse kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-program-contains-cycle">
           <div class="section test-points">
-            <h5 id="program-contains-cycle" style="display: inline-block;" class="test-name">Programm sisaldab tsüklit:</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+            <h5 id="program-contains-cycle" style="display: inline-block;" class="test-name">Programm sisaldab tsüklit</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteTestBlock(event)">
               <i class="material-icons">delete</i>
             </a>
             <form action="#">
@@ -510,8 +608,8 @@
         <!-- Šabloon programmi try-excepti sisalduvuse kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-program-contains-try-except">
           <div class="section test-points">
-            <h5 id="program-contains-try-except" style="display: inline-block;" class="test-name">Programm sisaldab try-excepti:</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+            <h5 id="program-contains-try-except" style="display: inline-block;" class="test-name">Programm sisaldab try-excepti</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteTestBlock(event)">
               <i class="material-icons">delete</i>
             </a>
             <form action="#">
@@ -535,8 +633,8 @@
         <!-- Šabloon programmi prindi kutsumise kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-program-calls-print">
           <div class="section test-points">
-            <h5 id="program-calls-print" style="display: inline-block;" class="test-name">Programm kutsub välja prindi:</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+            <h5 id="program-calls-print" style="display: inline-block;" class="test-name">Programm kutsub välja prindi</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteTestBlock(event)">
               <i class="material-icons">delete</i>
             </a>
             <form action="#">
@@ -560,8 +658,8 @@
         <!-- Šabloon funktsiooni tsükli sisalduvuse kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-function-contains-cycle">
           <div class="section test-points">
-            <h5 id="function-contains-cycle" style="display: inline-block;" class="test-name">Funktsioon sisaldab tsüklit:</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+            <h5 id="function-contains-cycle" style="display: inline-block;" class="test-name">Funktsioon sisaldab tsüklit</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteTestBlock(event)">
               <i class="material-icons">delete</i>
             </a>
             <form action="#">
@@ -585,8 +683,8 @@
         <!-- Šabloon funktsiooni returni sisalduvuse kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-function-contains-return">
           <div class="section test-points">  
-            <h5 id="function-contains-return" style="display: inline-block;" class="test-name">Funktsioon sisaldab returni:</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+            <h5 id="function-contains-return" style="display: inline-block;" class="test-name">Funktsioon sisaldab returni</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteTestBlock(event)">
               <i class="material-icons">delete</i>
             </a>
             <form action="#">
@@ -610,8 +708,8 @@
         <!-- Šabloon funktsiooni try-excepti sisalduvuse kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-function-contains-try-except">
           <div class="section test-points">  
-            <h5 id="function-contains-try-except" style="display: inline-block;" class="test-name">Funktsioon sisaldab try-excepti:</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+            <h5 id="function-contains-try-except" style="display: inline-block;" class="test-name">Funktsioon sisaldab try-excepti</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteTestBlock(event)">
               <i class="material-icons">delete</i>
             </a>
             <form action="#">
@@ -635,8 +733,8 @@
         <!-- Šabloon funktsiooni prindi kutsumise kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-function-calls-print">
           <div class="section test-points">
-            <h5 id="function-calls-print" style="display: inline-block;" class="test-name">Funktsioon kutsub välja prindi:</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+            <h5 id="function-calls-print" style="display: inline-block;" class="test-name">Funktsioon kutsub välja prindi</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteTestBlock(event)">
               <i class="material-icons">delete</i>
             </a>
             <form action="#">
@@ -660,8 +758,8 @@
         <!-- Šabloon funktsiooni lokaalsete muutujate kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-function-uses-local-vars">
           <div class="section test-points"> 
-            <h5 id="function-uses-local-vars" style="display: inline-block;" class="test-name">Funktsioon kasutab ainult lokaalseid muutujaid:</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+            <h5 id="function-uses-local-vars" style="display: inline-block;" class="test-name">Funktsioon kasutab ainult lokaalseid muutujaid</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteTestBlock(event)">
               <i class="material-icons">delete</i>
             </a>
             <form action="#">
@@ -685,8 +783,8 @@
         <!-- Šabloon funktsiooni rekursiooni kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-function-is-recursive">
           <div class="section test-points">   
-            <h5 id="function-is-recursive" style="display: inline-block;" class="test-name">Funktsioon on rekursiivne:</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+            <h5 id="function-is-recursive" style="display: inline-block;" class="test-name">Funktsioon on rekursiivne</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteTestBlock(event)">
               <i class="material-icons">delete</i>
             </a>
             <form action="#">
@@ -777,7 +875,7 @@
                   <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
                 </div>
               </div>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteTestBlock(event)">
                 <i class="material-icons">delete</i>
               </a>
               <form action="#">
@@ -813,6 +911,10 @@
                   <div>
                     <h5 class="points">Punktisumma: </h5>
                   </div>
+                  <div class="input-field"onchange="changeTestName(event)">
+                    <label>Testi nimi</label>
+                    <input type="text" class="validate settings-modal-test-name">
+                  </div> 
                   <div class="input-field">
                     <label>Teade enne testi käivitamist:</label>
                     <input id="before-message" value="Kontrollib, kas programm/funktsioon väljastas korrektse väljundi." type="text" class="validate">
@@ -844,19 +946,17 @@
                   <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
                 </div>
               </div>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteTestBlock(event)">
                 <i class="material-icons">delete</i>
               </a>
             
               <div class="input-field">
-                <select class="program-exec-ekraaniväljund">
+                <select class="chosen-test-option-2">
                   <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
-                  <option value="1">sisaldab täpselt neid</option>
-                  <option value="2">sisaldab vähemalt neid</option>
-                  <option value="3">sisaldab mõnda neist</option>
-                  <option value="4">sisaldab täpselt mõnda neist</option>
-                  <option value="5">puudub vähemalt üks nendest</option>
-                  <option value="6">sisaldab mitte ühtegi nendest</option>
+                  <option value="1">Kõik nendest</option>
+                  <option value="2">Mõni nendest</option>
+                  <option value="3">Puudub vähemalt üks nendest</option>
+                  <option value="4">Mitte ühtegi nendest</option>
                 </select>
                 <label>Andmed</label>
               </div>
@@ -871,140 +971,11 @@
           </div>   
         </template>
 
-        <!-- Šabloon dropdowni jaoks. -->
-        <template id="contains-exactly-those">
-          <tr>
-            <td style="width:30%" id="contains-exactly-those">
-              <h5>Sisaldab täpselt neid:</h5>
-              <label >
-                <input id="text-order" type="checkbox" />
-                <span>Järjestus oluline</span>
-              </label>
-            </td>
-            <td>
-              <div class="input-field">
-                <label>Väljund</label>
-                <textarea class="materialize-textarea"></textarea>
-              </div>
-            </td>
-            <td>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteEkraaniväljundBlock(event)">
-                <i class="material-icons">delete</i>
-              </a>
-            </td>
-          </tr>
-        </template>
-
-        <!-- Šabloon dropdowni jaoks. -->
-        <template id="contains-at-least-these">
-          <tr>
-            <td style="width:30%" id="at-least-one-of-them-is-missing">
-              <h5>Sisaldab vähemalt neid:</h5>
-              <label >
-                <input id="text-order" type="checkbox" />
-                <span>Järjestus oluline</span>
-              </label>
-            </td>
-            <td>
-              <div class="input-field">
-                <label>Väljund</label>
-                <textarea class="materialize-textarea"></textarea>
-              </div>
-              
-            </td>
-            <td>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteEkraaniväljundBlock(event)">
-                <i class="material-icons">delete</i>
-              </a>
-            </td>
-          </tr>
-        </template>
-
-        <!-- Šabloon dropdowni jaoks. -->
-        <template id="contains-some-of-them">
-          <tr>
-            <td style="width:30%" id="contains-some-of-them">
-              <h5>Sisaldab mõnda neist:</h5>
-            </td>
-            <td>
-              <div class="input-field">
-                <label>Väljund</label>
-                <textarea class="materialize-textarea"></textarea>
-              </div>
-            </td>
-            <td>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteEkraaniväljundBlock(event)">
-                <i class="material-icons">delete</i>
-              </a>
-            </td>
-          </tr>
-        </template>
-
-        <!-- Šabloon dropdowni jaoks. -->
-        <template id="contains-exactly-a-few-of-them">
-          <tr>
-            <td style="width:30%" id="contains-exactly-a-few-of-them">
-              <h5>Sisaldab täpselt mõnda neist:</h5>
-            </td>
-            <td>
-              <div class="input-field">
-                <label>Väljund</label>
-                <textarea class="materialize-textarea"></textarea>
-              </div>
-            </td>
-            <td>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteEkraaniväljundBlock(event)">
-                <i class="material-icons">delete</i>
-              </a>
-            </td>
-          </tr>
-        </template>
-
-        <!-- Šabloon dropdowni jaoks. -->
-        <template id="at-least-one-of-them-is-missing">
-          <tr>
-            <td style="width:30%" id="at-least-one-of-them-is-missing">
-              <h5>Puudub vähemalt üks nendest:</h5>
-            </td>
-            <td>
-              <div class="input-field">
-                <label>Väljund</label>
-                <textarea class="materialize-textarea"></textarea>
-              </div>
-            </td>
-            <td>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteEkraaniväljundBlock(event)">
-                <i class="material-icons">delete</i>
-              </a>
-            </td>
-          </tr>
-        </template>
-
-        <!-- Šabloon dropdowni jaoks. -->
-        <template id="contains-none-of-these">
-          <tr>
-            <td style="width:30%" id="contains-none-of-these">
-              <h5>Sisaldab mitte ühtegi nendest:</h5>
-            </td>
-            <td>
-              <div class="input-field">
-                <label>Väljund</label>
-                <textarea class="materialize-textarea"></textarea>
-              </div>
-            </td>
-            <td>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteEkraaniväljundBlock(event)">
-                <i class="material-icons">delete</i>
-              </a>
-            </td>
-          </tr>
-        </template>
-
         <!-- Šabloon erindi viskamise jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-throws-exception">
           <div class="section test-points">
             <h5 id="throws-exception" style="display: inline-block;" class="test-name">Programm viskab erindi:</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteTestBlock(event)">
               <i class="material-icons">delete</i>
             </a>
             <form action="#">
@@ -1066,13 +1037,13 @@
                   <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
                 </div>
               </div>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteTestBlock(event)">
                 <i class="material-icons">delete</i>
               </a>
               <form action="#">
               <div class="input-field">
                 <label>Argumendid</label>
-                <input id="argumentssw" type="text" class="validate" onblur="check()" onfocus="check()" onchange="check()" onkeyup="check()">
+                <input id="input-validator" type="text" class="validate" onblur="check()" onfocus="check()" onchange="check()" onkeyup="check()">
                 <span class="helper-text" data-error="valel kujul" data-success="right"></span>
               </div> 
               </form>
@@ -1102,6 +1073,10 @@
                     <div>
                       <h5 class="points">Punktisumma: </h5>
                     </div>
+                    <div class="input-field"onchange="changeTestName(event)">
+                      <label>Testi nimi</label>
+                      <input type="text" class="validate settings-modal-test-name">
+                    </div> 
                     <div class="input-field">
                       <label>Teade enne testi käivitamist:</label>
                       <input id="before-message" value="Kontrollib funktsiooni tagastusväärtust." type="text" class="validate">
@@ -1135,7 +1110,7 @@
                     <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
                   </div>
                 </div>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteTestBlock(event)">
                 <i class="material-icons">delete</i>
               </a>
               <form action="#">
@@ -1152,7 +1127,7 @@
         <template id="template-output-file">
           <div class="test-points">
             <h5 id="output-file" style="display: inline-block;" class="test-name">Väljundfail</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right" onclick="deleteSisendfailBlock(event)">
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right" onclick="deleteVäljundfailBlock(event)">
               <i class="material-icons">delete</i>
             </a>
             <div>
@@ -1163,14 +1138,12 @@
 
               <h7>Faili sisu:</h7>
               <div class="input-field">
-                <select class="program-exec-ekraaniväljund">
+                <select class="chosen-test-option-2">
                   <option value="0" disabled selected>Vali väljundi kuju</option>
-                  <option value="1">sisaldab täpselt neid</option>
-                  <option value="2">sisaldab vähemalt neid</option>
-                  <option value="3">sisaldab mõnda neist</option>
-                  <option value="4">sisaldab täpselt mõnda neist</option>
-                  <option value="5">puudub vähemalt üks nendest</option>
-                  <option value="6">sisaldab mitte ühtegi nendest</option>
+                  <option value="1">Kõik nendest</option>
+                  <option value="2">Mõni nendest</option>
+                  <option value="3">Puudub vähemalt üks nendest</option>
+                  <option value="4">Mitte ühtegi nendest</option>
                 </select>
                 <label>Andmed</label>
               </div>
@@ -1188,18 +1161,16 @@
         <template id="template-screen-output">
           <div class="section test-points">
             <h5 id="screen-output" style="display: inline-block;" class="test-name">Väljund</h5>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteTestBlock(event)">
               <i class="material-icons">delete</i>
             </a>
             <div class="input-field">
-              <select class="program-exec-ekraaniväljund">
+              <select class="chosen-test-option-2">
                 <option value="0" disabled selected>Vali väljundi kuju</option>
-                <option value="1">sisaldab täpselt neid</option>
-                <option value="2">sisaldab vähemalt neid</option>
-                <option value="3">sisaldab mõnda neist</option>
-                <option value="4">sisaldab täpselt mõnda neist</option>
-                <option value="5">puudub vähemalt üks nendest</option>
-                <option value="6">sisaldab mitte ühtegi nendest</option>
+                <option value="1">Kõik nendest</option>
+                <option value="2">Mõni nendest</option>
+                <option value="3">Puudub vähemalt üks nendest</option>
+                <option value="4">Mitte ühtegi nendest</option>
               </select>
               <label>Andmed</label>
             </div>
@@ -1216,7 +1187,7 @@
       <template id="template-return-value">
         <div class="section test-points">
           <h5 id="return-value" style="display: inline-block;" class="test-name">Tagastusväärtus</h5>
-          <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+          <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteTestBlock(event)">
             <i class="material-icons">delete</i>
           </a>
           <form action="#">
@@ -1244,13 +1215,13 @@
             </div>
           </div>
           
-          <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+          <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteTestBlock(event)">
             <i class="material-icons">delete</i>
           </a>
           <form action="#">
             <div class="input-field">
               <label>Argumendid</label>
-              <input id="argumentssw" type="text" class="validate" onblur="check()" onfocus="check()" onchange="check()" onkeyup="check()">
+              <input id="input-validator" type="text" class="validate" onblur="check()" onfocus="check()" onchange="check()" onkeyup="check()">
               <span class="helper-text" data-error="wrong" data-success="right"></span>
             </div> 
           </form>
@@ -1273,7 +1244,7 @@
             </div>
           </div>
           
-          <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteStaticTestBlock(event)">
+          <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteTestBlock(event)">
             <i class="material-icons">delete</i>
           </a>
           <form action="#">
@@ -1301,7 +1272,7 @@
                 <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
               </div>
             </div>
-            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteSisendfailBlock(event)">
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteVäljundfailBlock(event)">
               <i class="material-icons">delete</i>
             </a>
             <div>
@@ -1357,7 +1328,7 @@
               <div>
                 <h5 class="points">Punktisumma: </h5>
               </div>
-              <div class="input-field" onchange="changeTestName(event)">
+              <div class="input-field"onchange="changeTestName(event)">
                 <label>Testi nimi</label>
                 <input type="text" class="validate settings-modal-test-name">
               </div> 
@@ -1439,29 +1410,15 @@ function initializeElements() { // Used to initialize elements.
   var select_elements = document.querySelectorAll('.modal');
   M.Modal.init(select_elements);
 
-  var chips = document.querySelectorAll('.chips');
-  M.Chips.init(chips);
-
   M.updateTextFields();
 }
 
 function check() {
-  var val = document.getElementById("argumentssw").value;
-  if(!val || !val.length) {
-    return;
-  }
-  
-  var regex = /^ .* $/;
-  if(regex.test(val)) {
-    document.getElementById("argumentssw").classList.remove("invalid");
-    document.getElementById("argumentssw").classList.add("valid");
-  } else {
-    document.getElementById("argumentssw").classList.remove("valid");
-    document.getElementById("argumentssw").classList.add("invalid");
-  } 
+  var val = document.getElementById("input-validator").value;
+  // TODO sisendi valiidsuse kontroll.
 }
 
-function deleteStaticTestBlock(e) {
+function deleteTestBlock(e) {
   if (e.target.parentNode.parentNode.querySelector("#program-contains-cycle") != null) {
     e.target.parentNode.parentNode.parentNode.querySelector(".prog-selected-static-test").options["1"].disabled = false;
   } else if (e.target.parentNode.parentNode.querySelector("#program-calls-print") != null) {
@@ -1498,40 +1455,43 @@ function deleteStaticTestBlock(e) {
   calculatePoints(0);
 }
 
-function deleteEkraaniväljundBlock(e) { // NB KORDA TEHA! Siin on loogika üle aja puru läinud.
-  if (e.target.parentNode.parentNode.parentNode.querySelector("#contains-exactly-those") != null) {
-    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["1"].disabled = false;
-    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["2"].disabled = false;
-    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["3"].disabled = false;
-  } else if (e.target.parentNode.parentNode.parentNode.querySelector("#at-least-one-of-them-is-missing") != null) {
-    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["2"].disabled = false;
-  } else if (e.target.parentNode.parentNode.parentNode.querySelector("#contains-some-of-them") != null) {
-    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["3"].disabled = false;
-  } else if (e.target.parentNode.parentNode.parentNode.querySelector("#contains-exactly-a-few-of-them") != null) {
-    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["4"].disabled = false;
-  } else if (e.target.parentNode.parentNode.parentNode.querySelector("#at-least-one-of-them-is-missing") != null) {
-    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["5"].disabled = false;
-  } else if (e.target.parentNode.parentNode.parentNode.querySelector("#contains-none-of-these") != null) {
-    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["6"].disabled = false;
-  } else if (e.target.parentNode.parentNode.parentNode.querySelector("#kõik-n") != null) {
-    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["1"].disabled = false;
-  } else if (e.target.parentNode.parentNode.parentNode.querySelector("#mõni-n") != null) {
-    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["2"].disabled = false;
-  } else if (e.target.parentNode.parentNode.parentNode.querySelector("#ükskõik-m") != null) {
-    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["3"].disabled = false;
-  } else if (e.target.parentNode.parentNode.parentNode.querySelector("#mitte-ün") != null) {
-    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["4"].disabled = false;
-  } else if (e.target.parentNode.parentNode.parentNode.querySelector("#puudub-vün") != null) {
-    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["5"].disabled = false;
-  } else if (e.target.parentNode.parentNode.parentNode.querySelector("#mitte-ü") != null) {
-    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["1"].disabled = false;
-    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["2"].disabled = false;
-    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["3"].disabled = false;
-    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["4"].disabled = false;
-    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["5"].disabled = false;
-    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".defines-function-valikud").options["6"].disabled = false;
-  }     
-  
+function removeDisabledProp(node, query_class) {
+  for (let i = 1; i < node.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(query_class).length; ++i) {
+    node.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(query_class).options[i].disabled = false;
+  }
+}
+
+function enableSelectOptionsAgain(e) {
+  if (e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector('.chosen-test-option') != null) {
+    if (e.target.parentNode.parentNode.parentNode.querySelector("#kõik-n") != null) {
+      removeDisabledProp(e, ".chosen-test-option");
+    } else if (e.target.parentNode.parentNode.parentNode.querySelector("#mõni-n") != null) {
+      removeDisabledProp(e, ".chosen-test-option");
+    } else if (e.target.parentNode.parentNode.parentNode.querySelector("#ükskõik-m") != null) {
+      removeDisabledProp(e, ".chosen-test-option");
+    } else if (e.target.parentNode.parentNode.parentNode.querySelector("#mitte-ün") != null) {
+      removeDisabledProp(e, ".chosen-test-option");
+    } else if (e.target.parentNode.parentNode.parentNode.querySelector("#puudub-vün") != null) {
+      removeDisabledProp(e, ".chosen-test-option");
+    } else if (e.target.parentNode.parentNode.parentNode.querySelector("#mitte-ü") != null) {
+      removeDisabledProp(e, ".chosen-test-option");
+    } 
+  } else if (e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector('.chosen-test-option-2') != null) {
+    if (e.target.parentNode.parentNode.parentNode.querySelector("#kõik-n") != null) {
+      removeDisabledProp(e, ".chosen-test-option-2");
+    } else if (e.target.parentNode.parentNode.parentNode.querySelector("#mõni-n") != null) {
+      removeDisabledProp(e, ".chosen-test-option-2");
+    } else if (e.target.parentNode.parentNode.parentNode.querySelector("#ükskõik-m") != null) {
+      removeDisabledProp(e, ".chosen-test-option-2");
+    } else if (e.target.parentNode.parentNode.parentNode.querySelector("#mitte-ün") != null) {
+      removeDisabledProp(e, ".chosen-test-option-2");
+    } else if (e.target.parentNode.parentNode.parentNode.querySelector("#puudub-vün") != null) {
+      removeDisabledProp(e, ".chosen-test-option-2");
+    } else if (e.target.parentNode.parentNode.parentNode.querySelector("#mitte-ü") != null) {
+      removeDisabledProp(e, ".chosen-test-option-2");
+    } 
+  }
+    
   e.target.parentNode.parentNode.parentNode.parentNode.removeChild(e.target.parentNode.parentNode.parentNode);
 
   initializeElements();
@@ -1558,183 +1518,90 @@ function changeTestBlockName(e) {
 }
 
 function changeTestName(e) {
-  new_name = e.target.parentNode.parentNode.parentNode.parentNode.querySelector(".test-name").innerHTML.split(")")[0] + ")" + " - " + e.target.parentNode.querySelector(".validate").value;
+  new_name = e.target.parentNode.parentNode.parentNode.parentNode.querySelector(".test-name").innerHTML.split("-")[0] + " - " + e.target.parentNode.querySelector(".validate").value;
   e.target.parentNode.parentNode.parentNode.parentNode.querySelector(".test-name").innerHTML = new_name;
 }
 
-function deleteSisendfailBlock(e) {
+function deleteVäljundfailBlock(e) {
   if (e.target) {
     e.target.parentNode.parentNode.parentNode.removeChild(e.target.parentNode.parentNode);
   }
 }
 
+function enableDisabledProp(node) {
+  for (let i = 1; i < node.target.length; ++i) {
+    node.target.options[i].disabled = true;
+  }
+}
+
+function showPointsAmountInName(node) {
+  for (let i = 0; i < node.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name").length; ++i) {
+    if (node.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML.includes(")")) {
+      var name_split = node.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML.split(")");
+      var updated_name = name_split[0].split("(")[0] + "(" + calculatePoints(0) + ")";
+      for (let j = 1; j < name_split.length; ++j) {
+        updated_name += name_split[j] + ")";
+      }
+      updated_name = updated_name.slice(0,-1);
+      node.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML = updated_name;
+    } else {
+      node.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML = node.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML + "(" + calculatePoints(0) + ")";
+    }
+  }
+}
+
 function fill(e) { // Shows the test options according to chosen test type.
-  if (e.target && e.target.classList.contains("contains_keyword-valikud")) {
+  if (e.target && e.target.classList.contains("chosen-test-option")) {
     var chosen_static_test = e.target.value;
 
     var static_test_template;
     if (chosen_static_test === "1") {
       static_test_template = document.querySelector('#kõik-nendest');
-      e.target.options[chosen_static_test].disabled = true;
+      enableDisabledProp(e);
     } else if (chosen_static_test === "2") {  
       static_test_template = document.querySelector('#mõni-nendest');
-      e.target.options[chosen_static_test].disabled = true;
-    } else if (chosen_static_test === "4") {  
-      static_test_template = document.querySelector('#mitte-ühtegi-nendest');
-      e.target.options[chosen_static_test].disabled = true;
-    } else if (chosen_static_test === "5") {  
-      static_test_template = document.querySelector('#puudub-vähemalt-üks-nendest');
-      e.target.options[chosen_static_test].disabled = true;
-    }
-
-    if (static_test_template != null) {
-      var template_clone = document.importNode(static_test_template.content, true); // where true means deep copy
-      e.target.parentNode.parentNode.parentNode.querySelector("#valikud-stat").appendChild(template_clone);
-    } 
-    e.target.selectedIndex = 0;
-    initializeElements();
-  }
-
-  if (e.target && e.target.classList.contains("calls_function-valikud")) {
-    var chosen_static_test = e.target.value;
-
-    var static_test_template;
-    if (chosen_static_test === "1") {
-      static_test_template = document.querySelector('#kõik-nendest');
-      e.target.options[chosen_static_test].disabled = true;
-    } else if (chosen_static_test === "2") {  
-      static_test_template = document.querySelector('#mõni-nendest');
-      e.target.options[chosen_static_test].disabled = true;
+      enableDisabledProp(e);
     } else if (chosen_static_test === "3") {  
       static_test_template = document.querySelector('#ükskõik-millise');
-      e.target.options[chosen_static_test].disabled = true;
+      enableDisabledProp(e);
     } else if (chosen_static_test === "4") {  
       static_test_template = document.querySelector('#mitte-ühtegi-nendest');
-      e.target.options[chosen_static_test].disabled = true;
+      enableDisabledProp(e);
     } else if (chosen_static_test === "5") {  
       static_test_template = document.querySelector('#puudub-vähemalt-üks-nendest');
-      e.target.options[chosen_static_test].disabled = true;
+      enableDisabledProp(e);
     } else if (chosen_static_test === "6") {  
       static_test_template = document.querySelector('#mitte-ühtegi');
-      e.target.options[chosen_static_test].disabled = true;
-      e.target.options["2"].disabled = true;
-      e.target.options["3"].disabled = true;
-      e.target.options["4"].disabled = true;
-      e.target.options["5"].disabled = true;
-      e.target.options["1"].disabled = true;
+      enableDisabledProp(e);
     }
 
     if (static_test_template != null) {
       var template_clone = document.importNode(static_test_template.content, true); // where true means deep copy
+      var chips = template_clone.querySelectorAll('.chips');
+      M.Chips.init(chips);
       e.target.parentNode.parentNode.parentNode.querySelector("#valikud-stat").appendChild(template_clone);
     } 
     e.target.selectedIndex = 0;
     initializeElements();
   }
 
-  if (e.target && e.target.classList.contains("imports-module-valikud")) {
+  if (e.target && e.target.classList.contains("chosen-test-option-2")) {
     var chosen_static_test = e.target.value;
 
     var static_test_template;
     if (chosen_static_test === "1") {
-      static_test_template = document.querySelector('#kõik-nendest');
-      e.target.options[chosen_static_test].disabled = true;
+      static_test_template = document.querySelector('#kõik-nendest-väljund');
+      enableDisabledProp(e);
     } else if (chosen_static_test === "2") {  
-      static_test_template = document.querySelector('#mõni-nendest');
-      e.target.options[chosen_static_test].disabled = true;
+      static_test_template = document.querySelector('#mõni-nendest-väljund');
+      enableDisabledProp(e);
     } else if (chosen_static_test === "3") {  
-      static_test_template = document.querySelector('#ükskõik-millise');
-      e.target.options[chosen_static_test].disabled = true;
+      static_test_template = document.querySelector('#puudub-vähemalt-üks-nendest-väljund');
+      enableDisabledProp(e);
     } else if (chosen_static_test === "4") {  
-      static_test_template = document.querySelector('#mitte-ühtegi-nendest');
-      e.target.options[chosen_static_test].disabled = true;
-    } else if (chosen_static_test === "5") {  
-      static_test_template = document.querySelector('#puudub-vähemalt-üks-nendest');
-      e.target.options[chosen_static_test].disabled = true;
-    } else if (chosen_static_test === "6") {  
-      static_test_template = document.querySelector('#mitte-ühtegi');
-      e.target.options[chosen_static_test].disabled = true;
-      e.target.options["2"].disabled = true;
-      e.target.options["3"].disabled = true;
-      e.target.options["4"].disabled = true;
-      e.target.options["5"].disabled = true;
-      e.target.options["1"].disabled = true;
-    }
-
-    if (static_test_template != null) {
-      var template_clone = document.importNode(static_test_template.content, true); // where true means deep copy
-      e.target.parentNode.parentNode.parentNode.querySelector("#valikud-stat").appendChild(template_clone);
+      static_test_template = document.querySelector('#mitte-ühtegi-nendest-väljund');
+      enableDisabledProp(e);
     } 
-    e.target.selectedIndex = 0;
-    initializeElements();
-  }
-
-  if (e.target && e.target.classList.contains("defines-function-valikud")) {
-    var chosen_static_test = e.target.value;
-
-    var static_test_template;
-    if (chosen_static_test === "1") {
-      static_test_template = document.querySelector('#kõik-nendest');
-      e.target.options[chosen_static_test].disabled = true;
-    } else if (chosen_static_test === "2") {  
-      static_test_template = document.querySelector('#mõni-nendest');
-      e.target.options[chosen_static_test].disabled = true;
-    } else if (chosen_static_test === "3") {  
-      static_test_template = document.querySelector('#ükskõik-millise');
-      e.target.options[chosen_static_test].disabled = true;
-    } else if (chosen_static_test === "4") {  
-      static_test_template = document.querySelector('#mitte-ühtegi-nendest');
-      e.target.options[chosen_static_test].disabled = true;
-    } else if (chosen_static_test === "5") {  
-      static_test_template = document.querySelector('#puudub-vähemalt-üks-nendest');
-      e.target.options[chosen_static_test].disabled = true;
-    } else if (chosen_static_test === "6") {  
-      static_test_template = document.querySelector('#mitte-ühtegi');
-      e.target.options[chosen_static_test].disabled = true;
-      e.target.options["2"].disabled = true;
-      e.target.options["3"].disabled = true;
-      e.target.options["4"].disabled = true;
-      e.target.options["5"].disabled = true;
-      e.target.options["1"].disabled = true;
-    }
-
-    if (static_test_template != null) {
-      var template_clone = document.importNode(static_test_template.content, true); // where true means deep copy
-      e.target.parentNode.parentNode.parentNode.querySelector("#valikud-stat").appendChild(template_clone);
-    } 
-    e.target.selectedIndex = 0;
-    initializeElements();
-  }
-
-  if (e.target && e.target.classList.contains("program-exec-ekraaniväljund")) {
-    var chosen_static_test = e.target.value;
-
-    var static_test_template;
-    if (chosen_static_test === "1") {
-      static_test_template = document.querySelector('#contains-exactly-those');
-      e.target.options[chosen_static_test].disabled = true;
-      e.target.options["2"].disabled = true;
-      e.target.options["3"].disabled = true;
-      e.target.options["4"].disabled = true;
-    } else if (chosen_static_test === "2") {  
-      static_test_template = document.querySelector('#contains-at-least-these');
-      e.target.options[chosen_static_test].disabled = true;
-      e.target.options["1"].disabled = true;
-    } else if (chosen_static_test === "3") {  
-      static_test_template = document.querySelector('#contains-some-of-them');
-      e.target.options[chosen_static_test].disabled = true;
-      e.target.options["1"].disabled = true;
-    } else if (chosen_static_test === "4") {  
-      static_test_template = document.querySelector('#contains-exactly-a-few-of-them');
-      e.target.options[chosen_static_test].disabled = true;
-      e.target.options["1"].disabled = true;
-    } else if (chosen_static_test === "5") {  
-      static_test_template = document.querySelector('#at-least-one-of-them-is-missing');
-      e.target.options[chosen_static_test].disabled = true;
-    } else if (chosen_static_test === "6") {  
-      static_test_template = document.querySelector('#contains-none-of-these');
-      e.target.options[chosen_static_test].disabled = true;
-    }
 
     if (static_test_template != null) {
       var template_clone = document.importNode(static_test_template.content, true); // where true means deep copy
@@ -1757,7 +1624,6 @@ function fill(e) { // Shows the test options according to chosen test type.
 
     if (static_test_template != null) {
         var template_clone = document.importNode(static_test_template.content, true); // where true means deep copy
-        //template_clone = addModal(chosen_static_test, template_clone);
         e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#program-start-data").appendChild(template_clone);
     } 
     e.target.selectedIndex = 0;
@@ -1782,19 +1648,7 @@ function fill(e) { // Shows the test options according to chosen test type.
       template_clone = addModal(chosen_static_test, template_clone);
       e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#program-output-data").appendChild(template_clone);
 
-      for (let i = 0; i < e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name").length; ++i) {
-        if (e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML.includes(")")) {
-          var name_split = e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML.split(")");
-          var updated_name = name_split[0].split("(")[0] + "(" + calculatePoints(0) + ")";
-          for (let j = 1; j < name_split.length; ++j) {
-            updated_name += name_split[j] + ")";
-          }
-          updated_name = updated_name.slice(0,-1);
-          e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML = updated_name;
-        } else {
-          e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML = e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML + "(" + calculatePoints(0) + ")";
-        }
-      }
+      //showPointsAmountInName(e);
     } 
     e.target.selectedIndex = 0;
     initializeElements();
@@ -1816,7 +1670,6 @@ function fill(e) { // Shows the test options according to chosen test type.
 
     if (static_test_template != null) {
       var template_clone = document.importNode(static_test_template.content, true); // where true means deep copy
-      //template_clone = addModal(chosen_static_test, template_clone);
       e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#func-start-data").appendChild(template_clone);
     } 
     e.target.selectedIndex = 0;
@@ -1841,19 +1694,7 @@ function fill(e) { // Shows the test options according to chosen test type.
         template_clone = addModal(chosen_static_test, template_clone);
         e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#func-output-data").appendChild(template_clone);
 
-        for (let i = 0; i < e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name").length; ++i) {
-          if (e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML.includes(")")) {
-            var name_split = e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML.split(")");
-            var updated_name = name_split[0].split("(")[0] + "(" + calculatePoints(0) + ")";
-            for (let j = 1; j < name_split.length; ++j) {
-              updated_name += name_split[j] + ")";
-            }
-            updated_name = updated_name.slice(0,-1);
-            e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML = updated_name;
-          } else {
-            e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML = e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML + "(" + calculatePoints(0) + ")";
-          }
-        }
+        //showPointsAmountInName(e);
     } 
     e.target.selectedIndex = 0;
     initializeElements();
@@ -1897,19 +1738,7 @@ function fill(e) { // Shows the test options according to chosen test type.
         template_clone = addModal(chosen_static_test, template_clone);
         e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#test-content").appendChild(template_clone);
 
-        for (let i = 0; i < e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name").length; ++i) {
-          if (e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML.includes(")")) {
-            var name_split = e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML.split(")");
-            var updated_name = name_split[0].split("(")[0] + "(" + calculatePoints(0) + ")";
-            for (let j = 1; j < name_split.length; ++j) {
-              updated_name += name_split[j] + ")";
-            }
-            updated_name = updated_name.slice(0,-1);
-            e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML = updated_name;
-          } else {
-            e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML = e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML + "(" + calculatePoints(0) + ")";
-          }
-        }
+        //showPointsAmountInName(e);
     } 
     e.target.selectedIndex = 0;
     initializeElements();
@@ -1943,19 +1772,7 @@ function fill(e) { // Shows the test options according to chosen test type.
         template_clone = addModal(chosen_static_test, template_clone);
         e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#test-content").appendChild(template_clone);
 
-        for (let i = 0; i < e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name").length; ++i) {
-          if (e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML.includes(")")) {
-            var name_split = e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML.split(")");
-            var updated_name = name_split[0].split("(")[0] + "(" + calculatePoints(0) + ")";
-            for (let j = 1; j < name_split.length; ++j) {
-              updated_name += name_split[j] + ")";
-            }
-            updated_name = updated_name.slice(0,-1);
-            e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML = updated_name;
-          } else {
-            e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML = e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML + "(" + calculatePoints(0) + ")";
-          }
-        }
+        //showPointsAmountInName(e);
     } 
     e.target.selectedIndex = 0;
     initializeElements();
@@ -1998,19 +1815,7 @@ function fill(e) { // Shows the test options according to chosen test type.
         e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#test-block-name").innerHTML = e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#test-block-name").innerHTML + " - " + test_type;
         e.target.parentNode.parentNode.parentNode.parentNode.querySelector(".test-block-name").value = e.target.parentNode.parentNode.parentNode.parentNode.querySelector("#test-block-name").innerHTML;
 
-        for (let i = 0; i < e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name").length; ++i) {
-          if (e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML.includes(")")) {
-            var name_split = e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML.split(")");
-            var updated_name = name_split[0].split("(")[0] + "(" + calculatePoints(0) + ")";
-            for (let j = 1; j < name_split.length; ++j) {
-              updated_name += name_split[j] + ")";
-            }
-            updated_name = updated_name.slice(0,-1);
-            e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML = updated_name;
-          } else {
-            e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML = e.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML + "(" + calculatePoints(0) + ")";
-          }
-        }
+        //showPointsAmountInName(e);
     } 
     initializeElements();
   }
