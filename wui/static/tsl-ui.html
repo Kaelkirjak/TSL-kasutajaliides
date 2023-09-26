@@ -265,7 +265,7 @@
               </div>
             </td>
             <td>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="enableSelectOptionsAgain(event)">
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right "  onclick="enableSelectOptionsAgain(event)">
                 <i class="material-icons">delete</i>
               </a>
             </td>
@@ -1901,7 +1901,15 @@ function insertAfter(newNode, existingNode) {
 
 function deleteTestBlock(e) { // Used to delete selected test block.
   if (e.target) {
-    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.removeChild(e.target.parentNode.parentNode.parentNode.parentNode);
+    console.log(e.target.parentNode);
+    console.log(e.target.parentNode.parentNode);
+    console.log(e.target.parentNode.parentNode.parentNode);
+    //e.target.parentNode.parentNode.parentNode.removeChild(e.target.parentNode.parentNode);
+
+    e.target.parentNode.parentNode.parentNode.querySelector(".func-exec-input-data").options["1"].disabled = false;
+    e.target.options[chosen_static_test].disabled = true;
+
+    //e.target.parentNode.parentNode.parentNode.parentNode.parentNode.removeChild(e.target.parentNode.parentNode.parentNode.parentNode); 
   }
   calculatePoints(0);
 } 
