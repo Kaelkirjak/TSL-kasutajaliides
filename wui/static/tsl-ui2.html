@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="css/exercise.css">
 
     <style>
-    
 
     </style>
 </head>
@@ -271,12 +270,35 @@
               <div class="input-field">
                 <select class="program-exec-input-data">
                   <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
-                  <option value="#template-user-input">Kasutajasisendid</option>
+                  <option value="#template-user-input" disabled>Kasutajasisendid</option>
                   <option value="#template-input-file">Sisendfail</option>
                 </select>
                 <label>Andmed</label>
               </div> 
               <!-- Siia tulevad sisestamise viisid dünaamiliselt -->
+
+              <div class="section template-user-input">
+                <h5 id="program-user-input" style="display: inline-block;">Kasutajasisendid (eraldajaks reavahetus)</h5>
+                <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal-static-user-input">
+                  <i class="material-icons">info</i>
+                </a>
+                <div id="modal-static-user-input" class="modal">
+                  <div class="modal-content">
+                    <p>Kasutajasisend, mis antakse kaasa funktsioonile. Selle puhul ei ole vaja sõnede juures jutumärke kasutada.<br>Näiteks:<br>1<br>tere maailm<br>3</p>
+                  </div>
+                  <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
+                  </div>
+                </div>
+                <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
+                  <i class="material-icons">delete</i>
+                </a>
+                <div class="input-field">
+                  <label>Kasutajasisend</label>
+                  <textarea class="materialize-textarea"></textarea>
+                </div>
+              </div>
+
             </div>
             <div class="divider"></div>
             <div class="section" id="program-output-data">
@@ -292,13 +314,84 @@
                 <label>Andmed</label>
               </div> 
               <!-- Siia tulevad väljundi viisid dünaamiliselt -->
+
+              <div class="section template-screen-output">
+                <h5 id="program-screen-output" style="display: inline-block;" class="test-name">Väljund</h5>
+                <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal-static-screen-output" id="modal-link">
+                  <i class="material-icons">settings</i>
+                </a>
+                <div id="modal-static-screen-output" class="modal">
+                  <div class="modal-content">
+                    <div>
+                      <h5 class="points">Punktide arvutamisel kasutatakse kaalude süsteemi. Näiteks test, mis annab 1p ja teine test, mis annab 2p on nende väärtused vastavalt 33% ja 66%. </h5>
+                    </div>
+                    <div class="input-field">
+                      <label>Punktide kaal</label>
+                      <input type="number">
+                    </div> 
+                    <div class="input-field" onchange="changeTestName(event)">
+                      <label>Testi nimi</label>
+                      <input type="text" class="validate settings-modal-test-name">
+                    </div> 
+                    <div class="input-field">
+                      <label>Teade enne testi käivitamist:</label>
+                      <input id="before-message" value="Kontrollib, kas programm/funktsioon väljastas korrektse väljundi." type="text" class="validate">
+                    </div>
+                    <div class="input-field">
+                      <label>Teade testi edukal läbimisel:</label>
+                      <input id="passed-message" value="Programm/Funktsioon väljastas korrektse väljundi." type="text" class="validate">
+                    </div>
+                    <div class="input-field">
+                      <label>Teade testi edutul läbimisel:</label>
+                      <input id="failed-message" value="Programm/Funktsioon ei väljastanud korrektset väljundit." type="text" class="validate">
+                    </div>
+                    <label>
+                      <input type="checkbox" checked="checked" />
+                      <span>Kasutajale nähtav</span>
+                    </label>
+                  </div>
+                  <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
+                  </div>
+                </div>
+  
+                <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modalb"><i class="material-icons">info</i></a>
+                <div id="modalb" class="modal">
+                  <div class="modal-content">
+                    <p>Kontrollib, kas programm/funktsioon väljastas korrektse ekraaniväljundi.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
+                  </div>
+                </div>
+                <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
+                  <i class="material-icons">delete</i>
+                </a>
+              
+                <div class="input-field">
+                  <select class="chosen-output-option">
+                    <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
+                    <option value="#kõik-nendest-väljund">Kõik nendest</option>
+                    <option value="#mõni-nendest-väljund">Mõni nendest</option>
+                    <option value="#puudub-vähemalt-üks-nendest-väljund">Puudub vähemalt üks nendest</option>
+                    <option value="#mitte-ühtegi-nendest-väljund">Mitte ühtegi nendest</option>
+                  </select>
+                  <label>Andmed</label>
+                </div>
+  
+                <table>
+                  <tbody id="ekraaniväljund-output">
+                  </tbody>
+                </table>
+              </div> 
+
             </div>
           </div>   
         </template>
 
         <!-- Šabloon kasutajasisendi jaoks //koos informatsiooni modaaliga. Kuna sellel ei ole sätete modaali, siis ei ole talle vaja eraldi genereerida neid. -->
         <template id="template-user-input">
-          <div class="section test-points template-user-input">
+          <div class="section template-user-input">
             <h5 id="function-user-input" style="display: inline-block;">Kasutajasisendid (eraldajaks reavahetus)</h5>
             
             <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal-user-input">
@@ -361,7 +454,7 @@
 
         <!-- Šabloon väljundi jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-screen-output">
-          <div class="section test-points template-screen-output">
+          <div class="section template-screen-output">
             <h5 id="screen-output" style="display: inline-block;" class="test-name">Väljund</h5>
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
@@ -481,7 +574,7 @@
 
         <!-- Šabloon väljundfaili jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-output-file">
-          <div class="test-points template-output-file">
+          <div class="template-output-file">
             <h5 id="output-file" style="display: inline-block;" class="test-name">Väljundfail</h5>
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right" onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
@@ -513,7 +606,7 @@
 
         <!-- Šabloon erindi viskamise jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-throws-exception">
-          <div class="section test-points template-throws-exception">
+          <div class="section template-throws-exception">
             <h5 id="throws-exception" style="display: inline-block;" class="test-name">Programm viskab erindi:</h5>
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
@@ -571,7 +664,7 @@
 
         <!-- Šabloon programmi tsükli sisalduvuse kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-program-contains-cycle">
-          <div class="section test-points template-program-contains-cycle">
+          <div class="section template-program-contains-cycle">
             <h5 id="program-contains-cycle" style="display: inline-block;" class="test-name">Programm sisaldab tsüklit</h5>
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
@@ -594,7 +687,7 @@
 
         <!-- Šabloon võtmesõnade sisalduvuse kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-contains_keyword">
-          <div class="section test-points template-contains_keyword">
+          <div class="section template-contains_keyword">
             <h5 id="contains-keyword-modal" style="display: inline-block;" class="test-name">Sisaldab võtmesõna</h5>
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
@@ -704,7 +797,7 @@
 
         <!-- Šabloon funktsioonide kutsumise kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-calls_function">
-          <div class="section test-points template-calls_function">
+          <div class="section template-calls_function">
             <h5 id="calls-function-modal" style="display: inline-block;" class="test-name">Kutsub välja funktsiooni</h5>
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
@@ -762,7 +855,7 @@
 
         <!-- Šabloon programmi prindi kutsumise kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-program-calls-print">
-          <div class="section test-points template-program-calls-print">
+          <div class="section template-program-calls-print">
             <h5 id="program-calls-print" style="display: inline-block;" class="test-name">Programm kutsub välja prindi</h5>
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
@@ -785,7 +878,7 @@
 
         <!-- Šabloon funktsiooni defineerimise kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-defines_function">
-          <div class="section test-points template-defines_function">
+          <div class="section template-defines_function">
             <h5 id="defines-function-modal" style="display: inline-block;" class="test-name">Defineerib funktsiooni</h5>
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
@@ -813,7 +906,7 @@
 
         <!-- Šabloon mooduli importimise kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-imports_module">
-          <div class="section test-points template-imports_module">
+          <div class="section template-imports_module">
             <h5 id="imports-module-modal" style="display: inline-block;" class="test-name">Impordib mooduli</h5>
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
@@ -840,7 +933,7 @@
 
         <!-- Šabloon programmi try-excepti sisalduvuse kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-program-contains-try-except">
-          <div class="section test-points template-program-contains-try-except">
+          <div class="section template-program-contains-try-except">
             <h5 id="program-contains-try-except" style="display: inline-block;" class="test-name">Programm sisaldab try-excepti</h5>
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
@@ -885,13 +978,37 @@
               <div class="input-field">
                 <select class="func-exec-input-data">
                   <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
-                  <option value="#template-function-arguments">Argumendid</option>
+                  <option value="#template-function-arguments" disabled>Argumendid</option>
                   <option value="#template-user-input">Kasutajasisendid</option>
                   <option value="#template-input-file">Sisendfail</option>
                 </select>
                 <label>Andmed</label>
               </div> 
               <!-- Siia tulevad sisestamise viisid dünaamiliselt -->
+
+              <div class="section template-function-arguments">
+                <h5 id="function-arguments" style="display: inline-block;">Argumendid (eraldajaks ",")</h5>
+                <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal-static-arguments-info">
+                  <i class="material-icons">info</i>
+                </a>
+                <div id="modal-static-arguments-info" class="modal">
+                  <div class="modal-content">
+                    <p>Argumendid, mis antakse kaasa funktsioonile. Sõnede puhul kasutada jutumärke.<br> Näiteks: 1,"moos",False,True,43.4,[1,2,3]</p>
+                  </div>
+                  <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
+                  </div>
+                </div>
+                <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
+                  <i class="material-icons">delete</i>
+                </a>
+                <div class="input-field">
+                  <label>Argumendid</label>
+                  <input id="input-validator" type="text" class="validate">
+                  <span class="helper-text" data-error="valel kujul" data-success="right"></span>
+                </div> 
+              </div>
+
             </div> 
             <div class="divider"></div>
             <div class="section" id="func-output-data">
@@ -907,13 +1024,74 @@
                 <label>Andmed</label>
               </div> 
               <!-- Siia tulevad väljundi viisid dünaamiliselt -->
+
+              <div class="section template-return-value">
+                <h5 id="return-value" style="display: inline-block;" class="test-name">Tagastusväärtus</h5>
+                  <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal-static-return-value-settings" id="modal-link">
+                    <i class="material-icons">settings</i>
+                  </a>
+                  <div id="modal-static-return-value-settings" class="modal">
+                    <div class="modal-content">
+                      <div>
+                        <h5 class="points">Punktide arvutamisel kasutatakse kaalude süsteemi. Näiteks test, mis annab 1p ja teine test, mis annab 2p on nende väärtused vastavalt 33% ja 66%. </h5>
+                      </div>
+                      <div class="input-field">
+                        <label>Punktide kaal</label>
+                        <input type="number">
+                      </div>
+                      <div class="input-field" onchange="changeTestName(event)">
+                        <label>Testi nimi</label>
+                        <input type="text" class="validate settings-modal-test-name">
+                      </div> 
+                      <div class="input-field">
+                        <label>Teade enne testi käivitamist:</label>
+                        <input id="before-message" value="Kontrollib funktsiooni tagastusväärtust." type="text" class="validate">
+                      </div>
+                      <div class="input-field">
+                        <label>Teade testi edukal läbimisel:</label>
+                        <input id="passed-message" value="Funktsioon tagastas õige väärtuse." type="text" class="validate">
+                      </div>
+                      <div class="input-field">
+                        <label>Teade testi edutul läbimisel:</label>
+                        <input id="failed-message" value="Funktsioon ei tagastanud õiget väärtust." type="text" class="validate">
+                      </div>
+                      <label>
+                        <input type="checkbox" checked="checked" />
+                        <span>Kasutajale nähtav</span>
+                      </label>
+                    </div>
+                    <div class="modal-footer">
+                      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
+                    </div>
+                  </div>
+  
+                  <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal-static-return-value-info">
+                    <i class="material-icons">info</i>
+                  </a>
+                  <div id="modal-static-return-value-info" class="modal">
+                    <div class="modal-content">
+                      <p>Kontrollib funktsiooni tagastusväärtust.</p>
+                    </div>
+                    <div class="modal-footer">
+                      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
+                    </div>
+                  </div>
+                <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
+                  <i class="material-icons">delete</i>
+                </a>
+                <div class="input-field">
+                  <label>Väärtus</label>
+                  <input type="text" class="validate" required>
+                </div> 
+              </div>
+
             </div> 
           </div>  
         </template>
 
         <!-- Šabloon funktsiooni argumentide jaoks koos informatsiooni modaaliga. Kuna sellel ei ole sätete modaali, siis ei ole talle vaja eraldi genereerida neid. -->
         <template id="template-function-arguments">
-          <div class="section test-points template-function-arguments">
+          <div class="section template-function-arguments">
             <h5 id="function-arguments" style="display: inline-block;">Argumendid (eraldajaks ",")</h5>
             
             <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal-function-arguments">
@@ -941,7 +1119,7 @@
 
         <!-- Šabloon funktsiooni tagastusväärtuse jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-return-value">
-          <div class="section test-points template-return-value">
+          <div class="section template-return-value">
             <h5 id="return-value" style="display: inline-block;" class="test-name">Tagastusväärtus</h5>
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
@@ -997,7 +1175,7 @@
 
         <!-- Šabloon funktsiooni tsükli sisalduvuse kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-function-contains-cycle">
-          <div class="section test-points template-function-contains-cycle">
+          <div class="section template-function-contains-cycle">
             <h5 id="function-contains-cycle" style="display: inline-block;" class="test-name">Funktsioon sisaldab tsüklit</h5>
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
@@ -1020,7 +1198,7 @@
 
         <!-- Šabloon funktsiooni returni sisalduvuse kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-function-contains-return">
-          <div class="section test-points template-function-contains-return">  
+          <div class="section template-function-contains-return">  
             <h5 id="function-contains-return" style="display: inline-block;" class="test-name">Funktsioon sisaldab returni</h5>
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
@@ -1043,7 +1221,7 @@
 
         <!-- Šabloon funktsiooni prindi kutsumise kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-function-calls-print">
-          <div class="section test-points template-function-calls-print">
+          <div class="section template-function-calls-print">
             <h5 id="function-calls-print" style="display: inline-block;" class="test-name">Funktsioon kutsub välja prindi</h5>
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
@@ -1066,7 +1244,7 @@
 
         <!-- Šabloon funktsiooni rekursiooni kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-function-is-recursive">
-          <div class="section test-points template-function-is-recursive">   
+          <div class="section template-function-is-recursive">   
             <h5 id="function-is-recursive" style="display: inline-block;" class="test-name">Funktsioon on rekursiivne</h5>
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
@@ -1089,7 +1267,7 @@
 
         <!-- Šabloon funktsiooni try-excepti sisalduvuse kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-function-contains-try-except">
-          <div class="section test-points template-function-contains-try-except">  
+          <div class="section template-function-contains-try-except">  
             <h5 id="function-contains-try-except" style="display: inline-block;" class="test-name">Funktsioon sisaldab try-excepti</h5>
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
@@ -1112,7 +1290,7 @@
 
         <!-- Šabloon funktsiooni lokaalsete muutujate kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-function-uses-local-vars">
-          <div class="section test-points template-function-uses-local-vars"> 
+          <div class="section template-function-uses-local-vars"> 
             <h5 id="function-uses-local-vars" style="display: inline-block;" class="test-name">Funktsioon kasutab ainult lokaalseid muutujaid</h5>
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
@@ -1143,9 +1321,13 @@
           <div id="modal-settings" class="modal">
             <div class="modal-content">
               <div>
-                <h5 class="points">Punktisumma: </h5>
+                <h5 class="points">Punktide arvutamisel kasutatakse kaalude süsteemi. Näiteks test, mis annab 1p ja teine test, mis annab 2p on nende väärtused vastavalt 33% ja 66%. </h5>
               </div>
-              <div class="input-field"onchange="changeTestName(event)">
+              <div class="input-field">
+                <label>Punktide kaal</label>
+                <input type="number">
+              </div>
+              <div class="input-field" onchange="changeTestName(event)">
                 <label>Testi nimi</label>
                 <input type="text" class="validate settings-modal-test-name">
               </div> 
@@ -1202,6 +1384,8 @@
 <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.2/build/highlight.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
+
+
 <script type="text/javascript">
 // JS
 // variable names: snake_case
@@ -1231,20 +1415,6 @@ function initializeElements() { // Used to initialize elements.
 }
 
 /*
-function calculatePoints(add_test) {
-  var tests_length = document.querySelectorAll('.test-points').length + add_test;
-
-  for (i = 0; i < tests_length; ++i) {
-    var modal_points = document.querySelectorAll('.points');
-    for (j = 0; j < modal_points.length; ++j) {
-      points_amount = modal_points[j].innerHTML.split(":");
-      modal_points[j].innerHTML = points_amount[0] + ": " + (Math.round((100/tests_length) * 100) / 100); 
-    }
-  }
-
-  return (Math.round((100/tests_length) * 100) / 100);
-}
-
 function showPointsAmountInName(node) {
   for (let i = 0; i < node.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name").length; ++i) {
     if (node.target.parentNode.parentNode.parentNode.querySelectorAll(".test-name")[i].innerHTML.includes(")")) {
@@ -1361,11 +1531,8 @@ function deleteBlock(event) {
         break;
     }
   }
-
   event.target.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode);
-
   initializeElements();
-  //calculatePoints(0);
 }
 
 function enableDisabledOptions(node, query_class) {
@@ -1386,16 +1553,6 @@ function disableEnabledOptions(node) {
     node.target.options[i].disabled = true;
   }
 }
-
-/*
-function addTemplateCloneWithModal(static_test_template, event, location) {
-  if (static_test_template != null) {
-        var template_clone = document.importNode(static_test_template.content, true); // where true means deep copy
-        template_clone = addModal(event.target.value, template_clone);
-        console.log(location);
-        event.target.parentNode.parentNode.parentNode.parentNode.querySelector(location).appendChild(template_clone);
-  }
-}*/
 
 function fill(event) { // Shows the test options according to chosen test type.
   if (event.target && event.target.classList.contains("func-selected-static-test")) {
@@ -1521,8 +1678,6 @@ function fill(event) { // Shows the test options according to chosen test type.
     initializeElements();
   }
   event.target.selectedIndex = 0;
-
-  //calculatePoints(0);
 }
 
 function deleteMainTestBlock(event) { // Kasutatakse, et kustutada plokke "main-test-block".
@@ -1530,7 +1685,6 @@ function deleteMainTestBlock(event) { // Kasutatakse, et kustutada plokke "main-
     event.target.parentNode.parentNode.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode.parentNode.parentNode); 
     amount_of_tests--; //Kui tahta, et kustutamisel ja lisamisel oleksid numbrid paigas ehk lisatakse 1,2,3 kustutakse 2, siis lisamisel 1,3,3.
   }
-  //calculatePoints(0);
 } 
 
 function addMainTestBlock(event) { // Funktsiooniga lisatakse põhilise testi plokke.
