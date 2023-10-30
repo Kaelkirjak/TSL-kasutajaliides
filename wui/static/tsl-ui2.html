@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/exercise.css">
 
     <style>
-
+      span {color: black}
     </style>
 </head>
 <body style="background-color: #eee">
@@ -217,13 +217,13 @@
               <div class="collapsible-body">
                 <div class="input-field">
                   <select class="selected-test-type">
-                    <option value="0" disabled selected>Vali kontrolli tüüp</option>
+                    <option value="0" disabled selected>Vali</option>
                     <option value="#program-execution-test">Programmi täitmise kontroll</option>
                     <option value="#program-static-test">Programmi staatiline kontroll</option>
                     <option value="#function-execution-test">Funktsiooni täitmise kontroll</option>
                     <option value="#function-static-test">Funktsiooni staatiline kontroll</option>
                   </select>
-                  <label>Testi tüüp</label>
+                  <label>Kontrolli tüüp</label>
                 </div>
                 <div id="test-content">
                     
@@ -237,7 +237,7 @@
         <template id="program-execution-test">
           <div>
             <div>
-              <p>Programmi täitmise kontrolli juures programm käivitatakse ja kontrollitakse, kas programm teeb/sisaldab neid asju, mis on allpool välja toodud.</p>
+              <p>Programmi täitmise kontrolli juures programm käivitatakse ja kontrollitakse, kas programm teeb neid asju, mis on allpool välja toodud.</p>
             </div> 
             <div class="input-field" onchange="changeTestBlockName(event)">
               <label>Testiploki nimi</label>
@@ -246,12 +246,12 @@
 
             <div class="divider"></div>
             <div class="section" id="program-start-data">
-              <h4>Algandmed</h4>
+              <h4>Sisend</h4>
 
               <div class="input-field">
                 <select class="program-exec-input-data">
-                  <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
-                  <option value="#template-user-input" disabled>Kasutajasisendid</option>
+                  <option value="0" disabled selected>Vali sisendi kuju</option>
+                  <option value="#template-user-input" disabled>Sisend kasutajalt</option>
                   <option value="#template-input-file">Sisendfail</option>
                 </select>
                 <label>Andmed</label>
@@ -259,13 +259,13 @@
               <!-- Siia tulevad sisestamise viisid dünaamiliselt -->
 
               <div class="section template-user-input">
-                <h5 id="program-user-input" style="display: inline-block;">Kasutajasisendid (eraldajaks reavahetus)</h5>
+                <h5 id="program-user-input" style="display: inline-block;">Sisend kasutajalt (eraldajaks reavahetus)</h5>
                 <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal-static-user-input">
                   <i class="material-icons">info</i>
                 </a>
                 <div id="modal-static-user-input" class="modal" style="overflow-y: auto">
                   <div class="modal-content">
-                    <p>Kasutajasisend, mis antakse kaasa funktsioonile. Selle puhul ei ole vaja sõnede juures jutumärke kasutada.<br>Näiteks:<br>1<br>tere maailm<br>3</p>
+                    <p>Sisend kasutajalt, mis antakse kaasa funktsioonile. Selle puhul ei ole vaja sõnede juures jutumärke kasutada.<br>Näiteks:<br>1<br>tere maailm<br>3</p>
                   </div>
                   <div class="modal-footer">
                     <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
@@ -275,7 +275,7 @@
                   <i class="material-icons">delete</i>
                 </a>
                 <div class="input-field">
-                  <label>Kasutajasisend</label>
+                  <label>Sisend kasutajalt</label>
                   <textarea class="materialize-textarea"></textarea>
                 </div>
               </div>
@@ -283,12 +283,12 @@
             </div>
             <div class="divider"></div>
             <div class="section" id="program-output-data">
-              <h4>Tulemus</h4>
+              <h4>Väljund</h4>
 
               <div class="input-field">
                 <select class="program-exec-output-data">
                   <option value="0" disabled selected>Vali väljundi kuju</option>
-                  <option value="#template-screen-output">Väljund</option>
+                  <option value="#template-screen-output">Väljund kasutajale</option>
                   <option value="#template-output-file">Väljundfail</option>
                   <option value="#template-throws-exception">Programm viskab erindi</option>
                 </select>
@@ -297,7 +297,7 @@
               <!-- Siia tulevad väljundi viisid dünaamiliselt -->
 
               <div class="section template-screen-output">
-                <h5 id="program-screen-output" style="display: inline-block;" class="test-name">Väljund</h5>
+                <h5 id="program-screen-output" style="display: inline-block;" class="test-name">Väljund kasutajale</h5>
                 <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal-static-screen-output" id="modal-link">
                   <i class="material-icons">settings</i>
                 </a>
@@ -350,8 +350,8 @@
                 </a>
               
                 <div class="input-field">
-                  <select class="chosen-output-option">
-                    <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
+                  <select class="chosen-output-option"> 
+                    <option value="0" disabled selected>Vali kontrollitavad elemendid</option>
                     <option value="#kõik-nendest-väljund">Kõik nendest</option>
                     <option value="#mõni-nendest-väljund">Mõni nendest</option>
                     <option value="#puudub-vähemalt-üks-nendest-väljund">Puudub vähemalt üks nendest</option>
@@ -373,14 +373,14 @@
         <!-- Šabloon kasutajasisendi jaoks //koos informatsiooni modaaliga. Kuna sellel ei ole sätete modaali, siis ei ole talle vaja eraldi genereerida neid. -->
         <template id="template-user-input">
           <div class="section template-user-input">
-            <h5 id="function-user-input" style="display: inline-block;">Kasutajasisendid (eraldajaks reavahetus)</h5>
+            <h5 id="function-user-input" style="display: inline-block;">Sisend kasutajalt (eraldajaks reavahetus)</h5>
             
             <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal-user-input">
               <i class="material-icons">info</i>
             </a>
             <div id="modal-user-input" class="modal" style="overflow-y: auto">
               <div class="modal-content">
-                <p>Kasutajasisend, mis antakse kaasa funktsioonile. Selle puhul ei ole vaja sõnede juures jutumärke kasutada.<br>Näiteks:<br>1<br>tere maailm<br>3</p>
+                <p>Sisend kasutajalt, mis antakse kaasa funktsioonile. Selle puhul ei ole vaja sõnede juures jutumärke kasutada.<br>Näiteks:<br>1<br>tere maailm<br>3</p>
               </div>
               <div class="modal-footer">
                 <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
@@ -391,7 +391,7 @@
               <i class="material-icons">delete</i>
             </a>
             <div class="input-field">
-              <label>Kasutajasisendid</label>
+              <label>Sisend kasutajalt</label>
               <textarea class="materialize-textarea"></textarea>
             </div>
           </div> 
@@ -434,13 +434,13 @@
         <!-- Šabloon väljundi jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-screen-output">
           <div class="section template-screen-output">
-            <h5 id="screen-output" style="display: inline-block;" class="test-name">Väljund</h5>
+            <h5 id="screen-output" style="display: inline-block;" class="test-name">Väljund kasutajale</h5>
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
             </a>
             <div class="input-field">
               <select class="chosen-output-option">
-                <option value="0" disabled selected>Vali väljundi kuju</option>
+                <option value="0" disabled selected>Vali kontrollitavad elemendid</option>
                 <option value="#kõik-nendest-väljund">Kõik nendest</option>
                 <option value="#mõni-nendest-väljund">Mõni nendest</option>
                 <option value="#puudub-vähemalt-üks-nendest-väljund">Puudub vähemalt üks nendest</option>
@@ -476,7 +476,7 @@
               </div>
             </td>
             <td>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteAndEnableSelectOptionsAgain(event)">
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red darken-4 right-align right " onclick="deleteAndEnableSelectOptionsAgain(event)">
                 <i class="material-icons">delete</i>
               </a>
             </td>
@@ -504,7 +504,7 @@
               </div>
             </td>
             <td>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteAndEnableSelectOptionsAgain(event)">
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red darken-4 right-align right " onclick="deleteAndEnableSelectOptionsAgain(event)">
                 <i class="material-icons">delete</i>
               </a>
             </td>
@@ -524,7 +524,7 @@
               </div>
             </td>
             <td>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteAndEnableSelectOptionsAgain(event)">
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red darken-4 right-align right " onclick="deleteAndEnableSelectOptionsAgain(event)">
                 <i class="material-icons">delete</i>
               </a>
             </td>
@@ -544,7 +544,7 @@
               </div>
             </td>
             <td>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteAndEnableSelectOptionsAgain(event)">
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red darken-4 right-align right " onclick="deleteAndEnableSelectOptionsAgain(event)">
                 <i class="material-icons">delete</i>
               </a>
             </td>
@@ -564,10 +564,10 @@
                 <label for="last_name">Faili nimi</label>
               </div>
 
-              <h7>Faili sisu:</h7>
+              <h7>Faili sisu</h7>
               <div class="input-field">
                 <select class="chosen-output-option">
-                  <option value="0" disabled selected>Vali väljundi kuju</option>
+                  <option value="0" disabled selected>Vali kontrollitavad elemendid</option>
                   <option value="#kõik-nendest-väljund">Kõik nendest</option>
                   <option value="#mõni-nendest-väljund">Mõni nendest</option>
                   <option value="#puudub-vähemalt-üks-nendest-väljund">Puudub vähemalt üks nendest</option>
@@ -583,10 +583,10 @@
           </div>
         </template>
 
-        <!-- Šabloon erindi viskamise jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
+        <!-- Šabloon programmi erindi viskamise jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-throws-exception">
           <div class="section template-throws-exception">
-            <h5 id="throws-exception" style="display: inline-block;" class="test-name">Programm viskab erindi:</h5>
+            <h5 id="throws-exception" style="display: inline-block;" class="test-name">Programm viskab erindi</h5>
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
             </a>
@@ -606,13 +606,34 @@
           </div>
         </template>
 
-
+        <!-- Šabloon funktsiooni erindi viskamise jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
+        <template id="template-throws-exception-function">
+          <div class="section template-throws-exception-function">
+            <h5 id="throws-exception-function" style="display: inline-block;" class="test-name">Funktsioon viskab erindi</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
+              <i class="material-icons">delete</i>
+            </a>
+            <p>
+              <label>
+                <input class="with-gap" name="group1" type="radio"  />
+                <span>Peab viskama erindi</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input class="with-gap" name="group1" type="radio" checked />
+                <span>Ei tohi visata erindit</span>
+              </label>
+            </p>
+            <div class="divider"></div>
+          </div>
+        </template>
 
         <!-- Šabloon programmi staatilise kontrolli jaoks-->
         <template id="program-static-test">
           <div>
             <div>
-              <p>Programmi staatilise kontrolli juures programmi ei käivitata vaid kontrollitakse, kas programm teeb/sisaldab neid asju, mis on allpool välja toodud.</p>
+              <p>Programmi staatilise kontrolli juures programmi ei käivitata vaid kontrollitakse, kas programm sisaldab neid asju, mis on allpool välja toodud.</p>
             </div>
             <div class="input-field" onchange="changeTestBlockName(event)">
               <label>Testiploki nimi</label>
@@ -646,18 +667,20 @@
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
             </a>
+            <form action="#">
               <p>
                 <label>
-                  <input class="with-gap" name="group1" type="radio" checked/>
+                  <input class="with-gap" name="group2" type="radio" checked/>
                   <span>Peab sisaldama</span>
                 </label>
               </p>
               <p>
                 <label>
-                  <input class="with-gap" name="group1" type="radio" />
+                  <input class="with-gap" name="group2" type="radio" />
                   <span>Ei tohi sisaldada</span>
                 </label>
               </p>
+            </form>
             <div class="divider"></div>
           </div>
         </template>
@@ -672,7 +695,7 @@
 
             <div class="input-field">
               <select class="chosen-output-option"> 
-                <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
+                <option value="0" disabled selected>Vali kontrollitavad elemendid</option>
                 <option value="#kõik-nendest">Kõik nendest</option> 
                 <option value="#mõni-nendest">Mõni nendest</option>
                 <option value="#mitte-ühtegi-nendest">Mitte ühtegi nendest</option>
@@ -704,7 +727,7 @@
               </div>
             </td>
             <td>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right "  onclick="deleteAndEnableSelectOptionsAgain(event)">
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red darken-4 right-align right "  onclick="deleteAndEnableSelectOptionsAgain(event)">
                 <i class="material-icons">delete</i>
               </a>
             </td>
@@ -727,7 +750,7 @@
               </div>
             </td>
             <td>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteAndEnableSelectOptionsAgain(event)">
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red darken-4 right-align right " onclick="deleteAndEnableSelectOptionsAgain(event)">
                 <i class="material-icons">delete</i>
               </a>
             </td>
@@ -746,7 +769,7 @@
               </div>
             </td>
             <td>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteAndEnableSelectOptionsAgain(event)">
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red darken-4 right-align right " onclick="deleteAndEnableSelectOptionsAgain(event)">
                 <i class="material-icons">delete</i>
               </a>
             </td>
@@ -765,7 +788,7 @@
               </div>
             </td>
             <td>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteAndEnableSelectOptionsAgain(event)">
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red darken-4 right-align right " onclick="deleteAndEnableSelectOptionsAgain(event)">
                 <i class="material-icons">delete</i>
               </a>
             </td>
@@ -782,7 +805,7 @@
 
             <div class="input-field">
               <select class="chosen-output-option">
-                <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
+                <option value="0" disabled selected>Vali kontrollitavad elemendid</option>
                 <option value="#kõik-nendest">Kõik nendest</option>
                 <option value="#mõni-nendest">Mõni nendest</option>
                 <option value="#ükskõik-millise">Ükskõik millise</option>
@@ -808,7 +831,7 @@
             </td>
             <td></td>
             <td>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteAndEnableSelectOptionsAgain(event)">
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red darken-4 right-align right " onclick="deleteAndEnableSelectOptionsAgain(event)">
                 <i class="material-icons">delete</i>
               </a>
             </td>
@@ -823,7 +846,7 @@
             </td>
             <td></td>
             <td>
-              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteAndEnableSelectOptionsAgain(event)">
+              <a style="display: inline-block;" class="btn-floating waves-effect waves-light red darken-4 right-align right " onclick="deleteAndEnableSelectOptionsAgain(event)">
                 <i class="material-icons">delete</i>
               </a>
             </td>
@@ -837,6 +860,7 @@
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
             </a>
+            <form action="#">
               <p>
                 <label>
                   <input class="with-gap" name="group1" type="radio" checked  />
@@ -849,6 +873,7 @@
                   <span>Ei tohi sisaldada</span>
                 </label>
               </p>
+            </form>
             <div class="divider"></div>
           </div>
         </template>
@@ -863,7 +888,7 @@
             
             <div class="input-field">
                 <select class="chosen-output-option">
-                <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
+                <option value="0" disabled selected>Vali kontrollitavad elemendid</option>
                 <option value="#kõik-nendest">Kõik nendest</option>
                 <option value="#mõni-nendest">Mõni nendest</option>
                 <option value="#ükskõik-millise">Ükskõik millise</option>
@@ -891,7 +916,7 @@
               
             <div class="input-field">
               <select class="chosen-output-option">
-                <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
+                <option value="0" disabled selected>Vali kontrollitavad elemendid</option>
                 <option value="#kõik-nendest">Kõik nendest</option> 
                 <option value="#mõni-nendest">Mõni nendest</option>
                 <option value="#ükskõik-millise">Ükskõik millise</option>
@@ -915,6 +940,7 @@
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
             </a>
+            <form action="#">
               <p>
                 <label>
                   <input class="with-gap" name="group1" type="radio" checked/>
@@ -927,6 +953,7 @@
                   <span>Ei tohi sisaldada</span>
                 </label>
               </p>
+            </form>
             <div class="divider"></div>
           </div>
         </template>
@@ -937,7 +964,7 @@
         <template id="function-execution-test">
           <div>
             <div>
-              <p>Funktsiooni täitmise kontrolli juures programm käivitatakse ja kontrollitakse, kas funktsioon teeb/sisaldab neid asju, mis on allpool välja toodud.</p>
+              <p>Funktsiooni täitmise kontrolli juures programm käivitatakse ja kontrollitakse, kas funktsioon teeb neid asju, mis on allpool välja toodud.</p>
             </div>
             <div class="input-field" onchange="changeTestBlockName(event)">
               <label>Testiploki nimi</label>
@@ -950,13 +977,13 @@
             </div> 
             <div class="divider"></div>
             <div class="section" id="func-start-data">
-              <h4>Algandmed</h4>
+              <h4>Sisend</h4>
 
               <div class="input-field">
                 <select class="func-exec-input-data">
-                  <option value="0" disabled selected>Vali andmete sisestamise kuju</option>
+                  <option value="0" disabled selected>Vali sisendi kuju</option>
                   <option value="#template-function-arguments" disabled>Argumendid</option>
-                  <option value="#template-user-input">Kasutajasisendid</option>
+                  <option value="#template-user-input">Sisend kasutajalt</option>
                   <option value="#template-input-file">Sisendfail</option>
                 </select>
                 <label>Andmed</label>
@@ -970,7 +997,7 @@
                 </a>
                 <div id="modal-static-arguments-info" class="modal" style="overflow-y: auto">
                   <div class="modal-content">
-                    <p>Argumendid, mis antakse kaasa funktsioonile. Sõnede puhul kasutada jutumärke.<br> Näiteks: 1,"moos",False,True,43.4,[1,2,3]</p>
+                    <p>Argumendid, mis antakse kaasa funktsioonile. Sõnede puhul kasutada jutumärke. Kui funktsioonil argumente ei ole, siis ei ole vaja ka lahtrisse midagi sisestada.<br> Näiteks: 1,"moos",False,True,43.4,[1,2,3]</p>
                   </div>
                   <div class="modal-footer">
                     <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
@@ -989,14 +1016,15 @@
             </div> 
             <div class="divider"></div>
             <div class="section" id="func-output-data">
-              <h4>Tulemus</h4>
+              <h4>Väljund</h4>
 
               <div class="input-field">
                 <select class="func-exec-output-data">
                   <option value="0" disabled selected>Vali väljundi kuju</option>
-                  <option value="#template-return-value">Tagastusväärtus</option>
-                  <option value="#template-screen-output">Väljund</option>
+                  <option value="#template-return-value" disabled>Tagastusväärtus</option>
+                  <option value="#template-screen-output">Väljund kasutajale</option>
                   <option value="#template-output-file">Väljundfail</option>
+                  <option value="#template-throws-exception-function">Funktsioon viskab erindi</option>
                 </select>
                 <label>Andmed</label>
               </div> 
@@ -1076,7 +1104,7 @@
             </a>
             <div id="modal-function-arguments" class="modal" style="overflow-y: auto">
               <div class="modal-content">
-                <p>Argumendid, mis antakse kaasa funktsioonile. Sõnede puhul kasutada jutumärke.<br> Näiteks: 1,"moos",False,True,43.4,[1,2,3]</p>
+                <p>Argumendid, mis antakse kaasa funktsioonile. Sõnede puhul kasutada jutumärke. Kui funktsioonil argumente ei ole, siis ei ole vaja ka lahtrisse midagi sisestada.<br> Näiteks: 1,"moos",False,True,43.4,[1,2,3]</p>
               </div>
               <div class="modal-footer">
                 <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
@@ -1114,7 +1142,7 @@
         <template id="function-static-test">
           <div>
             <div>
-              <p>Funktsiooni staatilise kontrolli juures funktsiooni ei käivitata vaid kontrollitakse, kas funktsioon teeb/sisaldab neid asju, mis on allpool välja toodud.</p>
+              <p>Funktsiooni staatilise kontrolli juures funktsiooni ei käivitata vaid kontrollitakse, kas sisaldab neid asju, mis on allpool välja toodud.</p>
             </div>
             <div class="input-field" onchange="changeTestBlockName(event)">
               <label>Testiploki nimi</label>
@@ -1157,6 +1185,7 @@
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
             </a>
+            <form action="#">
             <p>
               <label>
                 <input class="with-gap" name="group1" type="radio" checked  />
@@ -1169,6 +1198,7 @@
                 <span>Ei tohi sisaldada</span>
               </label>
             </p>
+            </form>
             <div class="divider"></div>
           </div>
         </template>
@@ -1180,6 +1210,7 @@
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
             </a>
+            <form action="#">
             <p>
               <label>
                 <input class="with-gap" name="group1" type="radio" checked  />
@@ -1192,6 +1223,7 @@
                 <span>Ei tohi sisaldada</span>
               </label>
             </p>
+          </form>
             <div class="divider"></div>
           </div>
         </template>
@@ -1203,6 +1235,7 @@
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
             </a>
+            <form action="#">
             <p>
               <label>
                 <input class="with-gap" name="group1" type="radio" checked  />
@@ -1215,6 +1248,7 @@
                 <span>Ei tohi kutsuda</span>
               </label>
             </p>
+            </form>
             <div class="divider"></div>
           </div>
         </template>
@@ -1226,6 +1260,7 @@
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
             </a>
+            <form action="#">
             <p>
               <label>
                 <input class="with-gap" name="group1" type="radio" checked />
@@ -1238,6 +1273,7 @@
                 <span>Ei tohi olla rekursiivne</span>
               </label>
             </p>
+            </form>
             <div class="divider"></div>
           </div>
         </template>
@@ -1249,6 +1285,7 @@
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
             </a>
+            <form action="#">
             <p>
               <label>
                 <input class="with-gap" name="group1" type="radio" checked  />
@@ -1261,6 +1298,7 @@
                 <span>Ei tohi sisaldada</span>
               </label>
             </p>
+            </form>
             <div class="divider"></div>
           </div>
         </template>
@@ -1272,6 +1310,7 @@
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
             </a>
+            <form action="#">
             <p>
               <label>
                 <input class="with-gap" name="group1" type="radio" checked  />
@@ -1284,6 +1323,7 @@
                 <span>Ei tohi kasutada</span>
               </label>
             </p>
+            </form>
             <div class="divider"></div>
           </div>
         </template>
@@ -1386,7 +1426,7 @@ function initializeElements() { // Used to initialize elements.
   M.FormSelect.init(select_elements);
 
   var select_elements = document.querySelectorAll('.modal');
-  M.Modal.init(select_elements);
+  M.Modal.init(select_elements, {'preventScrolling' : false});
 
   M.updateTextFields();
 }
@@ -1446,7 +1486,9 @@ function addModal(test_type, template_clone) {
     template_clone = createModalsForTests(template_clone, "Kontrollib, kas väljundfaili sisu on korrektne.", "Väljundfaili sisu oli õige.", "Väljundfaili sisu ei olnud õige.","#output-file","Kontrollib, kas väljundfaili sisu on korrektne.");
   } else if (test_type === "#template-throws-exception") {
     template_clone = createModalsForTests(template_clone, "Kontrollib, kas programm viskab erindi.", "Programm viskas erindi.", "Programm ei visanud erindit.","#throws-exception","Kontrollib, kas programm viskab erindi.");
-  } 
+  } else if (test_type === "#template-throws-exception-function") {
+    template_clone = createModalsForTests(template_clone, "Kontrollib, kas funktsioon viskab erindi.", "Funktsioon viskas erindi.", "Funktsioon ei visanud erindit", "#throws-exception-function", "Kontrollib, kas funktsioon viskab erindi.")
+  }
   return template_clone;
 }
 
@@ -1637,6 +1679,7 @@ function fill(event) { // Shows the test options according to chosen test type.
     initializeElements();
   }
   event.target.selectedIndex = 0;
+  initializeElements();
 }
 
 function deleteMainTestBlock(event) { // Kasutatakse, et kustutada plokke "main-test-block".
