@@ -15,6 +15,16 @@
 
     <style>
       span {color: black}
+
+      .in-out-divider {
+        color:black;
+        border-top: 2px solid;
+      }
+
+      .between-divider {
+        color: black;
+        border-top: 1px solid;
+      }
     </style>
 </head>
 <body style="background-color: #eee">
@@ -244,7 +254,7 @@
               <input type="text" class="validate test-block-name">
             </div> 
 
-            <div class="divider"></div>
+            <hr class="in-out-divider">
             <div class="section" id="program-start-data">
               <h4>Sisend</h4>
 
@@ -259,7 +269,7 @@
               <!-- Siia tulevad sisestamise viisid dünaamiliselt -->
 
               <div class="section template-user-input">
-                <h5 id="program-user-input" style="display: inline-block;">Sisend kasutajalt (eraldajaks reavahetus)</h5>
+                <h5 id="program-user-input" style="display: inline-block;">Sisend kasutajalt</h5>
                 <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal-static-user-input">
                   <i class="material-icons">info</i>
                 </a>
@@ -275,13 +285,15 @@
                   <i class="material-icons">delete</i>
                 </a>
                 <div class="input-field">
-                  <label>Sisend kasutajalt</label>
+                  <label>Sisend kasutajalt (eraldajaks reavahetus)</label>
                   <textarea class="materialize-textarea"></textarea>
                 </div>
-              </div>
+                <hr class="between-divider">
+              </div> 
+              
 
             </div>
-            <div class="divider"></div>
+            <hr class="in-out-divider">
             <div class="section" id="program-output-data">
               <h4>Väljund</h4>
 
@@ -364,6 +376,7 @@
                   <tbody id="ekraaniväljund-output">
                   </tbody>
                 </table>
+                <hr class="between-divider">
               </div> 
 
             </div>
@@ -373,7 +386,7 @@
         <!-- Šabloon kasutajasisendi jaoks //koos informatsiooni modaaliga. Kuna sellel ei ole sätete modaali, siis ei ole talle vaja eraldi genereerida neid. -->
         <template id="template-user-input">
           <div class="section template-user-input">
-            <h5 id="function-user-input" style="display: inline-block;">Sisend kasutajalt (eraldajaks reavahetus)</h5>
+            <h5 id="function-user-input" style="display: inline-block;">Sisend kasutajalt</h5>
             
             <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal-user-input">
               <i class="material-icons">info</i>
@@ -391,9 +404,10 @@
               <i class="material-icons">delete</i>
             </a>
             <div class="input-field">
-              <label>Sisend kasutajalt</label>
+              <label>Sisend kasutajalt (eraldajaks reavahetus)</label>
               <textarea class="materialize-textarea"></textarea>
             </div>
+            <hr class="between-divider">
           </div> 
         </template>
 
@@ -423,10 +437,11 @@
                 <input type="text" class="validate">
               </div>
               <div class="input-field">
-                <label>Faili sisu</label>
-                <input type="text" class="validate">
+                <label>Faili sisu (eraldajaks reavahetus)</label>
+                <textarea class="materialize-textarea"></textarea>
               </div>
             </div>
+            <hr class="between-divider">
           </div>
         </template>
 
@@ -448,10 +463,11 @@
               </select>
               <label>Andmed</label>
             </div>
-              <table>
-                <tbody id="ekraaniväljund-output">
-                </tbody>
-              </table>
+            <table>
+              <tbody id="ekraaniväljund-output">
+              </tbody>
+            </table>
+            <hr class="between-divider">
           </div>
         </template>
 
@@ -460,18 +476,19 @@
           <tr class="kõik-nendest-väljund">
             <td style="width:30%" id="kõik-n">
               <h5>Kõik nendest</h5>
-              <label >
+              <label>
                 <input id="text-order" type="checkbox" />
                 <span>Rohkem mitte midagi</span>
               </label>
-              <label >
+              <br>
+              <label>
                 <input id="text-order" type="checkbox" />
                 <span>Järjestus oluline</span>
               </label>
             </td>
             <td>
               <div class="input-field">
-                <label>Väljund</label>
+                <label>Väljund (eraldajaks reavahetus)</label>
                 <textarea class="materialize-textarea"></textarea>
               </div>
             </td>
@@ -488,18 +505,19 @@
           <tr class="mõni-nendest-väljund">
             <td style="width:30%" id="mõni-n">
               <h5>Mõni nendest</h5>
-              <label >
+              <label>
                 <input id="text-order" type="checkbox" />
                 <span>Rohkem mitte midagi</span>
               </label>
-              <label >
+              <br>
+              <label>
                 <input id="text-order" type="checkbox" />
                 <span>Järjestus oluline</span>
               </label>
             </td>
             <td>
               <div class="input-field">
-                <label>Väljund</label>
+                <label>Väljund (eraldajaks reavahetus)</label>
                 <textarea class="materialize-textarea"></textarea>
               </div>
             </td>
@@ -519,7 +537,7 @@
             </td>
             <td>
               <div class="input-field">
-                <label>Väljund</label>
+                <label>Väljund (eraldajaks reavahetus)</label>
                 <textarea class="materialize-textarea"></textarea>
               </div>
             </td>
@@ -539,7 +557,7 @@
             </td>
             <td>
               <div class="input-field">
-                <label>Väljund</label>
+                <label>Väljund (eraldajaks reavahetus)</label>
                 <textarea class="materialize-textarea"></textarea>
               </div>
             </td>
@@ -580,6 +598,7 @@
                   </tbody>
                 </table>
             </div>
+            <hr class="between-divider">
           </div>
         </template>
 
@@ -602,7 +621,7 @@
                 <span>Ei tohi visata erindit</span>
               </label>
             </p>
-            <div class="divider"></div>
+            <hr class="between-divider">
           </div>
         </template>
 
@@ -625,7 +644,29 @@
                 <span>Ei tohi visata erindit</span>
               </label>
             </p>
-            <div class="divider"></div>
+            <hr class="between-divider">
+          </div>
+        </template>
+
+        <!-- Šabloon funktsiooni argumendi muutuse jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
+        <template id="template-function-argument-change">
+          <div class="section template-function-argument-change">
+            <h5 id="function-argument-change" style="display: inline-block;" class="test-name">Funktsiooni argumendi väärtuse muudatus</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
+              <i class="material-icons">delete</i>
+            </a>
+
+            <div class="input-field">
+              <label>Argumendi järjekorranumber</label>
+              <input type="number" class="validate" required>
+            </div>
+
+            <div class="input-field">
+              <label>Uus väärtus</label>
+              <input type="text" class="validate" required>
+            </div>
+
+            <hr class="between-divider">
           </div>
         </template>
 
@@ -640,7 +681,7 @@
               <input type="text" class="validate test-block-name">
             </div> 
             
-            <div class="divider"></div>
+            <hr class="in-out-divider">
             <div class="section" id="program-static-output">
               <div class="input-field">
                 <select class="prog-selected-static-test">
@@ -681,7 +722,7 @@
                 </label>
               </p>
             </form>
-            <div class="divider"></div>
+            <hr class="between-divider">
           </div>
         </template>
 
@@ -708,6 +749,7 @@
               <tbody id="ekraaniväljund-output">
               </tbody>
             </table>
+            <hr class="between-divider">
           </div>
         </template>
 
@@ -722,8 +764,9 @@
               </label>
             </td>
             <td>
-              <div class="chips">
-                <input class="custom-class">
+              <div class="input-field">
+                <label>Väljund (eraldajaks reavahetus)</label>
+                <textarea class="materialize-textarea"></textarea>
               </div>
             </td>
             <td>
@@ -745,8 +788,9 @@
               </label>
             </td>
             <td>
-              <div class="chips">
-                <input class="custom-class">
+              <div class="input-field">
+                <label>Väljund (eraldajaks reavahetus)</label>
+                <textarea class="materialize-textarea"></textarea>
               </div>
             </td>
             <td>
@@ -764,8 +808,9 @@
               <h5>Mitte ühtegi nendest</h5>
             </td>
             <td>
-              <div class="chips">
-                <input class="custom-class">
+              <div class="input-field">
+                <label>Väljund (eraldajaks reavahetus)</label>
+                <textarea class="materialize-textarea"></textarea>
               </div>
             </td>
             <td>
@@ -783,8 +828,9 @@
               <h5>Puudub vähemalt üks nendest</h5>
             </td>
             <td>
-              <div class="chips">
-                <input class="custom-class">
+              <div class="input-field">
+                <label>Väljund (eraldajaks reavahetus)</label>
+                <textarea class="materialize-textarea"></textarea>
               </div>
             </td>
             <td>
@@ -820,6 +866,7 @@
               <tbody id="ekraaniväljund-output">
               </tbody>
             </table>
+            <hr class="between-divider">
           </div>
         </template>
 
@@ -874,7 +921,7 @@
                 </label>
               </p>
             </form>
-            <div class="divider"></div>
+            <hr class="between-divider">
           </div>
         </template>
 
@@ -903,6 +950,7 @@
               <tbody id="ekraaniväljund-output">
               </tbody>
             </table>
+            <hr class="between-divider">
           </div>
         </template>
 
@@ -930,6 +978,7 @@
               <tbody id="ekraaniväljund-output">
               </tbody>
             </table>
+            <hr class="between-divider">
           </div>
         </template>
 
@@ -954,7 +1003,7 @@
                 </label>
               </p>
             </form>
-            <div class="divider"></div>
+            <hr class="between-divider">
           </div>
         </template>
 
@@ -970,12 +1019,12 @@
               <label>Testiploki nimi</label>
               <input type="text" class="validate test-block-name">
             </div> 
-            <div class="divider"></div>
             <div class="input-field">
               <label>Funktsiooni nimi</label>
               <input type="text" class="validate" required>
             </div> 
-            <div class="divider"></div>
+            
+            <hr class="in-out-divider">
             <div class="section" id="func-start-data">
               <h4>Sisend</h4>
 
@@ -1011,10 +1060,11 @@
                   <input id="input-validator" type="text" class="validate">
                   <span class="helper-text" data-error="valel kujul" data-success="right"></span>
                 </div> 
+                <hr class="between-divider">
               </div>
-
             </div> 
-            <div class="divider"></div>
+
+            <hr class="in-out-divider">
             <div class="section" id="func-output-data">
               <h4>Väljund</h4>
 
@@ -1025,6 +1075,7 @@
                   <option value="#template-screen-output">Väljund kasutajale</option>
                   <option value="#template-output-file">Väljundfail</option>
                   <option value="#template-throws-exception-function">Funktsioon viskab erindi</option>
+                  <option value="#template-function-argument-change">Funktsiooni argumendi väärtuse muudatus</option>
                 </select>
                 <label>Andmed</label>
               </div> 
@@ -1087,7 +1138,8 @@
                 <div class="input-field">
                   <label>Väärtus</label>
                   <input type="text" class="validate" required>
-                </div> 
+                </div>
+                <hr class="between-divider"> 
               </div>
 
             </div> 
@@ -1118,7 +1170,8 @@
               <label>Argumendid</label>
               <input id="input-validator" type="text" class="validate">
               <span class="helper-text" data-error="wrong" data-success="right"></span>
-            </div> 
+            </div>
+            <hr class="between-divider"> 
           </div>
         </template>
 
@@ -1133,6 +1186,7 @@
               <label>Väärtus</label>
               <input type="text" class="validate" required>
             </div> 
+            <hr class="between-divider">
           </div>
         </template>
 
@@ -1149,13 +1203,12 @@
               <input type="text" class="validate test-block-name">
             </div> 
 
-            <div class="divider"></div>
             <div class="input-field">
               <label>Funktsiooni nimi</label>
               <input type="text" class="validate" required>
             </div>
 
-            <div class="divider"></div>
+            <hr class="in-out-divider">
             <div class="section" id="function-static-output">
               <div class="input-field">
                 <select class="func-selected-static-test">
@@ -1199,7 +1252,7 @@
               </label>
             </p>
             </form>
-            <div class="divider"></div>
+            <hr class="between-divider">
           </div>
         </template>
 
@@ -1224,7 +1277,7 @@
               </label>
             </p>
           </form>
-            <div class="divider"></div>
+          <hr class="between-divider">
           </div>
         </template>
 
@@ -1249,7 +1302,7 @@
               </label>
             </p>
             </form>
-            <div class="divider"></div>
+            <hr class="between-divider">
           </div>
         </template>
 
@@ -1274,7 +1327,7 @@
               </label>
             </p>
             </form>
-            <div class="divider"></div>
+            <hr class="between-divider">
           </div>
         </template>
 
@@ -1299,7 +1352,7 @@
               </label>
             </p>
             </form>
-            <div class="divider"></div>
+            <hr class="between-divider">
           </div>
         </template>
 
@@ -1324,7 +1377,7 @@
               </label>
             </p>
             </form>
-            <div class="divider"></div>
+            <hr class="between-divider">
           </div>
         </template>
 
@@ -1487,8 +1540,10 @@ function addModal(test_type, template_clone) {
   } else if (test_type === "#template-throws-exception") {
     template_clone = createModalsForTests(template_clone, "Kontrollib, kas programm viskab erindi.", "Programm viskas erindi.", "Programm ei visanud erindit.","#throws-exception","Kontrollib, kas programm viskab erindi.");
   } else if (test_type === "#template-throws-exception-function") {
-    template_clone = createModalsForTests(template_clone, "Kontrollib, kas funktsioon viskab erindi.", "Funktsioon viskas erindi.", "Funktsioon ei visanud erindit", "#throws-exception-function", "Kontrollib, kas funktsioon viskab erindi.")
-  }
+    template_clone = createModalsForTests(template_clone, "Kontrollib, kas funktsioon viskab erindi.", "Funktsioon viskas erindi.", "Funktsioon ei visanud erindit.", "#throws-exception-function", "Kontrollib, kas funktsioon viskab erindi.")
+  } else if (test_type === "#template-function-argument-change") {
+    template_clone = createModalsForTests(template_clone, "Kontrollib, kas funktsioon muutis argumendi väärtust.", "Funktsioon muutis ära argumendi väärtuse.", "Funktsioon ei muutnud argumendi väärtust.", "#function-argument-change", "Kontrollib, kas funktsioon muutis argumendi väärtust.")
+  } 
   return template_clone;
 }
 
