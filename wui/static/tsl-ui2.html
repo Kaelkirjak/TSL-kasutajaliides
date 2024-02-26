@@ -202,7 +202,7 @@
         <ul class="collapsible">
           <li id="all-four-tests">
             <div class="collapsible-header" style="display: block">
-              <h5 style="display: inline-block;">Kontrollid</h5>
+              <h5 style="display: inline-block;">Testid</h5>
               <a style="display: inline-block;" class="btn-floating waves-effect waves-light green right-align right" onclick="addMainTestBlock(event)">
                 <i class="material-icons">add</i>
               </a>
@@ -228,12 +228,12 @@
                 <div class="input-field">
                   <select class="selected-test-type">
                     <option value="0" disabled selected>Vali</option>
-                    <option value="#program-execution-test">Programmi täitmise kontroll</option>
-                    <option value="#program-static-test">Programmi staatiline kontroll</option>
-                    <option value="#function-execution-test">Funktsiooni täitmise kontroll</option>
-                    <option value="#function-static-test">Funktsiooni staatiline kontroll</option>
+                    <option value="#program-execution-test">Programmi täitmise test</option>
+                    <option value="#program-static-test">Programmi staatiline test</option>
+                    <option value="#function-execution-test">Funktsiooni täitmise test</option>
+                    <option value="#function-static-test">Funktsiooni staatiline test</option>
                   </select>
-                  <label>Kontrolli tüüp</label>
+                  <label>Testi tüüp</label>
                 </div>
                 <div id="test-content">
                     
@@ -243,11 +243,11 @@
           </ul>
         </template>
 
-        <!-- Šabloon programmi täitmise kontrolli jaoks -->
+        <!-- Šabloon programmi täitmise testi jaoks -->
         <template id="program-execution-test">
           <div>
             <div>
-              <p>Programmi täitmise kontrolli juures programm käivitatakse ja kontrollitakse, kas programm teeb neid asju, mis on allpool välja toodud.</p>
+              <p>Programmi täitmise testi juures programm käivitatakse ja kontrollitakse, kas programm teeb neid asju, mis on allpool välja toodud.</p>
             </div> 
             <div class="input-field" onchange="changeTestBlockName(event)">
               <label>Testiploki nimi</label>
@@ -302,7 +302,7 @@
                   <option value="0" disabled selected>Vali väljundi kuju</option>
                   <option value="#template-screen-output">Väljund kasutajale</option>
                   <option value="#template-output-file">Väljundfail</option>
-                  <option value="#template-throws-exception">Programm viskab erindi</option>
+                  <option value="#template-throws-exception">Erind</option>
                 </select>
                 <label>Andmed</label>
               </div> 
@@ -316,19 +316,19 @@
                 <div id="modal-static-screen-output" class="modal" style="overflow-y: auto">
                   <div class="modal-content">
                     <div class="input-field" onchange="changeTestName(event)">
-                      <label>Testi nimi</label>
+                      <label>Kontrolli nimi</label>
                       <input type="text" class="validate settings-modal-test-name">
                     </div> 
                     <div class="input-field">
-                      <label>Teade enne testi käivitamist:</label>
+                      <label>Teade enne kontrolli käivitamist:</label>
                       <input id="before-message" value="Kontrollib, kas programm/funktsioon väljastas korrektse väljundi." type="text" class="validate">
                     </div>
                     <div class="input-field">
-                      <label>Teade testi edukal läbimisel:</label>
+                      <label>Teade kontrolli edukal läbimisel:</label>
                       <input id="passed-message" value="Programm/Funktsioon väljastas korrektse väljundi." type="text" class="validate">
                     </div>
                     <div class="input-field">
-                      <label>Teade testi edutul läbimisel:</label>
+                      <label>Teade kontrolli edutul läbimisel:</label>
                       <input id="failed-message" value="Programm/Funktsioon ei väljastanud korrektset väljundit." type="text" class="validate">
                     </div>
                     <label>
@@ -605,7 +605,7 @@
         <!-- Šabloon programmi erindi viskamise jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-throws-exception">
           <div class="section template-throws-exception">
-            <h5 id="throws-exception" style="display: inline-block;" class="test-name">Programm viskab erindi</h5>
+            <h5 id="throws-exception" style="display: inline-block;" class="test-name">Erind</h5>
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
             </a>
@@ -628,7 +628,7 @@
         <!-- Šabloon funktsiooni erindi viskamise jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-throws-exception-function">
           <div class="section template-throws-exception-function">
-            <h5 id="throws-exception-function" style="display: inline-block;" class="test-name">Funktsioon viskab erindi</h5>
+            <h5 id="throws-exception-function" style="display: inline-block;" class="test-name">Erind</h5>
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
             </a>
@@ -651,7 +651,7 @@
         <!-- Šabloon funktsiooni argumendi muutuse jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-function-argument-change">
           <div class="section template-function-argument-change">
-            <h5 id="function-argument-change" style="display: inline-block;" class="test-name">Funktsiooni argumendi väärtuse muudatus</h5>
+            <h5 id="function-argument-change" style="display: inline-block;" class="test-name">Argumendi muudetud väärtus</h5>
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
             </a>
@@ -670,11 +670,11 @@
           </div>
         </template>
 
-        <!-- Šabloon programmi staatilise kontrolli jaoks-->
+        <!-- Šabloon programmi staatilise testi jaoks-->
         <template id="program-static-test">
           <div>
             <div>
-              <p>Programmi staatilise kontrolli juures programmi ei käivitata vaid kontrollitakse, kas programm sisaldab neid asju, mis on allpool välja toodud.</p>
+              <p>Programmi staatilise testi juures programmi ei käivitata, vaid kontrollitakse, kas programm sisaldab neid asju, mis on allpool välja toodud.</p>
             </div>
             <div class="input-field" onchange="changeTestBlockName(event)">
               <label>Testiploki nimi</label>
@@ -686,15 +686,16 @@
               <div class="input-field">
                 <select class="prog-selected-static-test">
                   <option value="0" disabled selected>Vali staatiline kontroll</option>
+                  <option value="#TEST-template">Programm sisaldab tingimuslauset</option> 
                   <option value="#template-program-contains-cycle">Programm sisaldab tsüklit</option>
-                  <option value="#template-contains_keyword">Sisaldab võtmesõna</option>
-                  <option value="#template-calls_function">Kutsub välja funktsiooni</option>
-                  <option value="#template-program-calls-print">Programm kutsub välja prindi</option>
-                  <option value="#template-defines_function">Defineerib funktsiooni</option>
-                  <option value="#template-imports_module">Impordib mooduli</option>
                   <option value="#template-program-contains-try-except">Programm sisaldab try-excepti</option>
+                  <option value="#template-program-calls-print">Programm kutsub välja prindi</option>
+                  <option value="#template-contains_keyword">Sisaldab võtmesõna</option>
+                  <option value="#template-defines_function">Defineerib funktsiooni</option>
+                  <option value="#template-calls_function">Kutsub välja funktsiooni</option>
+                  <option value="#template-imports_module">Impordib mooduli</option>
                 </select>
-                <label>Staatiline test</label>
+                <label>Staatilised kontrollid</label>
               </div>
               <!-- Siia tulevad valitud testid dünaamiliselt -->
             </div>
@@ -1009,11 +1010,11 @@
 
 
 
-        <!-- Šabloon funktsiooni täitmise kontrolli jaoks -->
+        <!-- Šabloon funktsiooni täitmise testi jaoks -->
         <template id="function-execution-test">
           <div>
             <div>
-              <p>Funktsiooni täitmise kontrolli juures programm käivitatakse ja kontrollitakse, kas funktsioon teeb neid asju, mis on allpool välja toodud.</p>
+              <p>Funktsiooni täitmise testi juures programm käivitatakse ja kontrollitakse, kas funktsioon teeb neid asju, mis on allpool välja toodud.</p>
             </div>
             <div class="input-field" onchange="changeTestBlockName(event)">
               <label>Testiploki nimi</label>
@@ -1071,37 +1072,37 @@
               <div class="input-field">
                 <select class="func-exec-output-data">
                   <option value="0" disabled selected>Vali väljundi kuju</option>
-                  <option value="#template-return-value" disabled>Tagastusväärtus</option>
+                  <option value="#template-return-value" disabled>Tagastatud väärtus</option>
                   <option value="#template-screen-output">Väljund kasutajale</option>
                   <option value="#template-output-file">Väljundfail</option>
-                  <option value="#template-throws-exception-function">Funktsioon viskab erindi</option>
-                  <option value="#template-function-argument-change">Funktsiooni argumendi väärtuse muudatus</option>
+                  <option value="#template-function-argument-change">Argumendi muudetud väärtus</option>
+                  <option value="#template-throws-exception-function">Erind</option>
                 </select>
                 <label>Andmed</label>
               </div> 
               <!-- Siia tulevad väljundi viisid dünaamiliselt -->
 
               <div class="section template-return-value">
-                <h5 id="return-value" style="display: inline-block;" class="test-name">Tagastusväärtus</h5>
+                <h5 id="return-value" style="display: inline-block;" class="test-name">Tagastatud väärtus</h5>
                   <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal-static-return-value-settings" id="modal-link">
                     <i class="material-icons">settings</i>
                   </a>
                   <div id="modal-static-return-value-settings" class="modal" style="overflow-y: auto">
                     <div class="modal-content">
                       <div class="input-field" onchange="changeTestName(event)">
-                        <label>Testi nimi</label>
+                        <label>Kontrolli nimi</label>
                         <input type="text" class="validate settings-modal-test-name">
                       </div> 
                       <div class="input-field">
-                        <label>Teade enne testi käivitamist:</label>
-                        <input id="before-message" value="Kontrollib funktsiooni tagastusväärtust." type="text" class="validate">
+                        <label>Teade enne kontrolli käivitamist:</label>
+                        <input id="before-message" value="Kontrollib funktsiooni tagastatud väärtust." type="text" class="validate">
                       </div>
                       <div class="input-field">
-                        <label>Teade testi edukal läbimisel:</label>
+                        <label>Teade kontrolli edukal läbimisel:</label>
                         <input id="passed-message" value="Funktsioon tagastas õige väärtuse." type="text" class="validate">
                       </div>
                       <div class="input-field">
-                        <label>Teade testi edutul läbimisel:</label>
+                        <label>Teade kontrolli edutul läbimisel:</label>
                         <input id="failed-message" value="Funktsioon ei tagastanud õiget väärtust." type="text" class="validate">
                       </div>
                       <label>
@@ -1126,7 +1127,7 @@
                   </a>
                   <div id="modal-static-return-value-info" class="modal" style="overflow-y: auto">
                     <div class="modal-content">
-                      <p>Kontrollib funktsiooni tagastusväärtust.</p>
+                      <p>Kontrollib funktsiooni tagastud väärtust.</p>
                     </div>
                     <div class="modal-footer">
                       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sulge</a>
@@ -1178,7 +1179,7 @@
         <!-- Šabloon funktsiooni tagastusväärtuse jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
         <template id="template-return-value">
           <div class="section template-return-value">
-            <h5 id="return-value" style="display: inline-block;" class="test-name">Tagastusväärtus</h5>
+            <h5 id="return-value" style="display: inline-block;" class="test-name">Tagastatud väärtus</h5>
             <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
               <i class="material-icons">delete</i>
             </a>
@@ -1192,11 +1193,11 @@
 
 
 
-        <!-- Šabloon funktsiooni staatilise kontrolli jaoks -->
+        <!-- Šabloon funktsiooni staatilise testi jaoks -->
         <template id="function-static-test">
           <div>
             <div>
-              <p>Funktsiooni staatilise kontrolli juures funktsiooni ei käivitata vaid kontrollitakse, kas sisaldab neid asju, mis on allpool välja toodud.</p>
+              <p>Funktsiooni staatilise testi juures funktsiooni ei käivitata, vaid kontrollitakse, kas sisaldab neid asju, mis on allpool välja toodud.</p>
             </div>
             <div class="input-field" onchange="changeTestBlockName(event)">
               <label>Testiploki nimi</label>
@@ -1212,19 +1213,20 @@
             <div class="section" id="function-static-output">
               <div class="input-field">
                 <select class="func-selected-static-test">
-                  <option value="0" disabled selected>Vali staatiline kontroll</option>                   
+                  <option value="0" disabled selected>Vali staatiline kontroll</option>  
+                  <option value="#TEST-template">Funktsioon sisaldab tingimuslauset</option> 
                   <option value="#template-function-contains-cycle">Funktsioon sisaldab tsüklit</option>
-                  <option value="#template-contains_keyword">Sisaldab võtmesõna</option>
-                  <option value="#template-function-contains-return">Funktsioon sisaldab returni</option>
-                  <option value="#template-calls_function">Kutsub välja funktsiooni</option>
+                  <option value="#template-function-contains-try-except">Funktsioon sisaldab try-excepti</option>
                   <option value="#template-function-calls-print">Funktsioon kutsub välja prindi</option>
+                  <option value="#template-function-contains-return">Funktsioon sisaldab returni</option>
+                  <option value="#template-contains_keyword">Sisaldab võtmesõna</option>
+                  <option value="#template-function-uses-local-vars">Funktsioon kasutab ainult lokaalseid muutujaid</option>
                   <option value="#template-function-is-recursive">Funktsioon on rekursiivne</option>
                   <option value="#template-defines_function">Defineerib funktsiooni</option>
+                  <option value="#template-calls_function">Kutsub välja funktsiooni</option>
                   <option value="#template-imports_module">Impordib mooduli</option>
-                  <option value="#template-function-contains-try-except">Funktsioon sisaldab try-excepti</option>
-                  <option value="#template-function-uses-local-vars">Funktsioon kasutab ainult lokaalseid muutujaid</option>
                 </select>
-                <label>Staatiline test</label>
+                <label>Staatilised kontrollid</label>
               </div>
               <!-- Siia tulevad valitud testid dünaamiliselt -->
             </div>
@@ -1383,7 +1385,7 @@
 
 
 
-        <!-- Šabloon modalli jaoks, kus saab testi erinevaid sätteid muuta. Sõnumid, testi nimi ja tulevikus punktisumma. -->
+        <!-- Šabloon modalli jaoks, kus saab kontrolli erinevaid sätteid muuta. Sõnumid, kontrolli nimi ja tulevikus punktisumma. -->
         <template id="settings-modal">
           <a class="btn-floating btn-small waves-effect waves-light green modal-trigger" href="#modal-settings" id="modal-link">
             <i class="material-icons">settings</i>
@@ -1391,19 +1393,19 @@
           <div id="modal-settings" class="modal" style="overflow-y: auto">
             <div class="modal-content">
               <div class="input-field" onchange="changeTestName(event)">
-                <label>Testi nimi</label>
+                <label>Kontrolli nimi</label>
                 <input type="text" class="validate settings-modal-test-name">
               </div> 
               <div class="input-field">
-                <label>Teade enne testi käivitamist:</label>
+                <label>Teade enne kontrolli käivitamist:</label>
                 <input id="before-message" value="" type="text" class="validate">
               </div>
               <div class="input-field">
-                <label>Teade testi edukal läbimisel:</label>
+                <label>Teade kontrolli edukal läbimisel:</label>
                 <input id="passed-message" value="" type="text" class="validate">
               </div>
               <div class="input-field">
-                <label>Teade testi edutul läbimisel:</label>
+                <label>Teade kontrolli edutul läbimisel:</label>
                 <input id="failed-message" value="" type="text" class="validate">
               </div>
               <label>
@@ -1532,7 +1534,7 @@ function addModal(test_type, template_clone) {
   } else if (test_type === "#template-function-uses-local-vars") {
     template_clone = createModalsForTests(template_clone, "Kontrollib, kas funktsioon kasutab lokaalseid muutujaid.", "Funktsioon kasutas lokaalseid muutujaid.", "Funktsioon ei kasutanud lokaalseid muutujaid.","#function-uses-local-vars","Kontrollib, kas funktsioon kasutab lokaalseid muutujaid.");
   } else if (test_type === "#template-return-value") {
-    template_clone = createModalsForTests(template_clone, "Kontrollib funktsiooni tagastusväärtust.", "Funktsioon tagastas õige väärtuse.", "Funktsioon ei tagastanud õiget väärtust.","#return-value","Kontrollib funktsiooni tagastusväärtust.");
+    template_clone = createModalsForTests(template_clone, "Kontrollib funktsiooni tagastatud väärtust.", "Funktsioon tagastas õige väärtuse.", "Funktsioon ei tagastanud õiget väärtust.","#return-value","Kontrollib funktsiooni tagastatud väärtust.");
   } else if (test_type === "#template-screen-output") {
     template_clone = createModalsForTests(template_clone, "Kontrollib, kas programm/funktsioon väljastas korrektse väljundi.", "Programm/Funktsioon väljastas korrektse väljundi.", "Programm/Funktsioon ei väljastanud korrektset väljundit.","#screen-output","Kontrollib, kas programm/funktsioon väljastas korrektse väljundi.");
   } else if (test_type === "#template-output-file") {
@@ -1718,10 +1720,10 @@ function fill(event) { // Shows the test options according to chosen test type.
     var chosen_test_type = event.target.value;
     var test_template;
 
-    var name_dict = {"#program-execution-test": "Programmi täitmise kontroll",
-                     "#program-static-test": "Programmi staatiline kontroll",
-                     "#function-execution-test": "Funktsiooni täitmise kontroll",
-                     "#function-static-test": "Funktsiooni staatiline kontroll"};
+    var name_dict = {"#program-execution-test": "Programmi täitmise test",
+                     "#program-static-test": "Programmi staatiline test",
+                     "#function-execution-test": "Funktsiooni täitmise test",
+                     "#function-static-test": "Funktsiooni staatiline test"};
 
     test_template = document.querySelector(chosen_test_type);
 
