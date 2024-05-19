@@ -686,7 +686,7 @@
               <div class="input-field">
                 <select class="prog-selected-static-test">
                   <option value="0" disabled selected>Vali staatiline kontroll</option>
-                  <option value="#TEST-template">Programm sisaldab tingimuslauset</option> 
+                  <option value="#template-program-contains-conditional-statement">Programm sisaldab tingimuslauset</option> 
                   <option value="#template-program-contains-cycle">Programm sisaldab tsüklit</option>
                   <option value="#template-program-contains-try-except">Programm sisaldab try-excepti</option>
                   <option value="#template-program-calls-print">Programm kutsub välja prindi</option>
@@ -700,6 +700,31 @@
               <!-- Siia tulevad valitud testid dünaamiliselt -->
             </div>
           </div>      
+        </template>
+
+        <!-- Šabloon programmi tsükli sisalduvuse kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
+        <template id="template-program-contains-conditional-statement">
+          <div class="section template-program-contains-conditional-statement">
+            <h5 id="program-contains-conditional-statement" style="display: inline-block;" class="test-name">Programm sisaldab tingimuslauset</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
+              <i class="material-icons">delete</i>
+            </a>
+            <form action="#">
+              <p>
+                <label>
+                  <input class="with-gap" name="group2" type="radio" checked/>
+                  <span>Peab sisaldama</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input class="with-gap" name="group2" type="radio" />
+                  <span>Ei tohi sisaldada</span>
+                </label>
+              </p>
+            </form>
+            <hr class="between-divider">
+          </div>
         </template>
 
         <!-- Šabloon programmi tsükli sisalduvuse kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
@@ -1214,7 +1239,7 @@
               <div class="input-field">
                 <select class="func-selected-static-test">
                   <option value="0" disabled selected>Vali staatiline kontroll</option>  
-                  <option value="#TEST-template">Funktsioon sisaldab tingimuslauset</option> 
+                  <option value="#template-function-contains-conditional-statement">Funktsioon sisaldab tingimuslauset</option> 
                   <option value="#template-function-contains-cycle">Funktsioon sisaldab tsüklit</option>
                   <option value="#template-function-contains-try-except">Funktsioon sisaldab try-excepti</option>
                   <option value="#template-function-calls-print">Funktsioon kutsub välja prindi</option>
@@ -1231,6 +1256,31 @@
               <!-- Siia tulevad valitud testid dünaamiliselt -->
             </div>
           </div>    
+        </template>
+
+        <!-- Šabloon funktsiooni tingimuslause sisalduvuse kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
+        <template id="template-function-contains-conditional-statement">
+          <div class="section template-function-contains-conditional-statement">
+            <h5 id="function-contains-conditional-statement" style="display: inline-block;" class="test-name">Funktsioon sisaldab tingimuslauset</h5>
+            <a style="display: inline-block;" class="btn-floating waves-effect waves-light red right-align right " onclick="deleteBlock(event)">
+              <i class="material-icons">delete</i>
+            </a>
+            <form action="#">
+            <p>
+              <label>
+                <input class="with-gap" name="group1" type="radio" checked  />
+                <span>Peab sisaldama</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input class="with-gap" name="group1" type="radio" />
+                <span>Ei tohi sisaldada</span>
+              </label>
+            </p>
+            </form>
+            <hr class="between-divider">
+          </div>
         </template>
 
         <!-- Šabloon funktsiooni tsükli sisalduvuse kontrolli jaoks. Sätete ja informatsiooni modaalid genereeritakse automaatselt selle lisamisel. -->
@@ -1515,6 +1565,8 @@ function addModal(test_type, template_clone) {
     template_clone = createModalsForTests(template_clone,"Kontrollib, kas programm/funktsioon kutsub funktsiooni.", "Programm/funktsioon kutsus funktsiooni.", "Programm/funktsioon ei kutsunud funktsiooni.","#calls-function-modal","Kontrollib, kas programm/funktsioon kutsub funktsiooni.");
   } else if (test_type === "#template-program-calls-print") {
     template_clone = createModalsForTests(template_clone,"Kontrollib, kas programm kutsus välja prindi.", "Programm kutsus välja prindi.", "Programm ei kutsunud välja printi.","#program-calls-print","Kontrollib, kas programm kutsus välja prindi.");
+  } else if (test_type === "#template-program-contains-conditional-statement") {
+    template_clone = createModalsForTests(template_clone,"Kontrollib, kas programm sisaldab tingimuslauset.", "Programm sisaldas tingimuslauset.", "Programm ei sisaldanud tingimuslauset.","#program-contains-conditional-statement","Kontrollib, kas programm sisaldab tingimuslauset.");
   } else if (test_type === "#template-defines_function") {
     template_clone = createModalsForTests(template_clone, "Kontrollib, kas programm/funktsioon defineerib funktsiooni.", "Programm/funktsioon defineeris funktsiooni.", "Programm/funktsioon ei defineerinud funktsiooni.", "#defines-function-modal", "Kontrollib, kas programm/funktsioon defineerib funktsiooni.  \"Rohkem mitte midagi\" tähendab seda, et õpilase lahendus ei tohi sisaldada mitte midagi rohkem kui on siin ette nähtud.");
   } else if (test_type === "#template-imports_module") {
@@ -1525,6 +1577,8 @@ function addModal(test_type, template_clone) {
     template_clone = createModalsForTests(template_clone,"Kontrollib, kas funktsioon sisaldab tsüklit.", "Funktsioon sisaldas tsüklit.", "Funktsioon ei sisaldanud tsüklit.","#function-contains-cycle","Kontrollib, kas funktsioon sisaldab tsüklit.");
   } else if (test_type === "#template-function-contains-return") {
     template_clone = createModalsForTests(template_clone,"Kontrollib, kas funktsioon sisaldab returni.", "Funktsioon sisaldas returni.", "Funktsioon ei sisaldanud returni.","#function-contains-return","Kontrollib, kas funktsioon sisaldab returni.");
+  } else if (test_type === "#template-function-contains-conditional-statement") {
+    template_clone = createModalsForTests(template_clone,"Kontrollib, kas funktsioon sisaldab tingimuslauset.", "Funktsioon sisaldas tingimuslauset.", "Funktsioon ei sisaldanud tingimuslauset.","#function-contains-conditional-statement","Kontrollib, kas funktsioon sisaldab tingimuslauset.");
   } else if (test_type === "#template-function-calls-print") {
     template_clone = createModalsForTests(template_clone,"Kontrollib, kas funktsioon kutsub välja prindi.", "Funktsioon kutsus prindi.", "Funktsioon ei kutsunud printi.","#function-calls-print","Kontrollib, kas funktsioon kutsub välja prindi.");
   } else if (test_type === "#template-function-is-recursive") {
@@ -1616,7 +1670,7 @@ function fill(event) { // Shows the test options according to chosen test type.
   if (event.target && event.target.classList.contains("func-selected-static-test")) {
     var static_test_template = document.querySelector(event.target.value);
     if (event.target.value === "#template-function-contains-cycle" || event.target.value === "#template-function-contains-return" || event.target.value === "#template-function-calls-print"
-        || event.target.value === "#template-function-is-recursive" || event.target.value === "#template-function-contains-try-except" || event.target.value === "#template-function-uses-local-vars") {
+        || event.target.value === "#template-function-is-recursive" || event.target.value === "#template-function-contains-try-except" || event.target.value === "#template-function-uses-local-vars" || event.target.value === "#template-function-contains-conditional-statement") {
       event.target.options[event.target.selectedIndex].disabled = true;
     }
     if (static_test_template != null) {
@@ -1655,7 +1709,7 @@ function fill(event) { // Shows the test options according to chosen test type.
 
   if (event.target && event.target.classList.contains("prog-selected-static-test")) {
     var static_test_template = document.querySelector(event.target.value);
-    if (event.target.value === "#template-program-contains-cycle" || event.target.value === "#template-program-calls-print" || event.target.value === "#template-program-contains-try-except") {
+    if (event.target.value === "#template-program-contains-cycle" || event.target.value === "#template-program-calls-print" || event.target.value === "#template-program-contains-try-except" || event.target.value === "#template-program-contains-conditional-statement") {
       event.target.options[event.target.selectedIndex].disabled = true;
     }
     if (static_test_template != null) {
